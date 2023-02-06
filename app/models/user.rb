@@ -16,16 +16,30 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  def self.find_by_credentials(credential, password)
+    # field = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username
+    # user = User.find_by(field => credential)
+    # user&.authenticate(password)
+    if URI::MailTo::EMAIL_REGEXP.match?(credential)
+      user = User.find_by(email: credential)
+    else
+      user = User.find_by(username: credential)
+    end
 
-  def ensure_session_token
-    self.session_token ||= generate_unique_session_token
+    if user&.authenticate(password)
+      return user
+    else
+      nil
+    end
   end
+  
 
   def reset_session_token!
-    self.session_token = generate_unique_session_token
-    save!
-    session_token
+    self.update!(session_token: generate_unique_session_token)
+    self.session_token
   end
+
+  
 
   private
 
@@ -36,5 +50,8 @@ class User < ApplicationRecord
     end
   end
 
+  def ensure_session_token
+    self.session_token ||= generate_unique_session_token
+  end
 
 end
