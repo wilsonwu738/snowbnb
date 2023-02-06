@@ -42,6 +42,7 @@ class ApplicationController < ActionController::API
   end
 
   def test
+    
     if params.has_key?(:login)
       login!(User.first)
     elsif params.has_key?(:logout)
