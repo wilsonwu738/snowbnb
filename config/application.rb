@@ -38,8 +38,10 @@ module Snowbnb
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
-    key: '_snowbnb_session',
-    same_site: :lax, 
-    secure: Rails.env.production?
+      key: '_snowbnb_session',
+      same_site: :lax, 
+      secure: Rails.env.production?
+
+    config.railties_order = [:all, :main_app]  #set up activeStorage
   end
 end

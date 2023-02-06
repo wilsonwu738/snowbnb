@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: snowbnb_production
-  username: snowbnb
-  password: <%= ENV["SNOWBNB_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
