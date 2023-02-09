@@ -18,29 +18,24 @@
 }
 
 .nav-button {
-  margin-right: 50px;
-  border: 1px solid black;
-  height: 50px;
-  /* margin-top: 30px;
-  margin-bottom: 20px; */
-  
-  display: flex;
-  justify-content: center;
-}
 
+}
 .nav-button:hover {
   background-color: aquamarine;
 }
 
 .profile-dropdown {
-  border: 5px solid black;
-  position: absolute;
+  border: 1px solid black;
+  position: relative;
   top: 25px;
   right: 10px;
 }
 
-.dropdown-button {
+.profile-button {
   border: 5px solid black;
   position: relative;
+  margin-top: 50px;
   /* right: 0; */
 } 
+
+

@@ -9,40 +9,56 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-  
-  useEffect(() => {
-    if (!showMenu) return;
+  // const openMenu = () => {
+    
+  //   if (showMenu) return;
+  //   setShowMenu(true);
+  // };
+  // // this useeffect is causing the modal to disappear
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //   };
 
-    document.addEventListener('click', closeMenu);
+  //   document.addEventListener('click', closeMenu);
   
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
+
+  
 
   const logout = (e) => {
     e.preventDefault();
+    console.log('logout button clicked');
+    console.log(`${user}`);
     dispatch(sessionActions.logout());
   };
 
+  let dropdownItems;
+  if (user) {
+    dropdownItems = 
+      <div className="profile-dropdown">
+        <button onClick={logout}>Log Out</button>
+      </div>
+  } else {
+    dropdownItems = 
+      <div className="profile-dropdown">
+        <div className="login-modal"><LoginFormModal /></div>
+        <div className="=signup-modal"><SignupFormModal /></div>
+      </div>
+  }
+ 
+
+
   return (
-    <div className="whole-profile">
-      <button className='dropdown-button' onClick={openMenu}>
-        <i class="fa-solid fa-user"></i>
+    
+    <div className="profile">
+      <button className='profile-button' onClick={() => setShowMenu(!showMenu)}>
+        <i className="fa-solid fa-user"></i>
       </button>
-      {showMenu && (
-        <div className="profile-dropdown">
-          <LoginFormModal />
-          <SignupFormModal />
-          <button onClick={logout}>Log Out</button>
-        </div>
-      )}
+      {showMenu && dropdownItems}
     </div>
   );
 }

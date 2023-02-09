@@ -27,12 +27,16 @@ function LoginForm() {
       });
   };
 
+  const demoLogin = () => {
+    dispatch(sessionActions.login({credential: "demo@user.io", password: "password"}))
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="login_fomr">
+    <form onSubmit={handleSubmit} className="login-form">
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
-      <label>
+      <label className="email-input">
         Email
         <input
           type="text"
@@ -41,7 +45,7 @@ function LoginForm() {
           required
         />
       </label>
-      <label>
+      <label className="password-input">
         Password
         <input
           type="password"
@@ -51,6 +55,8 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button onClick={demoLogin}>Demo User</button>
+
     </form>
   );
 }

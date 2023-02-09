@@ -1,5 +1,16 @@
-.login_fomr {
+.login-form {
   display: flex;
   flex-direction: column;
-  width: 100vh;
+  
+  /* width: 100vh; */
+}
+
+.email-input {
+  /* margin: 100px; */
+  background-color: aqua;
+}
+
+.password-input {
+  background-color: blueviolet;
+
 }

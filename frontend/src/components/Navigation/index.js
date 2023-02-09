@@ -12,38 +12,35 @@ import SignupFormModal from '../SignupFormModal';
 function Navigation(){
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
-      <div>
-        <LoginFormModal />
-        <SignupFormModal />
+  //benchbnb rendering profile button only when logged in
+  // let sessionLinks;
+  // if (sessionUser) {
+  //   sessionLinks = (
+  //     <ProfileButton user={sessionUser} />
+  //   );
+  // } else {
+  //   sessionLinks = (
+  //     <div>
+  //       <LoginFormModal />
+  //       <SignupFormModal />
        
-        {/* <NavLink to="/signup" className="login">Sign Up</NavLink> */}
-      </div>
-    );
-  }
-
+  //       {/* <NavLink to="/signup" className="login">Sign Up</NavLink> */}
+  //     </div>
+  //   );
+  // }
   return (
-    <>
-        <div className='nav-bar'>
-          <div>
-            <NavLink exact to="/">
-              <img className='logo' src={logo}></img>
-            </NavLink>
-          </div>
-          {/* {sessionLinks} */}
- 
-          {/* <button className='nav-button' >Button</button> */}
-          <ProfileButton user={sessionUser}/>
+    <div className='nav-bar'>
+      <div>
+        <NavLink exact to="/">
+          <img className='logo' src={logo}></img>
+        </NavLink>
       </div>
+      {/* {sessionLinks} */}
+      <div className='nav-button'>
+        <ProfileButton user={sessionUser}/>
+      </div>
+    </div>
 
-
-    </>
 
       
     
