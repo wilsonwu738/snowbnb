@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -29,20 +32,18 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fa-brands fa-airbnb"></i>
+    <div className="whole-profile">
+      <button className='dropdown-button' onClick={openMenu}>
+        <i class="fa-solid fa-user"></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="profile-dropdown">
+          <LoginFormModal />
+          <SignupFormModal />
+          <button onClick={logout}>Log Out</button>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 

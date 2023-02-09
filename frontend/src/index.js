@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ModalProvider } from "./context/Modal";
 import "./index.css";
+import './reset.css';
 import App from "./App";
 import configureStore from "./store";
 import csrfFetch from "./store/csrf";

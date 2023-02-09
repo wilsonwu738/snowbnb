@@ -1,0 +1,46 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin-left: 50px;
+}
+
+.login {
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-button {
+  margin-right: 50px;
+  border: 1px solid black;
+  height: 50px;
+  /* margin-top: 30px;
+  margin-bottom: 20px; */
+  
+  display: flex;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background-color: aquamarine;
+}
+
+.profile-dropdown {
+  border: 5px solid black;
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}
+
+.dropdown-button {
+  border: 5px solid black;
+  position: relative;
+  /* right: 0; */
+} 
