@@ -1,8 +1,10 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  
-  /* width: 100vh; */
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+  width: 50vh;
 }
 
 .email-input {
@@ -13,4 +15,10 @@
 .password-input {
   background-color: blueviolet;
 
+}
+
+.loginform-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
 }

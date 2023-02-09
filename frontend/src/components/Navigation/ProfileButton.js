@@ -31,8 +31,7 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    console.log('logout button clicked');
-    console.log(`${user}`);
+
     dispatch(sessionActions.logout());
   };
 
