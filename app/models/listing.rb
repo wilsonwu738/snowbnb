@@ -19,7 +19,8 @@
 #
 class Listing < ApplicationRecord
   validates :title, :description, :lat, :long, :location, :nightly_price, 
-    :max_guests, :num_baths, :num_bedrooms, :num_beds, presence: true
+    :max_guests, :num_baths, :num_bedrooms, :num_beds, :owner_id, presence: true
+  
 
 
   belongs_to :owner,
