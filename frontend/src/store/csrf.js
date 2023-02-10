@@ -1,8 +1,3 @@
-
-
-
-
-
 async function csrfFetch(url, options = {}) {
   options.method = options.method || 'GET';
   options.headers = options.headers || {};

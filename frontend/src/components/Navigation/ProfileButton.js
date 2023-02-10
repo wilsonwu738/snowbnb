@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
     dropdownItems = 
       <div className="profile-dropdown">
         <div className="login-modal"><LoginFormModal /></div>
-        <div className="=signup-modal"><SignupFormModal /></div>
+        <div className="signup-modal"><SignupFormModal /></div>
       </div>
   }
  

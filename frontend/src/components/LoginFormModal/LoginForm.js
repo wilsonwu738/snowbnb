@@ -38,22 +38,22 @@ function LoginForm() {
       </ul>
       <div className="email-input">
         <label >
-          Email
           <input
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
+            placeholder="Email"
             required
           />
         </label>
       </div>
       <div className="password-input">
         <label>
-          Password
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
             required
           />
         </label>

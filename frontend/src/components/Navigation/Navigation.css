@@ -19,21 +19,38 @@
 }
 
 
-.nav-button:hover {
-  background-color: aquamarine;
-}
-
 .profile-dropdown {
   /* border: 1px solid black; */
-  position: relative;
-  top: 25px;
-  right: 10px;
+  position: absolute;
+  top: 90px;
+  right: 60px;
+  /* margin-right: 50%; */
+  border: 1px solid;
+  border-radius: 10px;
+  width: 75px;
 }
 
+.login-modal {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.signup-modal {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+
+
 .profile-button {
-  border: 5px solid black;
+  border: 2px solid black;
   position: relative;
   margin-top: 50px;
+  margin-right: 50px;
+  border-radius: 50%;
   /* right: 0; */
 } 
 
