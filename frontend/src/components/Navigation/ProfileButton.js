@@ -7,12 +7,12 @@ import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  // { isShow: flase}
   const [showMenu, setShowMenu] = useState(false);
   
   // const openMenu = () => {
-    
-  //   if (showMenu) return;
-  //   setShowMenu(true);
+  //   if (showMenu.isShown) return;
+  //   setShowMenu({ isShow: true});
   // };
   // // this useeffect is causing the modal to disappear
   // useEffect(() => {

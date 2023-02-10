@@ -36,7 +36,7 @@ function LoginForm() {
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
-      <div className="email-input">
+      <div className="input_wrapper">
         <label >
           <input
             type="text"
@@ -46,18 +46,19 @@ function LoginForm() {
             required
           />
         </label>
-      </div>
-      <div className="password-input">
+  
         <label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder="password"
             required
           />
         </label>
       </div>
+
+      
       <div className="loginform-buttons">
         <button className="login-button" type="submit">Log In</button>
         <button className="demo-button" onClick={demoLogin}>Demo User</button>

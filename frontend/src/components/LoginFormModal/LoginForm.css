@@ -7,6 +7,14 @@
   width: 50vh;
 }
 
+.input_wrapper {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  gap: 20%;
+
+}
+
 
 .loginform-buttons {
   display: flex;
