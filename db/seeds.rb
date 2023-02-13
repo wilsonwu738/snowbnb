@@ -1,3 +1,5 @@
+require "open-uri"
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -8,30 +10,30 @@
 ApplicationRecord.transaction do 
   puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
-  # User.destroy_all
+  User.destroy_all
 
   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
-  # ApplicationRecord.connection.reset_pk_sequence!('users')
+  ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('listings')
 
 
-  # puts "Creating users..."
+  puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
-  # User.create!(
-  #   username: 'Demo-lition', 
-  #   email: 'demo@user.io', 
-  #   password: 'password'
-  # )
+  User.create!(
+    username: 'Demo-lition', 
+    email: 'demo@user.io', 
+    password: 'password'
+  )
 
   # More users
-  # 10.times do 
-  #   User.create!({
-  #     username: Faker::Internet.unique.username(specifier: 3),
-  #     email: Faker::Internet.unique.email,
-  #     password: 'password'
-  #   }) 
-  # end
+  10.times do 
+    User.create!({
+      username: Faker::Internet.unique.username(specifier: 3),
+      email: Faker::Internet.unique.email,
+      password: 'password'
+    }) 
+  end
 
   Listing.create!(title: "Cozy Studio in the Heart of the City",
                  description: "Enjoy a comfortable stay in this charming studio located in the heart of the city. Perfect for solo travelers or couples.",
@@ -105,4 +107,14 @@ Listing.create!(title: "Stylish Studio in the Trendy Neighborhood",
 
 
   puts "Done!"
+end
+
+# Attach listing photos
+Listing.first(5).each_with_index do |listing, index|
+  listing.photo.attach(
+    # The string passed to URI.open should be the URL of the image in its bucket.
+    # This sample assumes the bucket name is `benchbnb-seeds`.
+    io: URI.open("https://snowbnb-seeds.s3.amazonaws.com/listing_#{index + 1}.webp"), 
+    filename: "listing_#{index + 1}.webp"
+  )
 end
