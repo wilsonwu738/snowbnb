@@ -7,6 +7,7 @@ const ListingIndexItem = ({listing}) => {
   
   return (
     <div className="index-item">
+      <img className='item-pic' src={listing.photoUrl} alt="" />
       <div>
         {listing.location}
       </div>
