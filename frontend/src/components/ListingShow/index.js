@@ -23,6 +23,8 @@ const ListingShow = () => {
   
   return (
     <div className="show-container">
+      <div className="show-title">{listing.title}</div>
+      <div className="show-location">{listing.location}</div>
       <div className="photo-container">
         <div className="photo-box1">
           <img id="p1" src={listing.photoUrl[0]} alt="" />
@@ -37,7 +39,10 @@ const ListingShow = () => {
         </div>
       </div>
 
-      <div className="description">{listing.description}</div>
+      <div className="show-host">Hosue host by {listing.username}</div>
+      <div className="show-details">{listing.numBedrooms} bedrooms {listing.maxGuests} Guest</div>
+
+      <div className="show-description">{listing.description}</div>
 
     </ div>
     

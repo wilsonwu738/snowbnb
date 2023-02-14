@@ -46,7 +46,7 @@ ApplicationRecord.transaction do
                num_bedrooms: 2, 
                num_beds: 3, 
                num_baths: 2, 
-               owner_id: 1, 
+               owner_id: 2, 
                created_at: DateTime.now, 
                updated_at: DateTime.now)
 

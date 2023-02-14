@@ -5,3 +5,5 @@ json.extract! listing, :id, :title, :description, :lat, :long,
   #for aws
 # json.photoUrl listing.photos.attached? ? url_for(listing.photos) : nil
 json.photo_url listing.photos.map { |file| url_for(file) }
+
+json.username listing.owner.username
