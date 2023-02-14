@@ -2,14 +2,14 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-left: 20px;
+  margin-left: 100px;
+  margin-right:100px
 }
 
 .listing-container {
   width: 20%;
   display: flex;
   flex-direction: column;
-  
   margin: 20px
 }
 

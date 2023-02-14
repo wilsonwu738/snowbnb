@@ -16,7 +16,7 @@ export const receiveListing = listing => ({
 
 //for useSelector hook
 export const getListings = (state) => state.listings ? Object.values(state.listings) : []
-export const getListing = (listingId) => (state) => state.listings ? state.listings[listingId] : null
+export const getListing = (listingId) => (state) => state && state.listings ? state.listings[listingId] : null
 
 
 
@@ -53,7 +53,6 @@ const listingsReducer = (state = {}, action) => {
     case RECEIVE_LISTING:
       newState[action.listing.id] = action.listing
       return newState
-      
     default:
       return state
   }
