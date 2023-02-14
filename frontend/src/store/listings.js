@@ -21,21 +21,27 @@ export const getListing = (listingId) => (state) => state.listings ? state.listi
 
 
 export const fetchListings = () => async dispatch => {
-  const res = await csrfFetch(`api/listings`);
-
+  
+  const res = await csrfFetch(`/api/listings`);
+  
   if (res.ok) {
     const data = await res.json();
-    console.log(`this is in fetchlistings: ${data}`)
+    
     dispatch(receiveListings(data))
   }
+
 }
 
 export const fetchListing = (listingId) => async dispatch => {
-  const res = await csrfFetch(`api/listings${listingId}`);
-
+  
+  const res = await csrfFetch(`/api/listings/${listingId}`);
+  
+  
   if (res.ok) {
     const data = await res.json();
-    dispatch(receiveListings(data))
+    
+    dispatch(receiveListing(data))
+
   }
 }
 
@@ -45,7 +51,9 @@ const listingsReducer = (state = {}, action) => {
     case RECEIVE_LISTINGS:
       return { ...state, ...action.listings }
     case RECEIVE_LISTING:
-      return newState[action.listing.id] = action.listing
+      newState[action.listing.id] = action.listing
+      return newState
+      
     default:
       return state
   }

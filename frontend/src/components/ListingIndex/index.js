@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchListings, getListings } from "../../store/listings";
 import ListingIndexItem from "./ListingIndexItem";
-import './index.css'
+import './ListingIndex.css'
 
 const ListingIndex = () => {
   const dispatch = useDispatch()

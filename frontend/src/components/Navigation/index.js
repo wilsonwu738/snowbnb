@@ -9,6 +9,7 @@ import logo from './logo.jpeg'
 import SignupFormModal from '../SignupFormModal';
 
 
+
 function Navigation(){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -35,7 +36,8 @@ function Navigation(){
           <img className='logo' src={logo}></img>
         </NavLink>
       </div>
-      {/* {sessionLinks} */}
+      
+
       <div className='nav-button'>
         <ProfileButton user={sessionUser}/>
       </div>

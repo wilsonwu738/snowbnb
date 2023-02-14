@@ -1,30 +1,34 @@
 // import { useDispatch } from "react-redux";
 // import { fetchListing } from "../../store/listings";
-import "./index.css"
+import "./ListingIndex.css"
+import { Link } from "react-router-dom"
 
 const ListingIndexItem = ({listing}) => {
   // const dispatch = useDispatch();
   
   return (
-    <div className="index-item">
-      <img className='item-pic' src={listing.photoUrl} alt="" />
-      <div>
-        {listing.location}
-      </div>
-      <div>
-        {listing.numBedrooms} Bedrooms
-      </div>
-      <br />
-      <div>
-        ${listing.nightlyPrice} night
-      </div>
+    <div className="listing-container">
+      <Link className="listing-link" to={`/listings/${listing.id}`}>
+      
+        <img className='listing-photo' src={listing.photoUrl[0]} alt="" />
+        <br />
+        <div className="listing-location">
+          {listing.location}
+        </div>
+        <div className="listing-bedrooms">
+          {listing.numBedrooms} Bedrooms
+        </div>
+        <br />
+        <div className="listing-price">
+          ${listing.nightlyPrice} night
+        </div>
 
-      <br />
-      <br />
-      <br />
+        <br />
+        <br />
+        <br />
 
 
-
+      </Link>
     </div>
   )
 

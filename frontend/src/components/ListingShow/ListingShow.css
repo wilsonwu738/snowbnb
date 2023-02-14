@@ -1,0 +1,48 @@
+.show-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+.photo-box1 img {
+  width: 550px;
+  height: 455px;
+  margin: 5px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+}
+
+.photo-box2 img {
+  width: 300px;
+  height: 225px;
+  display: flex;
+  margin: 5px
+
+}
+
+.photo-box3 img {
+  width: 300px;
+  height: 225px;
+  display: flex;
+  margin: 5px
+
+}
+
+#p4 {
+  border-top-right-radius: 15px;
+}
+
+#p5 {
+  border-bottom-right-radius: 15px;
+}
+
+
+
+
