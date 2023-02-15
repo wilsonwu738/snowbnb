@@ -25,9 +25,13 @@ class Listing < ApplicationRecord
   
 
 
-  belongs_to :owner,
+  belongs_to :host,
     foreign_key: :owner_id,
     class_name: :User
+
+  has_many :reservations,
+    foreign_key: :listing_id,
+    class_name: :Reservation
   
 
 end

@@ -6,4 +6,4 @@ json.extract! listing, :id, :title, :description, :lat, :long,
 # json.photoUrl listing.photos.attached? ? url_for(listing.photos) : nil
 json.photo_url listing.photos.map { |file| url_for(file) }
 
-json.username listing.owner.username
+json.username listing.host.username
