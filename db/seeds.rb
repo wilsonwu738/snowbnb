@@ -10,6 +10,7 @@ require "open-uri"
 ApplicationRecord.transaction do 
   puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
+  Reservation.destroy_all
   Listing.destroy_all
   User.destroy_all
 
@@ -17,7 +18,7 @@ ApplicationRecord.transaction do
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('listings')
-
+  ApplicationRecord.connection.reset_pk_sequence!('reservations')
 
   puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
@@ -300,6 +301,51 @@ ApplicationRecord.transaction do
     {io:URI.open('https://snowbnb-seeds.s3.amazonaws.com/listing_12_p4.jpg'), filename: 'l12p4.jpg'},
     {io:URI.open('https://snowbnb-seeds.s3.amazonaws.com/listing_12_p5.jpg'), filename: 'l12p5.jpg'}
   ])
+
+  Reservation.create!(
+  user_id: 1,
+  listing_id: 1,
+  start_date: "2023-03-10 14:00:00",
+  end_date: "2023-03-15 11:00:00",
+  num_guests: 2,
+  total_cost: 500
+)
+
+  Reservation.create!(
+  user_id: 1,
+  listing_id: 2,
+  start_date: "2023-04-01 15:00:00",
+  end_date: "2023-04-07 10:00:00",
+  num_guests: 3,
+  total_cost: 900
+)
+
+  Reservation.create!(
+  user_id: 3,
+  listing_id: 3,
+  start_date: "2023-05-20 13:00:00",
+  end_date: "2023-05-24 11:00:00",
+  num_guests: 4,
+  total_cost: 1200
+)
+
+  Reservation.create!(
+  user_id: 4,
+  listing_id: 4,
+  start_date: "2023-06-10 14:00:00",
+  end_date: "2023-06-15 11:00:00",
+  num_guests: 2,
+  total_cost: 600
+)
+
+  Reservation.create!(
+  user_id: 5,
+  listing_id: 5,
+  start_date: "2023-07-01 12:00:00",
+  end_date: "2023-07-05 10:00:00",
+  num_guests: 3,
+  total_cost: 900
+)
 
 
   puts "Done!"
