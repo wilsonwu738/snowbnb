@@ -37,6 +37,7 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Reservation,
     dependent: :destroy
+    
 
 
 

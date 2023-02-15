@@ -43,7 +43,7 @@ const ListingShow = () => {
       <div className="show-details">{listing.numBedrooms} bedrooms {listing.maxGuests} Guest</div>
 
       <div className="show-description">{listing.description}</div>
-
+      <ReservationForm listingId={listingId}/> 
     </ div>
     
   )
