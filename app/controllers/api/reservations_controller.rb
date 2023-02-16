@@ -23,11 +23,18 @@ class Api::ReservationsController < ApplicationController
     end
   end
 
+  # {
+   # errors : [""]
+  #}
+
+
+
   def update
     @reservation = Reservation.find(params[:id])
-    if @reservation
-      @reservation.update(reservation_params)
+    if @reservation && @reservation.update(reservation_params)
       render :show
+    else
+      render json: {errors: @reservation.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

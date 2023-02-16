@@ -29,9 +29,10 @@ export const getReservation = (reservationId) => (state) => state && state.reser
 export const fetchReservations = () => async dispatch => {
   const res = await csrfFetch(`/api/reservations`);
   if (res.ok) {
-    const data = await res.json();
+    const data = await res.json(); //this is the body
     dispatch(receiveReservations(data))
   }
+
 }
 
 export const fetchReservation = (reservationId) => async dispatch => {

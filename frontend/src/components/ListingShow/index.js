@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchListing, getListing } from "../../store/listings";
 import './ListingShow.css'
+import ReservationForm from "../ReservationForm";
 
 const ListingShow = () => {
   const { listingId } = useParams();
@@ -43,7 +44,7 @@ const ListingShow = () => {
       <div className="show-details">{listing.numBedrooms} bedrooms {listing.maxGuests} Guest</div>
 
       <div className="show-description">{listing.description}</div>
-      {/* <ReservationForm listingId={listingId}/>  */}
+      <ReservationForm listingId={listingId}/> 
     </ div>
     
   )
