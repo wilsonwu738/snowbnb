@@ -7,14 +7,16 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './ReservationForm.css'
 import { createReservation } from "../../store/reservations";
+import { getListing } from "../../store/listings";
 
 
 
 const ReservationForm = ({listingId}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const curListing = useSelector(getListing(listingId));
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [numGuests, setNumGuests] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
@@ -40,6 +42,13 @@ const ReservationForm = ({listingId}) => {
     totalCost: parseInt(totalCost)
     }
   }
+
+  // const costCal = () => {
+  //   let dateDiff = endDate.getdate() - startDate.getdate()
+  //   let cost = dateDiff * curListing.nightlyPrice
+  //   setTotalCost[cost]
+  //   return totalCost
+  // }
 
   // if (sessionUser) return <Redirect to="/" />;
   const handleSubmit = (e) => {
@@ -73,8 +82,14 @@ const ReservationForm = ({listingId}) => {
             <ul>
               {errors.map(error => <li key={error}>{error}</li>)}
             </ul>
-
-            <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
+            <div className="date-input">
+              <input type="text" placeholder="CHECK-IN" 
+                onClick={() => setShowCalendar(!showCalendar)}
+                value={startDate}/>
+              <input type="text" placeholder="CHECKOUT" 
+                onClick={() => setShowCalendar(!showCalendar)}
+                value={endDate}/>
+            </div>
               {showCalendar && (
                 <DateRangePicker
                 ranges={[selectionRange]}
@@ -85,26 +100,29 @@ const ReservationForm = ({listingId}) => {
               )}
 
             <label>
-              Number of Guest: 
-              <input type="number" 
+              Number of Guests: 
+              <input className='guest-input' type="number" 
               value={numGuests}
               onChange= {(e) => setNumGuests(e.target.value)}
               />
             </label>
 
-            <label>
+            {/* <label>
               Total Cost: 
               <input type="text" 
               value={totalCost}
               onChange= {(e) => setTotalCost(e.target.value)}
               />
-            </label>
+            </label> */}
+
 
             <div className="reservation-button">
 
               <button type="submit">Reserve</button>
-              <br />
-              
+            </div>
+            <br />
+            <div>
+              Total before taxes $0
             </div>
           </form>
       </div>

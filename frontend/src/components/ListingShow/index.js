@@ -45,14 +45,26 @@ const ListingShow = () => {
           <div className="text-info">
             <div className="show-host">House host by {listing.username}</div>
             <br />
-            <div className="show-details">{listing.maxGuests} Guest · {listing.numBedrooms} bedrooms · {listing.numBaths} baths</div>
+            <div className="show-details">{listing.maxGuests} guests · {listing.numBedrooms} bedrooms · {listing.numBaths} baths</div>
             <br />
             <div className="show-description">{listing.description}</div>
+            <div className="map-text">Google Map coming soon!</div>
+            <div className="map-img">
+              <br />
+              <br />
+              
+              <img src="https://snowbnb-seeds.s3.amazonaws.com/skimap.jpg" alt="" />
+
+            </div>
           </div>
           <div className="reservation-container">
             <ReservationForm listingId={listingId}/> 
           </div>
         </div>
+        <br />
+        <br />
+        <br />
+
     </div>
     
   )
