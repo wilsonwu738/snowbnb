@@ -40,11 +40,16 @@ function Navigation(){
       <div className='search-bar'>
         <SearchBar />
       </div>
-      
 
-      {/* <div className='nav-button'> */}
+      <div className='lin-git'>
+        <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i class="fa-brands fa-linkedin"></i></a>
+        <a className="git" href="https://github.com/wilsonwu738"><i class="fa-brands fa-github"></i></a>
         <ProfileButton user={sessionUser}/>
-      {/* </div> */}
+      </div>
+
+
+      
+      
     </div>
 
 
