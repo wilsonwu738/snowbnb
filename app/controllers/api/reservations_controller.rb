@@ -14,10 +14,12 @@ class Api::ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
+    
     @reservation.user_id = current_user.id
-   
+    
+    
     if @reservation.save
-      render :show
+      render json: {status: "success"}
     else
       render json: {errors: @reservation.errors.full_messages}, status: :unprocessable_entity
     end
@@ -49,7 +51,7 @@ class Api::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(reservations).permit(:listing_id, :start_date, :end_date, :num_guests)
+    params.require(:reservation).permit(:listing_id, :start_date, :end_date, :num_guests, :total_cost)
   end
 
 end

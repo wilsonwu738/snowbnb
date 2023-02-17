@@ -44,10 +44,12 @@ export const fetchReservation = (reservationId) => async dispatch => {
 }
 
 export const createReservation = (reservation) => async dispatch => {
+  
   const res = await csrfFetch(`/api/reservations`, {
     method: "POST",
     body: JSON.stringify(reservation)
   });
+  
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReservation(data))

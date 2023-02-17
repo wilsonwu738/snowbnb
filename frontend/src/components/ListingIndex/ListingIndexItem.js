@@ -12,6 +12,7 @@ const ListingIndexItem = ({listing}) => {
       
         <img className='listing-photo' src={listing.photoUrl[0]} alt="" />
         <br />
+        <br />
         <div className="listing-location">
           {listing.location}
         </div>

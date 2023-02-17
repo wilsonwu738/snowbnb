@@ -53,12 +53,15 @@ function ProfileButton({ user }) {
 
   return (
     
-    <div className="profile">
+    <>
       <button className='profile-button' onClick={() => setShowMenu(!showMenu)}>
-        <i className="fa-solid fa-user"></i>
+        <div className="icons">
+          <span><i class="fa-solid fa-bars"></i></span>
+          <span className="icon"><i className="fa-solid fa-user"></i></span>
+        </div>
       </button>
       {showMenu && dropdownItems}
-    </div>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import logo from './logo.jpeg'
 import SignupFormModal from '../SignupFormModal';
-
+import SearchBar from '../SearchBar';
 
 
 function Navigation(){
@@ -36,11 +36,15 @@ function Navigation(){
           <img className='logo' src={logo}></img>
         </NavLink>
       </div>
+
+      <div className='search-bar'>
+        <SearchBar />
+      </div>
       
 
-      <div className='nav-button'>
+      {/* <div className='nav-button'> */}
         <ProfileButton user={sessionUser}/>
-      </div>
+      {/* </div> */}
     </div>
 
 

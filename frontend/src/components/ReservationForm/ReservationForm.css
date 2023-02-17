@@ -1,0 +1,9 @@
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.reservation-button {
+  border: 1px solid black;
+  width: 60px;
+  margin-left: 100px;
+}

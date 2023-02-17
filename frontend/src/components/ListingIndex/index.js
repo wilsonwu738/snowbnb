@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchListings, getListings } from "../../store/listings";
 import ListingIndexItem from "./ListingIndexItem";
 import './ListingIndex.css'
+import FiltersBar from "../FiltersBar";
+
+
 
 const ListingIndex = () => {
   const dispatch = useDispatch()
@@ -17,9 +20,16 @@ const ListingIndex = () => {
 
 
   return (
-    <div className="index-container">
-      {listingIndexItems}
-    </div>
+    <div className="outer-wrapper">
+      <div className="filters-bar">
+        <FiltersBar />
+          
+      </div>
+      <div className="index-container">
+        {listingIndexItems}
+      </div>
+
+    </ div>
   )
 
 

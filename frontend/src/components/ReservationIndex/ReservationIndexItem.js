@@ -2,9 +2,9 @@ import { useSelector } from "react-redux"
 
 //can i use reservation connecting to listings?
 const ReservationIndexItem = ({ reservation }) => {
-  const listingUrl = useSelector(state => {
-    return state.listings[reservation.listingId].photoUrl
-  })
+  // const listingUrl = useSelector(state => {
+  //   return state.listings[reservation.listingId].photoUrl
+  // })
   return (
     <div>
       total cost: {reservation.totalCost}
