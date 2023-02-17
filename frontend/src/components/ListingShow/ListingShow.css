@@ -7,6 +7,7 @@
 .photo-container {
   display: flex;
   justify-content: center;
+  
 
 }
 
@@ -57,6 +58,11 @@
   border-bottom-right-radius: 15px;
 }
 
+.bottom-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .show-host {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-left: 170px;
@@ -66,11 +72,8 @@
 
 .show-details {
   margin-left: 170px;
+  border-bottom: 1px solid gainsboro;
 }
-/* 
-.show-details::after {
-  content: " \00B7 ";
-} */
 
 
 .show-description {

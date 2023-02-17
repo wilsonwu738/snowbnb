@@ -33,6 +33,7 @@
   border-radius: 10px;
   width: 75px;
   background-color: white;
+  padding: 5px;
 }
 
 .login-modal {

@@ -32,39 +32,46 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <ul>
-        {errors.map(error => <li key={error}>{error}</li>)}
-      </ul>
-      <div className="input_wrapper">
-        <label >
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            placeholder="Email"
-            required
-          />
-        </label>
-  
-        <label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-            required
-          />
-        </label>
+    <div className="login-container">
+      <div>
+        <img className='snowman-img' src="https://snowbnb-seeds.s3.amazonaws.com/snowman.jpg" alt="" />
       </div>
+      <br />
+      <h2 className="welcome-text">Welcome back!</h2>
+      <form onSubmit={handleSubmit} className="login-form">
+        <ul>
+          {errors.map(error => <li key={error}>{error}</li>)}
+        </ul>
+        <div className="input_wrapper">
+          <label >
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              placeholder="Email"
+              required
+            />
+          </label>
+    
+          <label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
+              required
+            />
+          </label>
+        </div>
 
-      
-      <div className="loginform-buttons">
-        <button className="login-button" type="submit">Log In</button>
-        <button className="demo-button" onClick={demoLogin}>Demo User</button>
-      </div>
 
-    </form>
+        <div className="loginform-buttons">
+          <button className="login-button" type="submit">Log In</button>
+          <button className="demo-button" onClick={demoLogin}>Demo User</button>
+        </div>
+
+      </form>
+    </div>
   );
 }
 

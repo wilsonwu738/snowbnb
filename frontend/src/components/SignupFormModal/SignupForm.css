@@ -1,11 +1,77 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.snowman2-img {
+  height: 150px;
+  width: 200px;
+  margin-top: 50px;
+  border-radius: 20px;
+}
+
+.join-text {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
 .signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 500px;
+  height: 900px;
+  width:400px;
   align-items: center;
 }
 
+
+input {
+  font-size: 16px;
+  border: 2px solid rgb(226, 224, 224);
+  border-radius: 10px;
+}
+
 .signup-buttons {
-  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-button {
+  background-color: palevioletred;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+
+.demo-button {
+  background-color: palevioletred;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+ 
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+form input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
 }

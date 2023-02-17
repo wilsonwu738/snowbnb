@@ -38,10 +38,10 @@ ApplicationRecord.transaction do
   end
 
   listing_1 = Listing.create(title: "Cozy Mountain Chalet", 
-               description: "Escape to the mountains in this charming chalet located near the ski slopes. Perfect for a winter getaway!",
+               description: "The 'Cozy Mountain Chalet' is a charming, rustic retreat located near the ski slopes in Breckenridge, Colorado. Perfect for a winter getaway, this cozy cabin features 2 bedrooms, 3 beds, and 2 baths, making it ideal for up to 6 guests. With its warm and inviting decor, fully-equipped kitchen, and beautiful mountain views, you'll feel right at home in this delightful chalet.",
                lat: 39.742043, 
                long: -104.991531, 
-               location: "Breckenridge, CO", 
+               location: "Breckenridge, CO, United States", 
                nightly_price: 150, 
                max_guests: 6, 
                num_bedrooms: 2, 
@@ -52,10 +52,10 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_2 = Listing.create(title: "Mountain View Lodge", 
-               description: "Experience the beauty of the mountains from this spacious lodge. Perfect for a large family or group of friends!",
+               description: "'Mountain View Lodge' is a spacious and luxurious vacation rental nestled in the heart of Nederland, Colorado. This stunning lodge can accommodate up to 10 guests and features 4 bedrooms, 6 beds, and 3 baths. From its soaring ceilings and stone fireplace to its stunning mountain views, this lodge is the perfect setting for a large family or group of friends looking to enjoy the great outdoors in style.",
                lat: 40.027435, 
                long: -105.251961, 
-               location: "Nederland, CO", 
+               location: "Nederland, CO, United States", 
                nightly_price: 250, 
                max_guests: 10, 
                num_bedrooms: 4, 
@@ -66,10 +66,10 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_3 = Listing.create(title: "Rustic Mountain Cabin", 
-               description: "Unwind in this charming mountain cabin. Enjoy the peace and quiet of the surrounding forest.",
+               description: "The 'Rustic Mountain Cabin' is a charming, secluded retreat located in the peaceful forests of Kansas City, Missouri. This cozy cabin is perfect for a romantic getaway or a solo retreat, with 1 bedroom, 2 beds, and 1 bath. With its warm and welcoming decor, fully-equipped kitchen, and peaceful surroundings, this cabin is the perfect place to unwind and reconnect with nature.",
                lat: 39.099727, 
                long: -94.578567, 
-               location: "Kansas City, MO", 
+               location: "Kansas City, MO, United States", 
                nightly_price: 100, 
                max_guests: 4, 
                num_bedrooms: 1, 
@@ -80,7 +80,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_4 = Listing.create(title: "Chalet Les Alpes", 
-               description: "Experience the true essence of the Swiss Alps in this cozy chalet. Perfect for a ski holiday!",
+               description: "'Chalet Les Alpes' is a beautiful and luxurious vacation rental located in the heart of Verbier, Switzerland. With its breathtaking mountain views, cozy decor, and 2 bedrooms, 4 beds, and 2 baths, this chalet is the perfect setting for a ski holiday with family or friends. Relax in front of the fireplace after a long day on the slopes, or take in the stunning views from the balcony.",
                lat: 46.518520, 
                long: 7.638708, 
                location: "Verbier, Switzerland", 
@@ -94,7 +94,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_5 = Listing.create(title: "Mountain View Suite", 
-               description: "Wake up to stunning mountain views in this spacious suite. Perfect for a romantic getaway!",
+               description: "'Mountain View Suite' is a stunning vacation rental located in the picturesque town of Crans-Montana, Switzerland. With its spacious layout, luxurious amenities, and breathtaking mountain views, this suite is the perfect setting for a romantic getaway for two. Featuring 1 bedroom, 1 bed, and 1 bath, this suite is the perfect place to relax, unwind, and take in the beauty of the Swiss Alps.",
                lat: 46.018680, 
                long: 7.749680, 
                location: "Crans-Montana, Switzerland", 
@@ -108,7 +108,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_6 = Listing.create(title: "Alpine Chalet Zermatt", 
-               description: "Escape to the mountains in this charming chalet in Zermatt. Perfect for a ski holiday with friends or family!",
+               description: "'Alpine Chalet Zermatt' is a beautiful and spacious vacation rental located in the heart of Zermatt, Switzerland. With its warm and inviting decor, 3 bedrooms, 6 beds, and 2 baths, this chalet is the perfect setting for a ski holiday with family or friends. Enjoy the stunning views from the balcony, relax in front of the fireplace, or cook a meal in the fully-equipped kitchen.",
                lat: 46.022881, 
                long: 7.748544, 
                location: "Zermatt, Switzerland", 
@@ -122,7 +122,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_7 = Listing.create(title: "Alpine Escape", 
-               description: "Get away from it all in this serene alpine escape. Perfect for a peaceful retreat in the mountains!",
+               description: "'Alpine Escape' is a serene and peaceful vacation rental located in the beautiful town of Lenzerheide, Switzerland. With its quiet and secluded location, 2 bedrooms, 2 beds, and 1 bath, this rental is the perfect place to get away from it all and reconnect with nature. Enjoy the beautiful mountain views from the balcony, or take a hike in the surrounding forest.",
                lat: 46.676572, 
                long: 8.641186, 
                location: "Lenzerheide, Switzerland", 
@@ -137,7 +137,7 @@ ApplicationRecord.transaction do
 
 
   listing_8 = Listing.create(title: "Vermont Mountain Retreat", 
-               description: "Escape to the mountains in this cozy Vermont retreat. Perfect for a ski holiday!",
+               description: "The 'Vermont Mountain Retreat' is a cozy and inviting vacation rental located in the heart of Stowe, Vermont. With its warm and rustic decor, fully-equipped kitchen, and 3 bedrooms, 6 beds, and 2 baths, this retreat is the perfect setting for a ski holiday with family or friends. Relax in front of the fireplace, take in the stunning views from the balcony, or explore the charming town of Stowe.",
                lat: 44.259456, 
                long: -72.663558, 
                location: "Stowe, Vermont", 
@@ -151,7 +151,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_9 = Listing.create(title: "Snowy Ridge Lodge", 
-               description: "Experience the beauty of Vermont's mountains in this spacious lodge. Perfect for a ski holiday with friends or family!",
+               description: "'Snowy Ridge Lodge', is a spacious lodge located in Killington, Vermont, that offers stunning views of Vermont's mountains. This is the perfect place for a ski holiday with friends or family, as it can accommodate up to 10 guests in its 5 bedrooms with 10 beds and 3 bathrooms. The nightly price is reasonable at $300 per night, given the number of guests it can accommodate. The owner has taken great care to make the lodge as comfortable as possible, and guests can enjoy amenities such as a cozy fireplace, modern kitchen, and comfortable furnishings.",
                lat: 44.175520, 
                long: -72.998630, 
                location: "Killington, Vermont", 
@@ -165,7 +165,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_10 = Listing.create(title: "Mountain View Cottage", 
-               description: "Wake up to stunning mountain views in this cozy cottage. Perfect for a romantic getaway!",
+               description: "'Mountain View Cottage', is a cozy cottage located in Mount Snow, Vermont, that is ideal for a romantic getaway. Guests can wake up to breathtaking mountain views every morning from the comfort of the cottage. The nightly price of $250 is quite reasonable for a property that can accommodate up to 4 guests in its 2 bedrooms with 4 beds and 1 bathroom. The owner has taken great care to make the cottage as comfortable as possible, and guests can enjoy amenities such as a well-equipped kitchen, comfortable furnishings, and a charming fireplace.",
                lat: 43.694583, 
                long: -72.504667, 
                location: "Mount Snow, Vermont", 
@@ -179,7 +179,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_11 = Listing.create(title: "Ski-In Ski-Out Condo", 
-               description: "Enjoy easy access to the ski slopes in this ski-in ski-out condo. Perfect for a ski holiday!",
+               description: "'Ski-In Ski-Out Condo', is a modern and comfortable condo located in Okemo, Vermont, that offers easy access to the ski slopes. The nightly price of $300 is reasonable for a property that can accommodate up to 8 guests in its 4 bedrooms with 8 beds and 2 bathrooms. The owner has taken great care to make the condo as comfortable as possible, and guests can enjoy amenities such as a modern kitchen, comfortable furnishings, and easy access to the slopes.",
                lat: 44.435958, 
                long: -72.882548, 
                location: "Okemo, Vermont", 
@@ -193,7 +193,7 @@ ApplicationRecord.transaction do
                updated_at: DateTime.now)
 
   listing_12 = Listing.create(title: "Japanese Mountain Lodge", 
-               description: "Escape to the mountains of Japan in this traditional Japanese lodge. Perfect for a ski holiday!",
+               description: "'Japanese Mountain Lodge', is a traditional Japanese lodge located in Hakuba, Japan, that offers a unique experience for those looking to escape to the mountains. The nightly price of $250 is reasonable for a property that can accommodate up to 6 guests in its 3 bedrooms with 6 beds and 2 bathrooms. The owner has taken great care to ensure that the lodge provides a comfortable and authentic Japanese experience, with amenities such as tatami floors, Japanese-style beds, and a beautiful hot spring bath. This is the perfect place for those looking to immerse themselves in Japanese culture while enjoying the beauty of the mountains.",
                lat: 36.740131, 
                long: 137.867036, 
                location: "Hakuba, Japan", 

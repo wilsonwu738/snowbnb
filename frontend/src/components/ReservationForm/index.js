@@ -68,59 +68,47 @@ const ReservationForm = ({listingId}) => {
 
 
   return (
-      <form className="reservation-form" onSubmit={handleSubmit}>
-        <ul>
-          {errors.map(error => <li key={error}>{error}</li>)}
-        </ul>
+      <div className="form-container">
+          <form className="reservation-form" onSubmit={handleSubmit}>
+            <ul>
+              {errors.map(error => <li key={error}>{error}</li>)}
+            </ul>
 
-        {/* <label>
-          Start Date
-          <input type="date" 
-          value={startDate}
-          // onChange= {(e) => setStartDate(e.target.value)}
-          />
-        </label> */}
+            <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
+              {showCalendar && (
+                <DateRangePicker
+                ranges={[selectionRange]}
+                onChange={handleSelect}
+                months={2}
+                direction="horizontal"
+                />
+              )}
 
+            <label>
+              Number of Guest: 
+              <input type="number" 
+              value={numGuests}
+              onChange= {(e) => setNumGuests(e.target.value)}
+              />
+            </label>
 
-        <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
-          {showCalendar && (
-            <DateRangePicker
-            ranges={[selectionRange]}
-            onChange={handleSelect}
-            months={2}
-            direction="horizontal"
-            />
-          )}
+            <label>
+              Total Cost: 
+              <input type="text" 
+              value={totalCost}
+              onChange= {(e) => setTotalCost(e.target.value)}
+              />
+            </label>
 
-        
-        <label>
-          Number of Guest: 
-          <input type="number" 
-          value={numGuests}
-          onChange= {(e) => setNumGuests(e.target.value)}
-          />
-        </label>
+            <div className="reservation-button">
 
-        <label>
-          Total Cost: 
-          <input type="text" 
-          value={totalCost}
-          onChange= {(e) => setTotalCost(e.target.value)}
-          />
-        </label>
-
-
-        
-   
-        
-        <div className="reservation-button">
-
-          <button type="submit">Reserve</button>
-          <br />
+              <button type="submit">Reserve</button>
+              <br />
+              
+            </div>
+          </form>
+      </div>
           
-        </div>
-      </form>
-
   );
 }
 
