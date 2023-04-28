@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { DateRangePicker} from 'react-date-range';
+import moment from 'moment';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import './ReservationForm.css'
@@ -15,33 +16,40 @@ const ReservationForm = ({listingId}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const curListing = useSelector(getListing(listingId));
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
   const [showCalendar, setShowCalendar] = useState(false);
   const [numGuests, setNumGuests] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
   const [errors, setErrors] = useState([]);
 
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection'
-  }
+  const formattedStartDate = moment(dateRange.startDate).format('YYYY-MM-DD');
+  const formattedEndDate = moment(dateRange.endDate).format('YYYY-MM-DD');
 
-  const handleSelect = (ranges) => {
-    setStartDate(ranges.selection.startDate)
-    setEndDate(ranges.selection.endDate)
+
+  // const selectionRange = {
+  //   startDate: startDate,
+  //   endDate: endDate,
+  //   key: 'selection'
+  // }
+
+  // const handleSelect = (ranges) => {
+  //   setStartDate(ranges.selection.startDate)
+  //   setEndDate(ranges.selection.endDate)
    
-  };
+  // };
 
-  const reservation = {reservation: {
-    startDate,
-    endDate, 
-    listingId,
-    numGuests: parseInt(numGuests),
-    totalCost: parseInt(totalCost)
-    }
-  }
+  // const reservation = {reservation: {
+  //   startDate,
+  //   endDate, 
+  //   listingId,
+  //   numGuests: parseInt(numGuests),
+  //   totalCost: parseInt(totalCost)
+  //   }
+  // }
 
   // const costCal = () => {
   //   let dateDiff = endDate.getdate() - startDate.getdate()
@@ -54,7 +62,7 @@ const ReservationForm = ({listingId}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    dispatch(createReservation(reservation))
+    // dispatch(createReservation(reservation))
   //   if (password === confirmPassword) {
   //     setErrors([]);
   //     return dispatch(sessionActions.signup({ email, username, password }))
@@ -82,18 +90,18 @@ const ReservationForm = ({listingId}) => {
             <ul>
               {errors.map(error => <li key={error}>{error}</li>)}
             </ul>
-            <div className="date-input">
+            {/* <div className="date-input">
               <input type="text" placeholder="CHECK-IN" 
                 onClick={() => setShowCalendar(!showCalendar)}
                 value={startDate}/>
               <input type="text" placeholder="CHECKOUT" 
                 onClick={() => setShowCalendar(!showCalendar)}
                 value={endDate}/>
-            </div>
+            </div> */}
               {showCalendar && (
                 <DateRangePicker
-                ranges={[selectionRange]}
-                onChange={handleSelect}
+                ranges={[dateRange]}
+                onChange={(item) => setDateRange(item.selection)}
                 months={2}
                 direction="horizontal"
                 />
