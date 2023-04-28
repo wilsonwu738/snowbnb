@@ -26,116 +26,107 @@ const ReservationForm = ({listingId}) => {
   const [totalCost, setTotalCost] = useState(0);
   const [errors, setErrors] = useState([]);
 
-  const formattedStartDate = moment(dateRange.startDate).format('YYYY-MM-DD');
-  const formattedEndDate = moment(dateRange.endDate).format('YYYY-MM-DD');
+  // beginning of rework
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [focusedInput, setFocusedInput] = useState(null);
+  const [reservations, setReservations] = useState([]);
 
-
-  // const selectionRange = {
-  //   startDate: startDate,
-  //   endDate: endDate,
-  //   key: 'selection'
-  // }
-
-  // const handleSelect = (ranges) => {
-  //   setStartDate(ranges.selection.startDate)
-  //   setEndDate(ranges.selection.endDate)
-   
-  // };
-
-  // const reservation = {reservation: {
-  //   startDate,
-  //   endDate, 
-  //   listingId,
-  //   numGuests: parseInt(numGuests),
-  //   totalCost: parseInt(totalCost)
-  //   }
-  // }
-
-  // const costCal = () => {
-  //   let dateDiff = endDate.getdate() - startDate.getdate()
-  //   let cost = dateDiff * curListing.nightlyPrice
-  //   setTotalCost[cost]
-  //   return totalCost
-  // }
-
-  // if (sessionUser) return <Redirect to="/" />;
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // dispatch(createReservation(reservation))
-  //   if (password === confirmPassword) {
-  //     setErrors([]);
-  //     return dispatch(sessionActions.signup({ email, username, password }))
-  //       .catch(async (res) => {
-  //       let data;
-  //       try {
-  //         // .clone() essentially allows you to read the response body twice
-  //         data = await res.clone().json();
-  //       } catch {
-  //         data = await res.text(); // Will hit this case if the server is down
-  //       }
-  //       if (data?.errors) setErrors(data.errors);
-  //       else if (data) setErrors([data]);
-  //       else setErrors([res.statusText]);
-  //     });
-  //   }
-  //   return setErrors(['Confirm Password field must be the same as the Password field']);
-  }
-
-
+  const isDateBlocked = (day) => {
+    return reservations.some(
+      (reservation) =>
+        day.isSameOrAfter(moment(reservation.start_date), 'day') &&
+        day.isSameOrBefore(moment(reservation.end_date), 'day')
+    );
+  };
 
   return (
-      <div className="form-container">
-          <form className="reservation-form" onSubmit={handleSubmit}>
-            <ul>
-              {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
-            {/* <div className="date-input">
-              <input type="text" placeholder="CHECK-IN" 
-                onClick={() => setShowCalendar(!showCalendar)}
-                value={startDate}/>
-              <input type="text" placeholder="CHECKOUT" 
-                onClick={() => setShowCalendar(!showCalendar)}
-                value={endDate}/>
-            </div> */}
-              {showCalendar && (
-                <DateRangePicker
-                ranges={[dateRange]}
-                onChange={(item) => setDateRange(item.selection)}
-                months={2}
-                direction="horizontal"
-                />
-              )}
-
-            <label>
-              Number of Guests: 
-              <input className='guest-input' type="number" 
-              value={numGuests}
-              onChange= {(e) => setNumGuests(e.target.value)}
-              />
-            </label>
-
-            {/* <label>
-              Total Cost: 
-              <input type="text" 
-              value={totalCost}
-              onChange= {(e) => setTotalCost(e.target.value)}
-              />
-            </label> */}
-
-
-            <div className="reservation-button">
-
-              <button type="submit">Reserve</button>
-            </div>
-            <br />
-            <div>
-              Total before taxes $0
-            </div>
-          </form>
-      </div>
-          
+    <div>
+      <h1>Airbnb-like Reservation Calendar</h1>
+      <DateRangePicker
+        startDate={startDate}
+        startDateId="start_date"
+        endDate={endDate}
+        endDateId="end_date"
+        onDatesChange={({ startDate, endDate }) => {
+          setStartDate(startDate);
+          setEndDate(endDate);
+        }}
+        focusedInput={focusedInput}
+        onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+        numberOfMonths={2}
+        isDayBlocked={isDateBlocked}
+        isOutsideRange={(day) => day.isBefore(moment(), 'day')}
+      />
+      {startDate && endDate ? (
+        <>
+          <p>
+            Selected from {startDate.format('MM/DD/YYYY')} to{' '}
+            {endDate.format('MM/DD/YYYY')}
+          </p>
+          <button onClick={handleBook}>Book</button>
+        </>
+      ) : (
+        <p>Please select the first and last day of your stay.</p>
+      )}
+    </div>
   );
+
+
+
+
+  // return (
+  //     <div className="form-container">
+  //         <form className="reservation-form" onSubmit={handleSubmit}>
+  //           <ul>
+  //             {errors.map(error => <li key={error}>{error}</li>)}
+  //           </ul>
+  //           {/* <div className="date-input">
+  //             <input type="text" placeholder="CHECK-IN" 
+  //               onClick={() => setShowCalendar(!showCalendar)}
+  //               value={startDate}/>
+  //             <input type="text" placeholder="CHECKOUT" 
+  //               onClick={() => setShowCalendar(!showCalendar)}
+  //               value={endDate}/>
+  //           </div> */}
+  //             {showCalendar && (
+  //               <DateRangePicker
+  //               ranges={[dateRange]}
+  //               onChange={(item) => setDateRange(item.selection)}
+  //               months={2}
+  //               direction="horizontal"
+  //               />
+  //             )}
+
+  //           <label>
+  //             Number of Guests: 
+  //             <input className='guest-input' type="number" 
+  //             value={numGuests}
+  //             onChange= {(e) => setNumGuests(e.target.value)}
+  //             />
+  //           </label>
+
+  //           {/* <label>
+  //             Total Cost: 
+  //             <input type="text" 
+  //             value={totalCost}
+  //             onChange= {(e) => setTotalCost(e.target.value)}
+  //             />
+  //           </label> */}
+
+
+  //           <div className="reservation-button">
+
+  //             <button type="submit">Reserve</button>
+  //           </div>
+  //           <br />
+  //           <div>
+  //             Total before taxes $0
+  //           </div>
+  //         </form>
+  //     </div>
+          
+  // );
 }
 
 export default ReservationForm
