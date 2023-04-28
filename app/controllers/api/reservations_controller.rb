@@ -14,15 +14,20 @@ class Api::ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    
     @reservation.user_id = current_user.id
-    
-    
+
+    #message
     if @reservation.save
-      render json: {status: "success"}
+      render json: { status: 'success', message: 'Reservation created.' }, status: 201
     else
-      render json: {errors: @reservation.errors.full_messages}, status: :unprocessable_entity
+      render json: { status: 'error', message: reservation.errors.full_messages }, status: 400
     end
+    
+    # if @reservation.save
+    #   render json: {status: "success"}
+    # else
+    #   render json: {errors: @reservation.errors.full_messages}, status: :unprocessable_entity
+    # end
   end
 
   # {
@@ -33,16 +38,28 @@ class Api::ReservationsController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    if @reservation && @reservation.update(reservation_params)
-      render :show
+
+    if reservation.update(reservation_params)
+      render json: { status: 'success', message: 'Reservation updated.' }, status: 200
     else
-      render json: {errors: @reservation.errors.full_messages}, status: :unprocessable_entity
+      render json: { status: 'error', message: reservation.errors.full_messages }, status: 400
     end
+
+    # if @reservation && @reservation.update(reservation_params)
+    #   render :show
+    # else
+    #   render json: {errors: @reservation.errors.full_messages}, status: :unprocessable_entity
+    # end
   end
 
   def destroy
     @reservation = Reservation.find(params[:id])
-    @reservation.delete
+    # @reservation.delete
+    if @reservation.destroy
+      render json: { status: 'success', message: 'Reservation deleted.' }, status: 200
+    else
+      render json: { status: 'error', message: 'Failed to delete reservation.' }, status: 400
+    end
   end
 
 
