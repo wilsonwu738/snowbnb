@@ -42,8 +42,8 @@ function Navigation(){
       </div>
 
       <div className='lin-git'>
-        <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i class="fa-brands fa-linkedin"></i></a>
-        <a className="git" href="https://github.com/wilsonwu738"><i class="fa-brands fa-github"></i></a>
+        <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i className="fa-brands fa-linkedin"></i></a>
+        <a className="git" href="https://github.com/wilsonwu738"><i className="fa-brands fa-github"></i></a>
         <ProfileButton user={sessionUser}/>
       </div>
 

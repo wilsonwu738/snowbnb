@@ -2,42 +2,38 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import { DateRangePicker} from 'react-date-range';
+import { DateRangePicker } from "react-dates";
 import moment from 'moment';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import "react-dates/lib/css/_datepicker.css";
 import './ReservationForm.css'
-import { createReservation } from "../../store/reservations";
+import { fetchReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";
 
 
 
 const ReservationForm = ({listingId}) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
   const curListing = useSelector(getListing(listingId));
-  const [dateRange, setDateRange] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  });
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [numGuests, setNumGuests] = useState(0);
-  const [totalCost, setTotalCost] = useState(0);
-  const [errors, setErrors] = useState([]);
-
-  // beginning of rework
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
   const [reservations, setReservations] = useState([]);
 
+  useEffect(() => {
+    dispatch(fetchReservations(listingId));
+  }, []);
+
   const isDateBlocked = (day) => {
     return reservations.some(
       (reservation) =>
-        day.isSameOrAfter(moment(reservation.start_date), 'day') &&
-        day.isSameOrBefore(moment(reservation.end_date), 'day')
+        day.isSameOrAfter(moment(reservation.start_date), "day") &&
+        day.isSameOrBefore(moment(reservation.end_date), "day")
     );
+  };
+
+  const handleBook = () => {
+    // Handle booking logic here
   };
 
   return (
@@ -56,13 +52,13 @@ const ReservationForm = ({listingId}) => {
         onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
         numberOfMonths={2}
         isDayBlocked={isDateBlocked}
-        isOutsideRange={(day) => day.isBefore(moment(), 'day')}
+        isOutsideRange={(day) => day.isBefore(moment(), "day")}
       />
       {startDate && endDate ? (
         <>
           <p>
-            Selected from {startDate.format('MM/DD/YYYY')} to{' '}
-            {endDate.format('MM/DD/YYYY')}
+            Selected from {startDate.format("MM/DD/YYYY")} to{" "}
+            {endDate.format("MM/DD/YYYY")}
           </p>
           <button onClick={handleBook}>Book</button>
         </>

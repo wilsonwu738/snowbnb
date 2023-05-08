@@ -26,26 +26,24 @@ export const getReservation = (reservationId) => (state) => state && state.reser
 
 //thunk action creators
 
-export const fetchReservations = () => async dispatch => {
-  const res = await csrfFetch(`/api/reservations`);
+export const fetchReservations = (listingId) => async dispatch => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations`);
   if (res.ok) {
     const data = await res.json(); //this is the body
     dispatch(receiveReservations(data))
   }
-
 }
 
-export const fetchReservation = (reservationId) => async dispatch => {
-  const res = await csrfFetch(`/api/reservations/${reservationId}`);
+export const fetchReservation = (listingId, reservationId) => async dispatch => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations/${reservationId}`);
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReservation(data))
   }
 }
 
-export const createReservation = (reservation) => async dispatch => {
-  
-  const res = await csrfFetch(`/api/reservations`, {
+export const createReservation = (listingId, reservation) => async dispatch => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations`, {
     method: "POST",
     body: JSON.stringify(reservation)
   });
@@ -56,8 +54,8 @@ export const createReservation = (reservation) => async dispatch => {
   }
 }
 
-export const updateReservation = (reservation) => async dispatch => {
-  const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
+export const updateReservation = (listingId, reservation) => async dispatch => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations/${reservation.id}`, {
     method: "PATCH",
     body: JSON.stringify(reservation)
   });
@@ -67,12 +65,11 @@ export const updateReservation = (reservation) => async dispatch => {
   }
 }
 
-export const deleteReservation = (reservationId) => async dispatch => {
-  const res = await csrfFetch(`/api/reservations/${reservationId}`, {
+export const deleteReservation = (listingId, reservationId) => async dispatch => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations/${reservationId}`, {
     method: "DELETE"
   });
-  if (res.ok) {
-    
+  if (res.ok) { 
     dispatch(removeReservation(reservationId))
   }
 }
@@ -92,9 +89,6 @@ const reservationsReducer = (state = {}, action) => {
       return state
   }
 }
-
-
-
 
 export default reservationsReducer
 
