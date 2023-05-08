@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import 'react-dates/initialize'
 import { DateRangePicker } from "react-dates";
-import moment from 'moment';
+import moment from "moment";
 import "react-dates/lib/css/_datepicker.css";
-import './ReservationForm.css'
+import "./ReservationForm.css";
 import { fetchReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";
 
-
-
-const ReservationForm = ({listingId}) => {
+const ReservationForm = ({ listingId }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const curListing = useSelector(getListing(listingId));
@@ -38,7 +37,7 @@ const ReservationForm = ({listingId}) => {
 
   return (
     <div>
-      <h1>Airbnb-like Reservation Calendar</h1>
+      <h1>Calendar</h1>
       <DateRangePicker
         startDate={startDate}
         startDateId="start_date"
@@ -60,14 +59,16 @@ const ReservationForm = ({listingId}) => {
             Selected from {startDate.format("MM/DD/YYYY")} to{" "}
             {endDate.format("MM/DD/YYYY")}
           </p>
-          <button onClick={handleBook}>Book</button>
+          <button className="book_button" onClick={handleBook}>Book</button>
         </>
       ) : (
         <p>Please select the first and last day of your stay.</p>
       )}
     </div>
   );
+};
 
+export default ReservationForm;
 
 
 
@@ -123,8 +124,6 @@ const ReservationForm = ({listingId}) => {
   //     </div>
           
   // );
-}
 
-export default ReservationForm
 
 
