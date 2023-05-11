@@ -72,58 +72,5 @@ export default ReservationForm;
 
 
 
-  // return (
-  //     <div className="form-container">
-  //         <form className="reservation-form" onSubmit={handleSubmit}>
-  //           <ul>
-  //             {errors.map(error => <li key={error}>{error}</li>)}
-  //           </ul>
-  //           {/* <div className="date-input">
-  //             <input type="text" placeholder="CHECK-IN" 
-  //               onClick={() => setShowCalendar(!showCalendar)}
-  //               value={startDate}/>
-  //             <input type="text" placeholder="CHECKOUT" 
-  //               onClick={() => setShowCalendar(!showCalendar)}
-  //               value={endDate}/>
-  //           </div> */}
-  //             {showCalendar && (
-  //               <DateRangePicker
-  //               ranges={[dateRange]}
-  //               onChange={(item) => setDateRange(item.selection)}
-  //               months={2}
-  //               direction="horizontal"
-  //               />
-  //             )}
-
-  //           <label>
-  //             Number of Guests: 
-  //             <input className='guest-input' type="number" 
-  //             value={numGuests}
-  //             onChange= {(e) => setNumGuests(e.target.value)}
-  //             />
-  //           </label>
-
-  //           {/* <label>
-  //             Total Cost: 
-  //             <input type="text" 
-  //             value={totalCost}
-  //             onChange= {(e) => setTotalCost(e.target.value)}
-  //             />
-  //           </label> */}
-
-
-  //           <div className="reservation-button">
-
-  //             <button type="submit">Reserve</button>
-  //           </div>
-  //           <br />
-  //           <div>
-  //             Total before taxes $0
-  //           </div>
-  //         </form>
-  //     </div>
-          
-  // );
-
 
 
