@@ -13,22 +13,7 @@ import SearchBar from '../SearchBar';
 function Navigation(){
   const sessionUser = useSelector(state => state.session.user);
 
-  //benchbnb rendering profile button only when logged in
-  // let sessionLinks;
-  // if (sessionUser) {
-  //   sessionLinks = (
-  //     <ProfileButton user={sessionUser} />
-  //   );
-  // } else {
-  //   sessionLinks = (
-  //     <div>
-  //       <LoginFormModal />
-  //       <SignupFormModal />
-       
-  //       {/* <NavLink to="/signup" className="login">Sign Up</NavLink> */}
-  //     </div>
-  //   );
-  // }
+
   return (
     <div className='nav-bar'>
       <div>
@@ -38,7 +23,7 @@ function Navigation(){
       </div>
 
       <div className='search-bar'>
-        <SearchBar />
+        <SearchBar onSearch/>
       </div>
 
       <div className='lin-git'>

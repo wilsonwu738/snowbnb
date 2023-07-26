@@ -1,6 +1,10 @@
 class Api::ListingsController < ApplicationController
   def index
     @listings = Listing.all 
+
+    if params[:location].present?
+      @listings = @listings.where("location ILIKE ?", "%#{params[:location]}%")
+    end
     render :index
   end
 

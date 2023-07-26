@@ -1,13 +1,26 @@
 import './SearchBar.css'
+import { useState } from 'react';
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
+
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSearch(query);
+  };
 
   return (
-    <div className="search-bar">
-      <input className='search-bar-input'type="text" 
-      placeholder='Explore your best housing option near snow mountains '/>
-    </div>
-  )
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Search by location"
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+      />
+      <button type="submit">Search</button>
+    </form>
+  );
 }
 
 export default SearchBar
