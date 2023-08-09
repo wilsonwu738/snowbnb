@@ -19,6 +19,15 @@ export const removeReservation = reservationId => ({
   reservationId
 })
 
+//for future enhancement in state form
+// const SET_RESERVATION_ERROR = 'reservations/setReservationError';
+
+// export const setReservationError = error => ({
+//   type: SET_RESERVATION_ERROR,
+//   error
+// });
+
+
 //for useSelector hook
 export const getReservations = (state) => state.reservations ? Object.values(state.reservations) : []
 export const getReservation = (reservationId) => (state) => state && state.reservations ? state.reservations[reservationId] : null
@@ -26,25 +35,31 @@ export const getReservation = (reservationId) => (state) => state && state.reser
 
 //thunk action creators
 
-export const fetchReservations = (listingId) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reservations`);
+export const fetchReservations = () => async dispatch => {
+  const res = await csrfFetch(`/api/reservations`);
   if (res.ok) {
     const data = await res.json(); //this is the body
     dispatch(receiveReservations(data))
   }
+  //add error handling later
+  return res
 }
 
-export const fetchReservation = (listingId, reservationId) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reservations/${reservationId}`);
+export const fetchReservation = reservationId => async dispatch => {
+  const res = await csrfFetch(`/api/reservations/${reservationId}`);
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReservation(data))
   }
+  return res
 }
 
-export const createReservation = (listingId, reservation) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reservations`, {
+export const createReservation = (reservation) => async dispatch => {
+  const res = await csrfFetch(`/api/reservations`, {
     method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(reservation)
   });
   
@@ -52,23 +67,32 @@ export const createReservation = (listingId, reservation) => async dispatch => {
     const data = await res.json();
     dispatch(receiveReservation(data))
   }
+
+  return res
 }
 
-export const updateReservation = (listingId, reservation) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reservations/${reservation.id}`, {
+export const updateReservation = (reservation) => async dispatch => {
+  const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
     method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(reservation)
   });
+
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReservation(data))
   }
+
+  return res
 }
 
-export const deleteReservation = (listingId, reservationId) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reservations/${reservationId}`, {
+export const deleteReservation = (reservationId) => async dispatch => {
+  const res = await csrfFetch(`/api/reservations/${reservationId}`, {
     method: "DELETE"
   });
+  
   if (res.ok) { 
     dispatch(removeReservation(reservationId))
   }

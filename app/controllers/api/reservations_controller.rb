@@ -41,7 +41,7 @@ class Api::ReservationsController < ApplicationController
   end
 
   def destroy
-    @reservation = Reservation.find(params[:id])
+    @reservation = current_user.reservations.find(params[:id])
     # @reservation.delete
     if @reservation.destroy
       render json: { message: 'success' }, status: 200
