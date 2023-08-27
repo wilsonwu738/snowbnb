@@ -13,14 +13,17 @@ import { getListing } from "../../store/listings";
 const ReservationForm = ({ listingId }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const curListing = useSelector(getListing(listingId));
+  const listing = useSelector(getListing(listingId));
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
   const [reservations, setReservations] = useState([]);
+  const [numGuests, setNumGuests] = useState(1);
+  const [totalCost, setTotalCost] = useState(0);
+  
 
   useEffect(() => {
-    dispatch(fetchReservations(listingId));
+    dispatch(fetchReservations());
   }, []);
 
   const isDateBlocked = (day) => {
@@ -32,7 +35,18 @@ const ReservationForm = ({ listingId }) => {
   };
 
   const handleBook = () => {
-    // Handle booking logic here
+    if (sessionUser) {
+      dispatch(createReservation({
+        reservation: {
+          startDate: startDate,
+          endDate: endDate,
+          listingId: listingId,
+          numGuests: numGuests,
+          totalCost: totalCost
+        }
+      }
+      ))
+    }
   };
 
   return (
@@ -46,6 +60,11 @@ const ReservationForm = ({ listingId }) => {
         onDatesChange={({ startDate, endDate }) => {
           setStartDate(startDate);
           setEndDate(endDate);
+          //for day count calculation, 
+          if(startDate && endDate) {
+            const days = endDate.diff(startDate, 'days');
+            setTotalCost(listing.nightlyPrice * days);
+          }
         }}
         focusedInput={focusedInput}
         onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
@@ -59,11 +78,23 @@ const ReservationForm = ({ listingId }) => {
             Selected from {startDate.format("MM/DD/YYYY")} to{" "}
             {endDate.format("MM/DD/YYYY")}
           </p>
+          <p>TotalCost: $ {totalCost}</p>
+          {/* <p>{setTotalCost(listing.nightlyPrice * endDate.diff(startDate, 'days'))}</p> */}
+
           <button className="book_button" onClick={handleBook}>Book</button>
         </>
       ) : (
         <p>Please select the first and last day of your stay.</p>
       )}
+
+      <p>Number of Guests</p>
+      <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
+        {Array.from({ length: listing.maxGuests }, (_, i) => (
+        <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
+        ))}
+      </select>
+
+   
     </div>
   );
 };
