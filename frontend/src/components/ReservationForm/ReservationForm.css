@@ -1,9 +1,9 @@
 .rdrDefinedRangesWrapper {
   display: none;
 }
-.reservation-form {
+.reservation-form-wrapper {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 30px;
   margin-right: 160px;
   border-radius: 20px;
   position: sticky;
@@ -11,11 +11,11 @@
   z-index: 999;
   background-color: white;
 }
-.guest-input {
+/* .guest-input {
   width: 50px;
-}
+} */
 
-.reservation-button {
+/* .reservation-button {
   background-color: palevioletred;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -25,14 +25,12 @@
   margin-bottom: 10px;
   border-bottom: 1px solid gainsboro;
   
-
-}
-
-.date-input {
-  display: flex;
-
-}
+} */
 
 .book_button {
   background-color: red;
+}
+
+.DateInput.DateInput_1 {
+  border-right: 23px solid #dce0e0
 }

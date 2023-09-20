@@ -5,7 +5,7 @@ import ListingIndex from "./components/ListingIndex";
 import ListingShow from "./components/ListingShow";
 import ReservationIndex from "./components/ReservationIndex";
 
-//routes are defined here
+//routes are defined here, specific component in each route will be render when the route matches. useParams can be used for the :id
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
     <>
       <Navigation />
         <Switch>
-          <Route path="/listings/:listingId"><ListingShow /></Route>
+          <Route path="/listings/:listingId"><ListingShow /></Route>  
           <Route path="/reservations"><ReservationIndex /></Route>
           <Route path="/"><ListingIndex /></Route>
         </Switch>

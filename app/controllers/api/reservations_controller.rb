@@ -1,9 +1,14 @@
 class Api::ReservationsController < ApplicationController
-  # before_action :require_logged_in, only: [:index, :show, :update, :destroy]
+  # before_action :require_logged_in, only: [:show, :update, :destroy]
 
   def index
-    # does this return an array? yes
-    @reservations = current_user.reservations.order(start_date: :desc)
+    if params[:listingId]
+      @reservations = @reservations.where(listing_id: params[:listingId])
+    
+      # does this return an array? yes
+    else
+      @reservations = current_user.reservations.order(start_date: :desc)
+    end
     render :index
   end
 
@@ -21,6 +26,7 @@ class Api::ReservationsController < ApplicationController
       # render json: { status: 'success', message: 'Reservation created.' }, status: 201
     else
       render json: { errors: @reservation.errors.full_messages }, status: 400
+      # puts @reservation.errors.full_messages
     end
 
   end

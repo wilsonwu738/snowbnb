@@ -20,10 +20,12 @@ const ReservationForm = ({ listingId }) => {
   const [reservations, setReservations] = useState([]);
   const [numGuests, setNumGuests] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
+  const [showSucess, setShowSucess] = useState(false);
+
   
 
   useEffect(() => {
-    dispatch(fetchReservations());
+    dispatch(fetchReservations(listingId));
   }, []);
 
   const isDateBlocked = (day) => {
@@ -50,7 +52,7 @@ const ReservationForm = ({ listingId }) => {
   };
 
   return (
-    <div>
+    <div className="reservation-form-wrapper">
       <h1>Calendar</h1>
       <DateRangePicker
         startDate={startDate}
@@ -72,27 +74,30 @@ const ReservationForm = ({ listingId }) => {
         isDayBlocked={isDateBlocked}
         isOutsideRange={(day) => day.isBefore(moment(), "day")}
       />
+      <br />
+      <br />
       {startDate && endDate ? (
         <>
           <p>
             Selected from {startDate.format("MM/DD/YYYY")} to{" "}
             {endDate.format("MM/DD/YYYY")}
           </p>
-          <p>TotalCost: $ {totalCost}</p>
           {/* <p>{setTotalCost(listing.nightlyPrice * endDate.diff(startDate, 'days'))}</p> */}
 
-          <button className="book_button" onClick={handleBook}>Book</button>
         </>
       ) : (
         <p>Please select the first and last day of your stay.</p>
       )}
-
-      <p>Number of Guests</p>
+      <br />
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
         {Array.from({ length: listing.maxGuests }, (_, i) => (
         <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
         ))}
       </select>
+      <br />
+      <button className="book_button" onClick={handleBook}>Reserve</button>
+      <p>TotalCost: $ {totalCost}</p>
+      
 
    
     </div>
