@@ -27,11 +27,28 @@ function ProfileButton({ user }) {
   //   return () => document.removeEventListener("click", closeMenu);
   // }, [showMenu]);
 
-  
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (
+        e.target.closest('.profile-dropdown') ||
+        e.target.closest('.login-modal-content') ||
+        e.target.closest('.signup-modal-content')
+      ) 
+      return;
+      setShowMenu(false);  
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener('click', closeMenu);
+  }, [showMenu]);
+
+ 
 
   const logout = (e) => {
     e.preventDefault();
-
     dispatch(sessionActions.logout());
   };
 
@@ -44,11 +61,18 @@ function ProfileButton({ user }) {
   } else {
     dropdownItems = 
       <div className="profile-dropdown">
-        <div className="login-modal"><LoginFormModal /></div>
-        <div className="signup-modal"><SignupFormModal /></div>
+        <div>
+          <LoginFormModal/>
+        </div>
+        <div>
+          <SignupFormModal/>
+        </div>
       </div>
+       
   }
- 
+
+  // <div><LoginFormModal hideMenu={() => setShowMenu(false)}/></div>
+  // <div><SignupFormModal hideMenu={() => setShowMenu(false)}/></div>
 
 
   return (

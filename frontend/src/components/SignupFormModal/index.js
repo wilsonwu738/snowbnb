@@ -5,12 +5,21 @@ import SignupForm from './SignupForm';
 function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
 
+  const handleSignupClick = (e) => {
+    e.stopPropagation();
+    setShowModal(true)
+  }
+
+
   return (
     <>
-      <button onClick={(e) => {e.stopPropagation(); setShowModal(true)}}>Sign Up</button>
+      <button onClick={handleSignupClick}>Sign Up</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SignupForm />
+          <div className='signup-modal-content'>
+            <SignupForm />
+
+          </div>
           
         </Modal>
       )}
