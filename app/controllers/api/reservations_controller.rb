@@ -2,9 +2,8 @@ class Api::ReservationsController < ApplicationController
   # before_action :require_logged_in, only: [:show, :update, :destroy]
 
   def index
-    if params[:listingId]
-      @reservations = @reservations.where(listing_id: params[:listingId])
-    
+    if params[:listing_id]
+      @reservations = Reservation.where(listing_id: params[:listing_id])
       # does this return an array? yes
     else
       @reservations = current_user.reservations.order(start_date: :desc)

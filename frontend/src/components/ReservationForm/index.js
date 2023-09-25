@@ -7,7 +7,7 @@ import { DateRangePicker } from "react-dates";
 import moment from "moment";
 import "react-dates/lib/css/_datepicker.css";
 import "./ReservationForm.css";
-import { fetchReservations, createReservation } from "../../store/reservations";
+import { fetchListingReservations, fetchUserReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";
 
 const ReservationForm = ({ listingId }) => {
@@ -25,7 +25,7 @@ const ReservationForm = ({ listingId }) => {
   
 
   useEffect(() => {
-    dispatch(fetchReservations(listingId));
+    dispatch(fetchListingReservations(listingId));
   }, []);
 
   const isDateBlocked = (day) => {

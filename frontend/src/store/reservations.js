@@ -36,20 +36,27 @@ export const getReservation = (reservationId) => (state) => state && state.reser
 //thunk action creators
 
 //updated to include params listingId so that i can fetch only a subset of reservations without setting up nested routes. 
-///api/reservations?listingId=123 
-export const fetchReservations = (listingId) => async dispatch => {
-  let endpoint = `/api/reservations`;
-  if (listingId) {
-    endpoint += `?listingId=${listingId}`;
-  }
-  const res = await csrfFetch(endpoint);
 
+export const fetchLisintgReservations = (listingId) => async dispatch => {
+  // let endpoint = `/api/reservations`;
+  // if (listingId) {
+  //   endpoint += `?listingId=${listingId}`;
+  // }
+  const res = await csrfFetch(`/api/reservations/${listingId}`);
   if (res.ok) {
     const data = await res.json(); //this is the body
     dispatch(receiveReservations(data))
   }
   //add error handling later
   return res
+}
+
+export const fetchUserReservations = () => async dispatch =>{
+  const res = await csrfFetch(`/api/reservations`);
+  if (res.ok)  {
+    const data = await res.json();
+    dispatch(receiveReservations(data))
+  }
 }
 
 export const fetchReservation = reservationId => async dispatch => {
