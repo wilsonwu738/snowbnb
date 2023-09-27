@@ -1,6 +1,6 @@
 // frontend/src/components/LoginFormModal/index.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 
@@ -22,8 +22,7 @@ function LoginFormModal() {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div className='login-modal-content'>
-
-          <LoginForm />  
+            <LoginForm />  
           </div>
           
           

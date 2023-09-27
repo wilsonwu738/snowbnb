@@ -37,12 +37,12 @@ export const getReservation = (reservationId) => (state) => state && state.reser
 
 //updated to include params listingId so that i can fetch only a subset of reservations without setting up nested routes. 
 
-export const fetchLisintgReservations = (listingId) => async dispatch => {
+export const fetchListingReservations = (listingId) => async dispatch => {
   // let endpoint = `/api/reservations`;
   // if (listingId) {
   //   endpoint += `?listingId=${listingId}`;
   // }
-  const res = await csrfFetch(`/api/reservations/${listingId}`);
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations`);
   if (res.ok) {
     const data = await res.json(); //this is the body
     dispatch(receiveReservations(data))
@@ -80,7 +80,7 @@ export const createReservation = (reservation) => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReservation(data))
-  }
+  } 
 
   return res
 }

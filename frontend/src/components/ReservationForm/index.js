@@ -21,22 +21,33 @@ const ReservationForm = ({ listingId }) => {
   const [numGuests, setNumGuests] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
   const [showSucess, setShowSucess] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [errors, setErrors] = useState([]);
+
+  const listingReservations = useSelector((state) => state.reservations)
+
+  
 
   
 
   useEffect(() => {
-    dispatch(fetchListingReservations(listingId));
-  }, []);
+    dispatch(fetchListingReservations(listingId))
+  }, [dispatch, listingId]);
 
   const isDateBlocked = (day) => {
-    return reservations.some(
+    const reservationsArray = Object.values(listingReservations);
+    return reservationsArray.some(
       (reservation) =>
-        day.isSameOrAfter(moment(reservation.start_date), "day") &&
-        day.isSameOrBefore(moment(reservation.end_date), "day")
+        day.isSameOrAfter(moment(reservation.startDate), "day") &&
+        day.isSameOrBefore(moment(reservation.endDate), "day")
     );
   };
 
-  const handleBook = () => {
+  const handleBook = (e) => {
+    e.preventDefault();
+    setErrors([]);
+ 
+
     if (sessionUser) {
       dispatch(createReservation({
         reservation: {
@@ -46,12 +57,14 @@ const ReservationForm = ({ listingId }) => {
           numGuests: numGuests,
           totalCost: totalCost
         }
-      }
-      ))
+      }))
+      setShowLoginPrompt(false)
     }
+    else setShowLoginPrompt(true)
   };
 
   return (
+    // this section is using calendar library
     <div className="reservation-form-wrapper">
       <h1>Calendar</h1>
       <DateRangePicker
@@ -74,6 +87,8 @@ const ReservationForm = ({ listingId }) => {
         isDayBlocked={isDateBlocked}
         isOutsideRange={(day) => day.isBefore(moment(), "day")}
       />
+
+
       <br />
       <br />
       {startDate && endDate ? (
@@ -86,7 +101,7 @@ const ReservationForm = ({ listingId }) => {
 
         </>
       ) : (
-        <p>Please select the first and last day of your stay.</p>
+        <p className="date-error">Please select the first and last day of your stay.</p>
       )}
       <br />
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
@@ -95,7 +110,9 @@ const ReservationForm = ({ listingId }) => {
         ))}
       </select>
       <br />
-      <button className="book_button" onClick={handleBook}>Reserve</button>
+      <button className="book-button" onClick={handleBook}>Reserve</button>
+      {showLoginPrompt && <div>Please log in to reserve</div>}
+
       <p>TotalCost: $ {totalCost}</p>
       
 

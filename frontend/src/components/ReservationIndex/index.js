@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReservations, getReservations } from "../../store/reservations";
+import { fetchUserReservations, getReservations } from "../../store/reservations";
 import ReservationIndexItem from "./ReservationIndexItem";
 
 
@@ -9,7 +9,7 @@ const ReservationIndex = () => {
   const reservations = useSelector(getReservations)
   
   useEffect(() => {
-    dispatch(fetchReservations())
+    dispatch(fetchUserReservations())
   }, [dispatch])
 
   const reservationIndexItems = reservations.map(reservation => <ReservationIndexItem key={reservation.id} reservation={reservation} />)

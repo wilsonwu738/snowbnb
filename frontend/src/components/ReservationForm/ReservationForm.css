@@ -8,7 +8,7 @@
   border-radius: 20px;
   position: sticky;
   top: 20px;
-  z-index: 999;
+  /* z-index: 999; */
   background-color: white;
 }
 /* .guest-input {
@@ -27,7 +27,11 @@
   
 } */
 
-.book_button {
+.book-button {
+  background-color: red;
+}
+
+.date-error {
   background-color: red;
 }
 

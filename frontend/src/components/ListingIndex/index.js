@@ -23,8 +23,8 @@ const ListingIndex = () => {
     <div className="outer-wrapper">
       <div className="filters-bar">
         <FiltersBar />
-          
       </div>
+      
       <div className="index-container">
         {listingIndexItems}
       </div>

@@ -5,6 +5,8 @@ class Api::ReservationsController < ApplicationController
     if params[:listing_id]
       @reservations = Reservation.where(listing_id: params[:listing_id])
       # does this return an array? yes
+      # listing = Listing.find(params[:listing_id])
+      # @reservations = listing.reservations
     else
       @reservations = current_user.reservations.order(start_date: :desc)
     end
@@ -25,7 +27,7 @@ class Api::ReservationsController < ApplicationController
       # render json: { status: 'success', message: 'Reservation created.' }, status: 201
     else
       render json: { errors: @reservation.errors.full_messages }, status: 400
-      # puts @reservation.errors.full_messages
+      puts @reservation.errors.full_messages
     end
 
   end
