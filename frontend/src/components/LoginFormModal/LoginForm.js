@@ -3,7 +3,8 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
 
-function LoginForm() {
+//onClose is used to set showLogin to false
+function LoginForm({ onClose }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +14,9 @@ function LoginForm() {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential: credential, password: password }))
+      .then(() => {
+        onClose();
+      })
       .catch(async (res) => {
         let data;
         try {
@@ -27,8 +31,12 @@ function LoginForm() {
       });
   };
 
-  const demoLogin = () => {
-    dispatch(sessionActions.login({credential: "demo@user.io", password: "password"}))
+  const demoLogin = (e) => {
+    e.preventDefault();
+    return dispatch(sessionActions.login({credential: "demo@user.io", password: "password"}))
+    .then(() => {
+      onClose()
+    });
   }
 
   return (

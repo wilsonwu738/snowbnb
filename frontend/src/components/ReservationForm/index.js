@@ -61,7 +61,6 @@ const ReservationForm = ({ listingId }) => {
   return (
     // this section is using calendar library
     <div className="reservation-form-wrapper">
-      <h1>Calendar</h1>
       <DateRangePicker
         startDate={startDate}
         startDateId="start_date"

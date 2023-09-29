@@ -51,7 +51,7 @@ class Reservation < ApplicationRecord
       end_date: end_date
     )
 
-    errors.add(:base, "The dates conflict with an existing reservation.") if overlapping_reservations.exists?
+    errors.add(:base, "The dates conflict with your existing reservation.") if overlapping_reservations.exists?
   end
 
 

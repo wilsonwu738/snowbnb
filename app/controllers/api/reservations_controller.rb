@@ -27,7 +27,7 @@ class Api::ReservationsController < ApplicationController
       # render json: { status: 'success', message: 'Reservation created.' }, status: 201
     else
       render json: { errors: @reservation.errors.full_messages }, status: 400
-      # puts @reservation.errors.full_messages
+      puts @reservation.errors.full_messages
     end
 
   end

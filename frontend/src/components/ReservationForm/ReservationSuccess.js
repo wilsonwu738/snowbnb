@@ -14,6 +14,7 @@ function ReservationSuccess({onClose}) {
 
   return(
     <Modal onClose={onClose}>
+      <h1> Reservation made successfully</h1>
       <button className="success-booking-trips" onClick={handleTrip}>
         Teleport to your trips page
       </button>
