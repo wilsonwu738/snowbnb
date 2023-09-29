@@ -7,25 +7,11 @@ import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  // { isShow: flase}
+  
   const [showMenu, setShowMenu] = useState(false);
-  
-  // const openMenu = () => {
-  //   if (showMenu.isShown) return;
-  //   setShowMenu({ isShow: true});
-  // };
-  // // this useeffect is causing the modal to disappear
-  // useEffect(() => {
-  //   if (!showMenu) return;
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //   };
-
-  //   document.addEventListener('click', closeMenu);
-  
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
 
   useEffect(() => {
     if (!showMenu) return;
@@ -61,12 +47,9 @@ function ProfileButton({ user }) {
   } else {
     dropdownItems = 
       <div className="profile-dropdown">
-        <div>
-          <LoginFormModal/>
-        </div>
-        <div>
-          <SignupFormModal/>
-        </div>
+        <button onClick= {() => {setShowMenu(false); setShowLogin(true)}}>Log In</button>
+        <button onClick= {() => {setShowMenu(false); setShowSignup(true)}}>Sign Up</button>
+
       </div>
        
   }
@@ -85,6 +68,9 @@ function ProfileButton({ user }) {
         </div>
       </button>
       {showMenu && dropdownItems}
+      {showLogin && <LoginFormModal onClose={() => setShowLogin(false)} />}
+      {showSignup && <SignupFormModal onClose={() => setShowSignup(false)} />}
+
     </>
   );
 }
