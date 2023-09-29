@@ -9,6 +9,7 @@ import "react-dates/lib/css/_datepicker.css";
 import "./ReservationForm.css";
 import { fetchListingReservations, fetchUserReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";
+import ReservationSuccess from './ReservationSuccess'
 
 const ReservationForm = ({ listingId }) => {
   const dispatch = useDispatch();
@@ -17,18 +18,16 @@ const ReservationForm = ({ listingId }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
-  const [reservations, setReservations] = useState([]);
+  // const [reservations, setReservations] = useState([]);
   const [numGuests, setNumGuests] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
-  const [showSucess, setShowSucess] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [errors, setErrors] = useState([]);
+  
+  
 
   const listingReservations = useSelector((state) => state.reservations)
-
-  
-
-  
 
   useEffect(() => {
     dispatch(fetchListingReservations(listingId))
@@ -46,8 +45,6 @@ const ReservationForm = ({ listingId }) => {
   const handleBook = (e) => {
     e.preventDefault();
     setErrors([]);
- 
-
     if (sessionUser) {
       dispatch(createReservation({
         reservation: {
@@ -59,6 +56,7 @@ const ReservationForm = ({ listingId }) => {
         }
       }))
       setShowLoginPrompt(false)
+      setShowSuccess(true)
     }
     else setShowLoginPrompt(true)
   };
@@ -116,8 +114,10 @@ const ReservationForm = ({ listingId }) => {
       <p>TotalCost: $ {totalCost}</p>
       
 
-   
+          
+      <ReservationSuccess isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
     </div>
+   
   );
 };
 

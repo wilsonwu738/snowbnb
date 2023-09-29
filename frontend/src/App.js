@@ -13,11 +13,11 @@ function App() {
   return (
     <>
       <Navigation />
-        <Switch>
-          <Route path="/listings/:listingId"><ListingShow /></Route>  
-          <Route path="/reservations"><ReservationIndex /></Route>
-          <Route path="/"><ListingIndex /></Route>
-        </Switch>
+      <Switch>
+        <Route path="/listings/:listingId"><ListingShow /></Route>  
+        <Route path="/trips"><ReservationIndex /></Route>
+        <Route path="/"><ListingIndex /></Route>
+      </Switch>
     </>
   );
 }
