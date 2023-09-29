@@ -4,9 +4,8 @@ import { Modal } from '../../context/Modal';
 
 
 
-function ReservationSuccess({isOpen, onClose}) {
+function ReservationSuccess({onClose}) {
   const history = useHistory();
-  if (!isOpen) return null;
 
   const handleTrip = () => {
     history.push("/trips")

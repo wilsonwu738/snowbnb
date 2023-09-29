@@ -24,9 +24,6 @@ const ReservationForm = ({ listingId }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [errors, setErrors] = useState([]);
-  
-  
-
   const listingReservations = useSelector((state) => state.reservations)
 
   useEffect(() => {
@@ -115,7 +112,7 @@ const ReservationForm = ({ listingId }) => {
       
 
           
-      <ReservationSuccess isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
+      {showSuccess && <ReservationSuccess onClose={() => setShowSuccess(false)} /> }
     </div>
    
   );
