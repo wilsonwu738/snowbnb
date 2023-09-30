@@ -26,27 +26,19 @@ class Reservation < ApplicationRecord
     class_name: :Listing
 
 
-  # def legit_dates?
-  #   if end_date < start_date
-  #     errors.add(:end_date, "end date must be after start date")
-  #   end
-
-  #   if start_date < Date.today || end_date < Date.today
-  #     errors.add(:end_date, "reservation must be made for future date")
-  #   end
-  # end
-
   private
 
   def dates_valid?
     if start_date.nil? || end_date.nil? || start_date >= end_date
-      errors.add(:base, "Invalid reservation dates")
+      errors.add(:base, "Invalid selection of reservation dates")
     end
   end
 
   def no_overlapping_reservations
+    # the first where excludes the current reservation, the second where picks up the overlapping reservation
     overlapping_reservations = Reservation.where.not(id: id).where(
-      "NOT((start_date > :end_date) OR (end_date < :start_date))",
+      "user_id = :user_id AND NOT((start_date > :end_date) OR (end_date < :start_date))",
+      user_id: user_id,
       start_date: start_date,
       end_date: end_date
     )
