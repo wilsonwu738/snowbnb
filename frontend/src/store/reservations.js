@@ -69,20 +69,33 @@ export const fetchReservation = reservationId => async dispatch => {
 }
 
 export const createReservation = (reservation) => async dispatch => {
-  const res = await csrfFetch(`/api/reservations`, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(reservation)
-  });
+  try {
+    const res = await csrfFetch(`/api/reservations`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reservation)
+    });
   
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(receiveReservation(data))
-  } 
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(receiveReservation(data));
+      console.log(data)
+      return { ok: true, data };
+    } else {
+      const errData = await res.json();
+      console.log(errData)
+      console.log("hit error redux")
+      return { ok: false, errors: errData.errors};
+    }
+  } catch (error) {
+    const errData = await error.json();
+    console.log("catch block error", Object.values(errData))
+    
+    return { ok: false, errors: Object.values(errData) };
+  }
 
-  return res
 }
 
 export const updateReservation = (reservation) => async dispatch => {

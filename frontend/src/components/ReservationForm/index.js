@@ -10,6 +10,8 @@ import "./ReservationForm.css";
 import { fetchListingReservations, fetchUserReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";
 import ReservationSuccess from './ReservationSuccess'
+import LoginFormModal from "../LoginFormModal";
+
 
 const ReservationForm = ({ listingId }) => {
   const dispatch = useDispatch();
@@ -22,13 +24,15 @@ const ReservationForm = ({ listingId }) => {
   const [numGuests, setNumGuests] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [showLogin, setShowLogin] = useState(false);
+  const [errors, setErrors] = useState();
   const listingReservations = useSelector((state) => state.reservations)
 
   useEffect(() => {
     dispatch(fetchListingReservations(listingId))
   }, [dispatch, listingId]);
+
+  
 
   const isDateBlocked = (day) => {
     const reservationsArray = Object.values(listingReservations);
@@ -39,11 +43,12 @@ const ReservationForm = ({ listingId }) => {
     );
   };
 
-  const handleBook = (e) => {
+  const handleBook = async (e) => {
     e.preventDefault();
     setErrors([]);
+
     if (sessionUser) {
-      dispatch(createReservation({
+      const res = await dispatch(createReservation({
         reservation: {
           startDate: startDate,
           endDate: endDate,
@@ -52,10 +57,15 @@ const ReservationForm = ({ listingId }) => {
           totalCost: totalCost
         }
       }))
-      setShowLoginPrompt(false)
-      setShowSuccess(true)
+
+      if (!res.ok) {
+        setErrors(res.errors)
+      } else {
+        setShowSuccess(true)
+      }
+    
     }
-    else setShowLoginPrompt(true)
+    else setShowLogin(true)
   };
 
   return (
@@ -105,12 +115,13 @@ const ReservationForm = ({ listingId }) => {
       </select>
       <br />
       <button className="book-button" onClick={handleBook}>Reserve</button>
-      {showLoginPrompt && <div>Please log in to reserve</div>}
+      {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 
       <p>TotalCost: $ {totalCost}</p>
       
 
-          
+      
+      {showLogin && <LoginFormModal onClose={() => setShowLogin(false)} />}
       {showSuccess && <ReservationSuccess onClose={() => setShowSuccess(false)} /> }
     </div>
    
