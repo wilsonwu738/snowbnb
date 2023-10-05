@@ -48,6 +48,10 @@ const ReservationForm = ({ listingId }) => {
     setErrors([]);
 
     if (sessionUser) {
+      if(!startDate || !endDate) {
+        setErrors(["Please select both a start and end date."]);
+        return;
+      }
       const res = await dispatch(createReservation({
         reservation: {
           startDate: startDate,
@@ -95,18 +99,18 @@ const ReservationForm = ({ listingId }) => {
 
       <br />
       <br />
-      {startDate && endDate ? (
+      {/* {startDate && endDate ? (
         <>
           <p>
             Selected from {startDate.format("MM/DD/YYYY")} to{" "}
             {endDate.format("MM/DD/YYYY")}
           </p>
-          {/* <p>{setTotalCost(listing.nightlyPrice * endDate.diff(startDate, 'days'))}</p> */}
+          <p>{setTotalCost(listing.nightlyPrice * endDate.diff(startDate, 'days'))}</p>
 
         </>
       ) : (
         <p className="date-error">Please select the first and last day of your stay.</p>
-      )}
+      )} */}
       <br />
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
         {Array.from({ length: listing.maxGuests }, (_, i) => (
@@ -115,6 +119,9 @@ const ReservationForm = ({ listingId }) => {
       </select>
       <br />
       <button className="book-button" onClick={handleBook}>Reserve</button>
+      
+      <div>You won't be charge yet</div>
+
       {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 
       <p>TotalCost: $ {totalCost}</p>

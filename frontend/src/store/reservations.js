@@ -68,6 +68,7 @@ export const fetchReservation = reservationId => async dispatch => {
   return res
 }
 
+// delete the else for error?
 export const createReservation = (reservation) => async dispatch => {
   try {
     const res = await csrfFetch(`/api/reservations`, {
@@ -106,6 +107,7 @@ export const updateReservation = (reservation) => async dispatch => {
     },
     body: JSON.stringify(reservation)
   });
+  // console.log(reservation)
 
   if (res.ok) {
     const data = await res.json();

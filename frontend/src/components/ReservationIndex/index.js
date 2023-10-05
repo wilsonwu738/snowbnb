@@ -17,7 +17,7 @@ const ReservationIndex = () => {
 
 
   return (
-    <div className="reservation-container">
+    <div className="reservation-index-container">
       {reservationIndexItems}
     </div>
   )
