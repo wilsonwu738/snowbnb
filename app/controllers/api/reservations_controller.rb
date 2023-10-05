@@ -36,7 +36,7 @@ class Api::ReservationsController < ApplicationController
 
   def update
     @reservation = current_user.reservations.find(params[:id])
-    @reservation.user_id = current_user.id
+    # @reservation.user_id = current_user.id
 
     if @reservation.update(reservation_params)
       puts reservation_params

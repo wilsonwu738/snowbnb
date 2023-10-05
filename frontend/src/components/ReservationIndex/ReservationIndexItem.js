@@ -2,8 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import { DateRangePicker } from "react-dates";
 import { updateReservation, deleteReservation } from "../../store/reservations";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "react-dates/lib/css/_datepicker.css";
+import { fetchListing, getListing } from "../../store/listings";
+import "./ReservationIndexItem.css"
 
 
 //can i use reservation connecting to listings?
@@ -11,8 +13,12 @@ const ReservationIndexItem = ({ reservation }) => {
   // const listingUrl = useSelector(state => {
   //   return state.listings[reservation.listingId].photoUrl
   // })
+
   const dispatch = useDispatch();
-  // const 
+  useEffect(() => {
+    dispatch(fetchListing(reservation.listingId))
+  }, [dispatch])
+  const listing = useSelector(getListing(reservation.listingId))
 
   const [isEditing, setIsEditing] = useState(false);
   const [editingStartDate, setEditingStartDate] = useState(null);
@@ -21,7 +27,7 @@ const ReservationIndexItem = ({ reservation }) => {
 
   const startEditing = () => {
     setIsEditing(true);
-    setEditingStartDate(moment(reservation.startDate)); // assuming dates are in a usable format
+    setEditingStartDate(moment(reservation.startDate));
     setEditingEndDate(moment(reservation.endDate));
   };
   
@@ -32,13 +38,14 @@ const ReservationIndexItem = ({ reservation }) => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    // Dispatch the update to the Redux store, assuming your action is set up to handle the API call
+    reservation.startDate = editingStartDate.format('YYYY-MM-DD');
+    reservation.endDate = editingEndDate.format('YYYY-MM-DD');
+    console.log("before dispatch",reservation)
     await dispatch(updateReservation(reservation
       // id: reservation.id,
-      // startDate: editingStartDate.format('YYYY-MM-DD'), // format as per your API needs
+      // startDate: editingStartDate.format('YYYY-MM-DD'), 
       // endDate: editingEndDate.format('YYYY-MM-DD')
     ));
-    console.log(reservation)
     setIsEditing(false);
   };
 
@@ -59,19 +66,19 @@ const ReservationIndexItem = ({ reservation }) => {
             onDatesChange={handleDatesChange}
             focusedInput={focusedInput}
             onFocusChange={focused => setFocusedInput(focused)}
-            // ... any other required props ...
           />
           <button type="submit">Save Changes</button>
           <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
         </form>
       ) : (
         <>
-          <p>Start date: {reservation.startDate}</p>
-          <p>End date: {reservation.endDate}</p>
+          <div className="listing-photo">
+            <img id="p1" src={listing?.photoUrl[0]} alt="" />
+          </div>
+          <p>Start date: {moment(reservation.startDate).format('YYYY-MM-DD')}</p>
+          <p>End date: {moment(reservation.endDate).format('YYYY-MM-DD')}</p>
           <button onClick={startEditing}>Update</button>
           <button onClick={handleDelete}>Delete</button>
-
-          {/* Other display elements... */}
         </>
       )}
     </div>

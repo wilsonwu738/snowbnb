@@ -70,6 +70,7 @@ export const fetchReservation = reservationId => async dispatch => {
 
 // delete the else for error?
 export const createReservation = (reservation) => async dispatch => {
+  console.log("inside create", reservation)
   try {
     const res = await csrfFetch(`/api/reservations`, {
       method: "POST",
@@ -84,12 +85,13 @@ export const createReservation = (reservation) => async dispatch => {
       dispatch(receiveReservation(data));
       console.log(data)
       return { ok: true, data };
-    } else {
-      const errData = await res.json();
-      console.log(errData)
-      console.log("hit error redux")
-      return { ok: false, errors: errData.errors};
-    }
+    } 
+    // else {
+    //   const errData = await res.json();
+    //   console.log(errData)
+    //   console.log("hit error redux")
+    //   return { ok: false, errors: errData.errors};
+    // }
   } catch (error) {
     const errData = await error.json();
     console.log("catch block error", Object.values(errData))
@@ -99,16 +101,19 @@ export const createReservation = (reservation) => async dispatch => {
 
 }
 
+//i normally prefer the reservation to stay as it is, but if i structure it in frontend, it does not work with permit :id in rails
+
 export const updateReservation = (reservation) => async dispatch => {
+  const { id, ...otherAttributes } = reservation;
+  console.log("inside fetch", reservation)
   const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(reservation)
+    body: JSON.stringify({ reservation: otherAttributes })
   });
-  // console.log(reservation)
-
+  
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReservation(data))

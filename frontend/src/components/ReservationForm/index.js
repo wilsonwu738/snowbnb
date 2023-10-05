@@ -54,8 +54,8 @@ const ReservationForm = ({ listingId }) => {
       }
       const res = await dispatch(createReservation({
         reservation: {
-          startDate: startDate,
-          endDate: endDate,
+          startDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
           listingId: listingId,
           numGuests: numGuests,
           totalCost: totalCost
@@ -94,6 +94,9 @@ const ReservationForm = ({ listingId }) => {
         numberOfMonths={2}
         isDayBlocked={isDateBlocked}
         isOutsideRange={(day) => day.isBefore(moment(), "day")}
+        // small={true}
+        // noBorder={true}
+        // hideKeyboardShortcutsPanel
       />
 
 
