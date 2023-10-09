@@ -10,11 +10,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  num_guests :integer          not null
+#  total_cost :integer          not null
 #
 
 class Reservation < ApplicationRecord
   require 'date'
-  validates :start_date, :end_date, :num_guests, presence: true
+  validates :user_id, :listing_id, :start_date, :end_date, :num_guests, presence: true
   validate :dates_valid?, :no_overlapping_reservations
 
   belongs_to :guest,
