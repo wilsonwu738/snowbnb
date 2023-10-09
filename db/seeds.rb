@@ -302,50 +302,148 @@ ApplicationRecord.transaction do
     {io:URI.open('https://snowbnb-seeds.s3.amazonaws.com/listing_12_p5.jpg'), filename: 'l12p5.jpg'}
   ])
 
-  Reservation.create!(
-  user_id: 1,
-  listing_id: 1,
-  start_date: "2023-03-10 14:00:00",
-  end_date: "2023-03-15 11:00:00",
-  num_guests: 2,
-  total_cost: 500
-)
-
-  Reservation.create!(
-  user_id: 1,
-  listing_id: 2,
-  start_date: "2023-04-01 15:00:00",
-  end_date: "2023-04-07 10:00:00",
-  num_guests: 3,
-  total_cost: 900
-)
-
-  Reservation.create!(
-  user_id: 3,
-  listing_id: 3,
-  start_date: "2023-05-20 13:00:00",
-  end_date: "2023-05-24 11:00:00",
-  num_guests: 4,
-  total_cost: 1200
-)
-
-  Reservation.create!(
-  user_id: 4,
-  listing_id: 4,
-  start_date: "2023-06-10 14:00:00",
-  end_date: "2023-06-15 11:00:00",
-  num_guests: 2,
-  total_cost: 600
-)
-
-  Reservation.create!(
-  user_id: 5,
-  listing_id: 5,
-  start_date: "2023-07-01 12:00:00",
-  end_date: "2023-07-05 10:00:00",
-  num_guests: 3,
-  total_cost: 900
-)
+    Reservation.create!(
+    user_id: 1,
+    listing_id: 1,
+    start_date: "2023-03-10 14:00:00",
+    end_date: "2023-03-15 11:00:00",
+    num_guests: 2,
+    total_cost: 500
+  )
+  
+    Reservation.create!(
+    user_id: 1,
+    listing_id: 2,
+    start_date: "2023-04-01 15:00:00",
+    end_date: "2023-04-07 10:00:00",
+    num_guests: 3,
+    total_cost: 900
+  )
+  
+    Reservation.create!(
+    user_id: 3,
+    listing_id: 3,
+    start_date: "2023-05-20 13:00:00",
+    end_date: "2023-05-24 11:00:00",
+    num_guests: 4,
+    total_cost: 1200
+  )
+  
+    Reservation.create!(
+    user_id: 4,
+    listing_id: 4,
+    start_date: "2023-06-10 14:00:00",
+    end_date: "2023-06-15 11:00:00",
+    num_guests: 2,
+    total_cost: 600
+  )
+  
+    Reservation.create!(
+    user_id: 5,
+    listing_id: 5,
+    start_date: "2023-07-01 12:00:00",
+    end_date: "2023-07-05 10:00:00",
+    num_guests: 3,
+    total_cost: 900
+  )
+  
+  (1..7).each do |i|
+    start_date = Date.new(2023, 2, 1) - i.months
+    end_date = start_date + 5.days
+    
+    Reservation.create(
+      user_id: i, 
+      listing_id: 1,
+      start_date: start_date, 
+      end_date: end_date,
+      num_guests: 2,
+      total_cost: 1000
+    )
+  end
+  
+  Review.create!(
+    user_id: 1,
+    listing_id: 1,
+    content: "Nice house"
+    communication: 5,
+    cleanliness: 5,
+    accuracy: 5,
+    location: 5,
+    value: 5,
+    check_in: 5
+  )
+  
+  Review.create!(
+    user_id: 2,
+    listing_id: 1,
+    content: "Not bad for the price"
+    communication: 4,
+    cleanliness: 4,
+    accuracy: 4,
+    location: 5,
+    value: 5,
+    check_in: 5
+  )
+  
+  Review.create!(
+    user_id: 3,
+    listing_id: 1,
+    content: "Worst house, would not recommend"
+    communication: 0,
+    cleanliness: 0,
+    accuracy: 0,
+    location: 0,
+    value: 0,
+    check_in: 0
+  )
+  
+  Review.create!(
+    user_id: 4,
+    listing_id: 1,
+    content: "Best airbnb snow house i had so far"
+    communication: 5,
+    cleanliness: 5,
+    accuracy: 5,
+    location: 5,
+    value: 5,
+    check_in: 5
+  )
+  
+  Review.create!(
+    user_id: 5,
+    listing_id: 1,
+    content: "It's only ok"
+    communication: 3,
+    cleanliness: 3,
+    accuracy: 3,
+    location: 3,
+    value: 3,
+    check_in: 3
+  )
+  
+  Review.create!(
+    user_id: 6,
+    listing_id: 1,
+    content: "Host is nice, I would recommend"
+    communication: 5,
+    cleanliness: 5,
+    accuracy: 5,
+    location: 4,
+    value: 4,
+    check_in: 5 
+  )
+  
+  Review.create!(
+    user_id: 7,
+    listing_id: 1,
+    content: "average airbnb house"
+    communication: 3,
+    cleanliness: 4,
+    accuracy: 3,
+    location: 3,
+    value: 4,
+    check_in: 5
+  )
 
 
   puts "Done!"
