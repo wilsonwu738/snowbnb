@@ -13,13 +13,15 @@ ApplicationRecord.transaction do
   Reservation.destroy_all
   Listing.destroy_all
   User.destroy_all
+  Review.destroy_all
 
   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('listings')
   ApplicationRecord.connection.reset_pk_sequence!('reservations')
-
+  ApplicationRecord.connection.reset_pk_sequence!('reviews')
+  
   puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
   User.create!(
@@ -36,6 +38,8 @@ ApplicationRecord.transaction do
       password: 'password'
     }) 
   end
+
+  puts "Creating listings..."
 
   listing_1 = Listing.create(title: "Cozy Mountain Chalet", 
                description: "The 'Cozy Mountain Chalet' is a charming, rustic retreat located near the ski slopes in Breckenridge, Colorado. Perfect for a winter getaway, this cozy cabin features 2 bedrooms, 3 beds, and 2 baths, making it ideal for up to 6 guests. With its warm and inviting decor, fully-equipped kitchen, and beautiful mountain views, you'll feel right at home in this delightful chalet.",
@@ -302,7 +306,9 @@ ApplicationRecord.transaction do
     {io:URI.open('https://snowbnb-seeds.s3.amazonaws.com/listing_12_p5.jpg'), filename: 'l12p5.jpg'}
   ])
 
-    Reservation.create!(
+  puts "Creating reservations..."
+
+  Reservation.create!(
     user_id: 1,
     listing_id: 1,
     start_date: "2023-03-10 14:00:00",
@@ -310,8 +316,8 @@ ApplicationRecord.transaction do
     num_guests: 2,
     total_cost: 500
   )
-  
-    Reservation.create!(
+
+  Reservation.create!(
     user_id: 1,
     listing_id: 2,
     start_date: "2023-04-01 15:00:00",
@@ -319,8 +325,8 @@ ApplicationRecord.transaction do
     num_guests: 3,
     total_cost: 900
   )
-  
-    Reservation.create!(
+
+  Reservation.create!(
     user_id: 3,
     listing_id: 3,
     start_date: "2023-05-20 13:00:00",
@@ -328,8 +334,8 @@ ApplicationRecord.transaction do
     num_guests: 4,
     total_cost: 1200
   )
-  
-    Reservation.create!(
+
+  Reservation.create!(
     user_id: 4,
     listing_id: 4,
     start_date: "2023-06-10 14:00:00",
@@ -337,8 +343,8 @@ ApplicationRecord.transaction do
     num_guests: 2,
     total_cost: 600
   )
-  
-    Reservation.create!(
+
+  Reservation.create!(
     user_id: 5,
     listing_id: 5,
     start_date: "2023-07-01 12:00:00",
@@ -346,11 +352,13 @@ ApplicationRecord.transaction do
     num_guests: 3,
     total_cost: 900
   )
-  
+
+  puts "Creating reviews..."
+
   (1..7).each do |i|
     start_date = Date.new(2023, 2, 1) - i.months
     end_date = start_date + 5.days
-    
+
     Reservation.create(
       user_id: i, 
       listing_id: 1,
@@ -360,11 +368,11 @@ ApplicationRecord.transaction do
       total_cost: 1000
     )
   end
-  
+
   Review.create!(
     user_id: 1,
     listing_id: 1,
-    content: "Nice house"
+    content: "Nice house",
     communication: 5,
     cleanliness: 5,
     accuracy: 5,
@@ -372,11 +380,11 @@ ApplicationRecord.transaction do
     value: 5,
     check_in: 5
   )
-  
+
   Review.create!(
     user_id: 2,
     listing_id: 1,
-    content: "Not bad for the price"
+    content: "Not bad for the price",
     communication: 4,
     cleanliness: 4,
     accuracy: 4,
@@ -384,11 +392,11 @@ ApplicationRecord.transaction do
     value: 5,
     check_in: 5
   )
-  
+
   Review.create!(
     user_id: 3,
     listing_id: 1,
-    content: "Worst house, would not recommend"
+    content: "Worst house, would not recommend",
     communication: 0,
     cleanliness: 0,
     accuracy: 0,
@@ -396,11 +404,11 @@ ApplicationRecord.transaction do
     value: 0,
     check_in: 0
   )
-  
+
   Review.create!(
     user_id: 4,
     listing_id: 1,
-    content: "Best airbnb snow house i had so far"
+    content: "Best airbnb snow house i had so far",
     communication: 5,
     cleanliness: 5,
     accuracy: 5,
@@ -408,11 +416,11 @@ ApplicationRecord.transaction do
     value: 5,
     check_in: 5
   )
-  
+
   Review.create!(
     user_id: 5,
     listing_id: 1,
-    content: "It's only ok"
+    content: "It's only ok",
     communication: 3,
     cleanliness: 3,
     accuracy: 3,
@@ -420,11 +428,11 @@ ApplicationRecord.transaction do
     value: 3,
     check_in: 3
   )
-  
+
   Review.create!(
     user_id: 6,
     listing_id: 1,
-    content: "Host is nice, I would recommend"
+    content: "Host is nice, I would recommend",
     communication: 5,
     cleanliness: 5,
     accuracy: 5,
@@ -432,11 +440,11 @@ ApplicationRecord.transaction do
     value: 4,
     check_in: 5 
   )
-  
+
   Review.create!(
     user_id: 7,
     listing_id: 1,
-    content: "average airbnb house"
+    content: "average airbnb house",
     communication: 3,
     cleanliness: 4,
     accuracy: 3,
