@@ -76,12 +76,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_023413) do
     t.bigint "user_id", null: false
     t.bigint "listing_id", null: false
     t.text "content", null: false
-    t.float "communication", null: false
-    t.float "cleanliness", null: false
-    t.float "accuracy", null: false
-    t.float "location", null: false
-    t.float "value", null: false
-    t.float "check_in", null: false
+    t.integer "communication", null: false
+    t.integer "cleanliness", null: false
+    t.integer "accuracy", null: false
+    t.integer "location", null: false
+    t.integer "value", null: false
+    t.integer "check_in", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["listing_id"], name: "index_reviews_on_listing_id"

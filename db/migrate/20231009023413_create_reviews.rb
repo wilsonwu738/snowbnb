@@ -4,12 +4,12 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.references :listing, null: false, foreign_key: true
       t.text :content, null: false
-      t.float :communication, null: false
-      t.float :cleanliness, null: false
-      t.float :accuracy, null: false
-      t.float :location, null: false
-      t.float :value, null: false
-      t.float :check_in, null: false
+      t.integer :communication, null: false
+      t.integer :cleanliness, null: false
+      t.integer :accuracy, null: false
+      t.integer :location, null: false
+      t.integer :value, null: false
+      t.integer :check_in, null: false
       t.timestamps
     end
   end
