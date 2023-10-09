@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
   rescue_from ActionController::InvalidAuthenticityToken,
     with: :invalid_authenticity_token
   
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::ParameterMissing, with: :bad_request
+
+
   protect_from_forgery with: :exception
 
   # runs before the controller actions
@@ -84,6 +88,14 @@ class ApplicationController < ActionController::API
       
       logger.error "\n#{@message}:\n\t#{@stack.join("\n\t")}\n"
     end
+  end
+
+  def not_found(exception)
+    render json: { errors: [exception.message] }, status: :not_found
+  end
+
+  def bad_request(exception)
+    render json: { errors: [exception.message] }, status: :bad_request
   end
 
 

@@ -44,7 +44,10 @@ class User < ApplicationRecord
     dependent: :destroy
     
 
-
+  # checking if the user had a reservation before
+  def review_allowed?(listing_id)
+    self.reservations.where(listing_id: listing_id).where("end_date < ?", Date.current).exists?
+  end
 
 
   def self.find_by_credentials(credential, password)

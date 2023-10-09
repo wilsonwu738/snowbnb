@@ -1,17 +1,26 @@
 class ReviewsController < ApplicationController
+  before_action :require_logged_in, only: [:create, :show, :update, :destroy]
+  
+  # .includes for N+1 issue
+
   def index
-    @reviews = Review.where(listing_id: params[:listing_id])
+    @reviews = Review.where(listing_id: params[:listing_id]).incluces(:user)
     render :index
   end
 
   def show
-    @review = Review.find(params[:id])
+    @review = Review.find(params[:id]).includes(:user)
     render :show
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    # this will automatically set the user_id
+    @review = current_user.reviews.new(review_params)
+    
+    # making sure the user had reservation in the past before
+    unless current_user.review_allowed?(@review.listing_id)
+      return render json: { errors: ["You can only provide review after your reservation on this listing"]}, status: :forbidden
+    end
 
     if @review.save
       render :show
