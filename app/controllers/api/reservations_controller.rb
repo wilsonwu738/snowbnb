@@ -39,7 +39,7 @@ class Api::ReservationsController < ApplicationController
     # @reservation.user_id = current_user.id
 
     if @reservation.update(reservation_params)
-      puts reservation_params
+      # puts reservation_params
       render :show
       # render json: { status: 'success', message: 'Reservation updated.' }, status: 200
     else
@@ -53,7 +53,7 @@ class Api::ReservationsController < ApplicationController
     @reservation = current_user.reservations.find(params[:id])
     # @reservation.delete
     if @reservation.destroy
-      render json: { message: 'success' }, status: 200
+      render json: { message: 'Success' }, status: 200
     else
       render json: { errors: ['Failed to delete reservation'] }, status: 400
     end
