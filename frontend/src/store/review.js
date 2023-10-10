@@ -20,6 +20,22 @@ export const removeReview = reviewId => ({
 })
 
 export const fetchReviews = (listingId) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reviews`)
-  
+  const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(receiveReviews(data))
+  }
+
+  return res
+}
+
+export const createReview = (listingId) => async dispatch => {
+  const res = await csrfFetch(`/api/listing/${listingId}/reviews`, {
+    method: 'POST',
+    headers: {
+      'Content_Type': 'application/json'
+    },
+    body: JSON.stringify()
+  })
 }
