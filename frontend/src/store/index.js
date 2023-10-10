@@ -3,13 +3,13 @@ import thunk from 'redux-thunk';
 import listingsReducer from './listings';
 import sessionReducer from './session';
 import reservationsReducer from './reservations';
-
+import reviewsReducer from './reviews';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   listings: listingsReducer,
   reservations: reservationsReducer,
-  // reviews: reviewsReducer
+  reviews: reviewsReducer
 }) 
 
 

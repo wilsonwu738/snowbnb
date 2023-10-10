@@ -82,7 +82,6 @@ export const createReservation = (reservation) => async dispatch => {
     if (res.ok) {
       const data = await res.json();
       dispatch(receiveReservation(data));
-      console.log(data)
       return { ok: true, data };
     } 
     // else {
