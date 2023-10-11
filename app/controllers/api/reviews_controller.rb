@@ -4,7 +4,8 @@ class Api::ReviewsController < ApplicationController
   # .includes for N+1 issue
 
   def index
-    @reviews = Review.where(listing_id: params[:listing_id]).incluces(:user)
+    @reviews = Review.where(listing_id: params[:listing_id]).includes(:user)
+    
     render :index
   end
 
@@ -37,7 +38,7 @@ class Api::ReviewsController < ApplicationController
     if @review.update(review_params)
       render :show
     else
-      render :json { errors: @review.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
     end
 
   end

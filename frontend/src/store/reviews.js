@@ -19,7 +19,11 @@ export const removeReview = reviewId => ({
   reviewId
 })
 
+export const getReviews = (state) => state.reviews ? Object.values(state.reviews) : []
+
+
 export const fetchReviews = (listingId) => async dispatch => {
+  console.log("before csrf")
   const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
 
   if (res.ok) {

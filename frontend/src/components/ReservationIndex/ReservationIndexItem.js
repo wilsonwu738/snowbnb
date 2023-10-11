@@ -17,7 +17,7 @@ const ReservationIndexItem = ({ reservation }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchListing(reservation.listingId))
-  }, [dispatch])
+  }, [dispatch, reservation.listingId])
   const listing = useSelector(getListing(reservation.listingId))
 
   const [isEditing, setIsEditing] = useState(false);

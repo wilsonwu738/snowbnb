@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchListing, getListing } from "../../store/listings";
 import './ListingShow.css'
 import ReservationForm from "../ReservationForm";
+import ReviewsIndex from "../ReviewsIndex";
 
 const ListingShow = () => {
   const { listingId } = useParams();
@@ -60,6 +61,12 @@ const ListingShow = () => {
           <div className="reservation-container">
             <ReservationForm listingId={listingId}/> 
           </div>
+
+          <div className="reviews-container">
+            <ReviewsIndex listingId={listingId} />
+
+          </div>
+
         </div>
         <br />
         <br />
