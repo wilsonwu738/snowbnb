@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { fetchReviews, getReviews } from "../../store/reviews";
 import ReviewsIndexItem from "./ReviewsIndexItem";
+import { Link } from "react-router-dom";
 
 
 const ReviewsIndex = ({ listingId }) => {
@@ -9,12 +10,12 @@ const ReviewsIndex = ({ listingId }) => {
 
   useEffect(() => {
     dispatch(fetchReviews(listingId))
-    console.log("hit dispatch")
+
   }, [dispatch, listingId]);
 
   const reviews = useSelector(getReviews)
-  console.log(reviews)
-  if (!reviews.length) {
+  console.log("listing id:", listingId)
+  if (!reviews?.length) {
     return <p>Loading reviews...</p>;
   }
 
@@ -25,7 +26,7 @@ const ReviewsIndex = ({ listingId }) => {
           <ReviewsIndexItem key={review.id} review={review} />
         ))}
       </ul>
-
+      <Link to={`/listings/${listingId}/newreview`}>Write your own review</Link>
     </div>
   ) 
 

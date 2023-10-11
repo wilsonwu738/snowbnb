@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import ListingIndex from "./components/ListingIndex";
 import ListingShow from "./components/ListingShow";
 import ReservationIndex from "./components/ReservationIndex";
+import ReviewForm from "./components/ReviewsIndex/ReviewForm";
 
 //routes are defined here, specific component in each route will be render when the route matches. useParams can be used for the :id
 
@@ -14,6 +15,7 @@ function App() {
     <>
       <Navigation />
       <Switch>
+        <Route path="/listings/:listingId/newreview"><ReviewForm /></Route>
         <Route path="/listings/:listingId"><ListingShow /></Route>  
         <Route path="/trips"><ReservationIndex /></Route>
         <Route path="/"><ListingIndex /></Route>
