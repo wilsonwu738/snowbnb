@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
-import Ratings from './Ratings';
 import { createReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import StarRatingComponent from 'react-star-rating-component';
 
-const categories = ['Communication', 'Cleanliness', 'Value'];
+const categories = [
+  { display: 'Communication', key: 'communication' },
+  { display: 'Cleanliness', key: 'cleanliness' },
+  { display: 'Accuracy', key: 'accuracy' },
+  { display: 'Location', key: 'location' },
+  { display: 'Value', key: 'value' },
+  { display: 'Check In', key: 'check_in' },
+];
 
 const ReviewForm = () => {
   const [reviewData, setReviewData] = useState({
-    Communication: 0,
-    Cleanliness: 0,
-    Value: 0,
+    communication: 0,
+    cleanliness: 0,
+    accuracy: 0,
+    location: 0,
+    value: 0,
+    check_in: 0,
     comment: '',
   });
-  const dispatch = useDispatch();
-  const { listingId } = useParams();
-  
 
-  const handleRatingChange = (category, rating) => {
-    setReviewData((prevData) => ({ ...prevData, [category]: rating }));
+  const handleRatingChange = (categoryKey, rating) => {
+    setReviewData((prevData) => ({ ...prevData, [categoryKey]: rating }));
   };
 
   const handleCommentChange = (event) => {
@@ -27,19 +34,21 @@ const ReviewForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const finalData = {reviewData}
-    dispatch(createReview(listingId, reviewData))
-  
+    // Submit reviewData to API
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {categories.map((category) => (
-        <Ratings
-          key={category}
-          category={category}
-          onRatingChange={handleRatingChange}
-        />
+      {categories.map(({ display, key }) => (
+        <div key={key}>
+          <p>{display}</p>
+          <StarRatingComponent 
+            name={key} 
+            starCount={5}
+            value={reviewData[key]}
+            onStarClick={(nextValue) => handleRatingChange(key, nextValue)}
+          />
+        </div>
       ))}
       <textarea
         value={reviewData.comment}
@@ -51,4 +60,4 @@ const ReviewForm = () => {
   );
 };
 
-export default ReviewForm
+export default ReviewForm;
