@@ -10,5 +10,5 @@ json.extract! @review,
       :user_id,
       :listing_id
 
-json.reviewerName review.user.username
-json.reviewDate review.created_at
+json.reviewerName @review.user.username
+json.reviewDate @review.created_at

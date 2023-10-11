@@ -14,6 +14,10 @@ const categories = [
 ];
 
 const ReviewForm = () => {
+
+  const { listingId } = useParams();
+  const dispatch = useDispatch();
+
   const [reviewData, setReviewData] = useState({
     communication: 0,
     cleanliness: 0,
@@ -21,20 +25,24 @@ const ReviewForm = () => {
     location: 0,
     value: 0,
     check_in: 0,
-    comment: '',
+    content: '',
   });
+
+
 
   const handleRatingChange = (categoryKey, rating) => {
     setReviewData((prevData) => ({ ...prevData, [categoryKey]: rating }));
   };
 
   const handleCommentChange = (event) => {
-    setReviewData((prevData) => ({ ...prevData, comment: event.target.value }));
+    setReviewData((prevData) => ({ ...prevData, content: event.target.value }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Submit reviewData to API
+    console.log(reviewData)
+    dispatch(createReview(listingId, reviewData))
+    
   };
 
   return (

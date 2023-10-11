@@ -1,5 +1,5 @@
 class Api::ReservationsController < ApplicationController
-  # before_action :require_logged_in, only: [:show, :update, :destroy]
+  # before_action :required_logged_in, only: [:show, :update, :destroy]
 
   def index
     if params[:listing_id]

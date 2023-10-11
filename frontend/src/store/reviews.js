@@ -35,12 +35,13 @@ export const fetchReviews = (listingId) => async dispatch => {
 }
 
 export const createReview = (listingId, review) => async dispatch => {
-  const res = await csrfFetch(`/api/listing/${listingId}/reviews`, {
+  console.log("in thunk",JSON.stringify(review))
+  const res = await csrfFetch(`/api/listings/${listingId}/reviews`, {
     method: 'POST',
     headers: {
-      'Content_Type': 'application/json'
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(review)
+    body: JSON.stringify({review: {...review, listingId: listingId}})
   });
 
   if (res.ok) {

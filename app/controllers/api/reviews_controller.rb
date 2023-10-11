@@ -1,5 +1,5 @@
 class Api::ReviewsController < ApplicationController
-  before_action :require_logged_in, only: [:create, :show, :update, :destroy]
+  before_action :required_logged_in, only: [:create, :show, :update, :destroy]
   
   # .includes for N+1 issue
 
@@ -15,9 +15,9 @@ class Api::ReviewsController < ApplicationController
   end
 
   def create
+    
     # this will automatically set the user_id
     @review = current_user.reviews.new(review_params)
-    
     # making sure the user had reservation in the past before
     unless current_user.review_allowed?(@review.listing_id)
       return render json: { errors: ["You can only provide review after your reservation on this listing"]}, status: :forbidden

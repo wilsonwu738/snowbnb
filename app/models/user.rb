@@ -46,6 +46,7 @@ class User < ApplicationRecord
 
   # checking if the user had a reservation before
   def review_allowed?(listing_id)
+    puts listing_id
     self.reservations.where(listing_id: listing_id).where("end_date < ?", Date.current).exists?
   end
 
