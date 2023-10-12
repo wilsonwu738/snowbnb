@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createReview, updateReview } from '../../store/reviews';
+import { createReview, updateReview, fetchReview } from '../../store/reviews';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import StarRatingComponent from 'react-star-rating-component';
@@ -39,10 +39,14 @@ const ReviewForm = () => {
   });
 
   useEffect(() => {
-    if (curReview) {
-      setReviewData(curReview);
+    if (reviewId) {
+      if (!curReview) {
+        dispatch(fetchReview(listingId, reviewId));
+      } else {
+        setReviewData(curReview);
+      }
     }
-  }, [curReview]);
+  }, [curReview, reviewId]);
 
 
   const handleRatingChange = (categoryKey, rating) => {

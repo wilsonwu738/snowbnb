@@ -10,7 +10,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(params[:id]).includes(:user)
+    @review = Review.find(params[:id])
     render :show
   end
 

@@ -23,12 +23,22 @@ export const getReviews = (state) => state.reviews ? Object.values(state.reviews
 
 
 export const fetchReviews = (listingId) => async dispatch => {
-  
   const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
 
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveReviews(data))
+  }
+
+  return res
+}
+
+export const fetchReview = (listingId, reviewId) => async dispatch => { 
+  const res = await csrfFetch(`/api/listings/${listingId}/reviews/${reviewId}`);
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(receiveReview(data))
   }
 
   return res

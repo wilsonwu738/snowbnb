@@ -12,7 +12,6 @@ const ReviewsIndexItem = ({ review }) => {
   const date = moment(review.reviewDate).format('MMMM YYYY');
 
   const handleUpdate = () => {
-    console.log("inside indexitem:", review)
     history.push(`/listings/${review.listingId}/reviews/${review.id}/edit`)
   }
 
