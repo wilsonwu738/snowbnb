@@ -14,7 +14,7 @@ const ReviewsIndex = ({ listingId }) => {
   }, [dispatch, listingId]);
 
   const reviews = useSelector(getReviews)
-  console.log("listing id:", listingId)
+  
   if (!reviews?.length) {
     return <p>Loading reviews...</p>;
   }

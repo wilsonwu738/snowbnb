@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { createReview } from '../../store/reviews';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { createReview, updateReview } from '../../store/reviews';
+import { useParams, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import StarRatingComponent from 'react-star-rating-component';
+
 
 const categories = [
   { display: 'Communication', key: 'communication' },
@@ -10,13 +11,25 @@ const categories = [
   { display: 'Accuracy', key: 'accuracy' },
   { display: 'Location', key: 'location' },
   { display: 'Value', key: 'value' },
-  { display: 'Check In', key: 'check_in' },
+  { display: 'Check In', key: 'checkIn' },
 ];
 
 const ReviewForm = () => {
 
-  const { listingId } = useParams();
+  const { listingId, reviewId } = useParams();
+  console.log('Listing ID:', listingId);
+  console.log('Review ID:', reviewId);
+
+
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const backToListing = (listingId) => {
+    history.push(`/listings/${listingId}`)
+  }
+
+  const curReview = useSelector(state => state.reviews[reviewId])
+  
 
   const [reviewData, setReviewData] = useState({
     communication: 0,
@@ -24,10 +37,19 @@ const ReviewForm = () => {
     accuracy: 0,
     location: 0,
     value: 0,
-    check_in: 0,
+    checkIn: 0,
     content: '',
   });
 
+  useEffect(() => {
+    if (curReview) {
+      console.log("thisis curreview", curReview)
+      console.log("thisis before reviewdata", reviewData)
+
+      setReviewData(curReview);
+      console.log("this is after reviewdata", reviewData)
+    }
+  }, [curReview]);
 
 
   const handleRatingChange = (categoryKey, rating) => {
@@ -40,9 +62,15 @@ const ReviewForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(reviewData)
-    dispatch(createReview(listingId, reviewData))
+    const finalReviewData = {review: {...reviewData, listingId: listingId}}
+    console.log("final review data:", finalReviewData)
+    if (curReview) {
+      dispatch(updateReview(listingId, finalReviewData))
+    } else {
+      dispatch(createReview(listingId, finalReviewData))
+    }
     
+    backToListing(listingId);
   };
 
   return (
@@ -59,7 +87,7 @@ const ReviewForm = () => {
         </div>
       ))}
       <textarea
-        value={reviewData.comment}
+        value={reviewData.content}
         onChange={handleCommentChange}
         placeholder="Additional comments..."
       />

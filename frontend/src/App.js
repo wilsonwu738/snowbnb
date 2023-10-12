@@ -15,6 +15,7 @@ function App() {
     <>
       <Navigation />
       <Switch>
+        <Route path="/listings/:listingId/reviews/:reviewId/edit"><ReviewForm /></Route>
         <Route path="/listings/:listingId/newreview"><ReviewForm /></Route>
         <Route path="/listings/:listingId"><ListingShow /></Route>  
         <Route path="/trips"><ReservationIndex /></Route>

@@ -15,9 +15,10 @@ class Api::ReviewsController < ApplicationController
   end
 
   def create
-    
     # this will automatically set the user_id
+    puts params
     @review = current_user.reviews.new(review_params)
+
     # making sure the user had reservation in the past before
     unless current_user.review_allowed?(@review.listing_id)
       return render json: { errors: ["You can only provide review after your reservation on this listing"]}, status: :forbidden
@@ -34,7 +35,7 @@ class Api::ReviewsController < ApplicationController
 
   def update
     @review = current_user.reviews.find(params[:id])
-
+  
     if @review.update(review_params)
       render :show
     else

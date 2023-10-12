@@ -23,7 +23,7 @@ export const getReviews = (state) => state.reviews ? Object.values(state.reviews
 
 
 export const fetchReviews = (listingId) => async dispatch => {
-  console.log("before csrf")
+  
   const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
 
   if (res.ok) {
@@ -35,13 +35,12 @@ export const fetchReviews = (listingId) => async dispatch => {
 }
 
 export const createReview = (listingId, review) => async dispatch => {
-  console.log("in thunk",JSON.stringify(review))
   const res = await csrfFetch(`/api/listings/${listingId}/reviews`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({review: {...review, listingId: listingId}})
+    body: JSON.stringify(review)
   });
 
   if (res.ok) {
@@ -53,7 +52,10 @@ export const createReview = (listingId, review) => async dispatch => {
 }
 
 export const updateReview = (listingId, review) => async dispatch => {
-  const res = await csrfFetch(`/api/listing/${listingId}/reviews/${review.id}`, {
+  // console.log("inside updateReview:", review)
+  // console.log("inside updateReview for id:", review.review.id)
+
+  const res = await csrfFetch(`/api/listings/${listingId}/reviews/${review.review.id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
