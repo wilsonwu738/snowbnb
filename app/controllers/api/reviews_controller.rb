@@ -16,7 +16,6 @@ class Api::ReviewsController < ApplicationController
 
   def create
     # this will automatically set the user_id
-    puts params
     @review = current_user.reviews.new(review_params)
 
     # making sure the user had reservation in the past before

@@ -17,9 +17,6 @@ const categories = [
 const ReviewForm = () => {
 
   const { listingId, reviewId } = useParams();
-  console.log('Listing ID:', listingId);
-  console.log('Review ID:', reviewId);
-
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -43,11 +40,7 @@ const ReviewForm = () => {
 
   useEffect(() => {
     if (curReview) {
-      console.log("thisis curreview", curReview)
-      console.log("thisis before reviewdata", reviewData)
-
       setReviewData(curReview);
-      console.log("this is after reviewdata", reviewData)
     }
   }, [curReview]);
 
@@ -63,7 +56,7 @@ const ReviewForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const finalReviewData = {review: {...reviewData, listingId: listingId}}
-    console.log("final review data:", finalReviewData)
+    
     if (curReview) {
       dispatch(updateReview(listingId, finalReviewData))
     } else {
