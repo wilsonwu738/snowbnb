@@ -4,12 +4,15 @@ import listingsReducer from './listings';
 import sessionReducer from './session';
 import reservationsReducer from './reservations';
 import reviewsReducer from './reviews';
+import uiReducer from './ui'
+import errorsReducer from './errors'
+import entitiesReducer from './entities';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  listings: listingsReducer,
-  reservations: reservationsReducer,
-  reviews: reviewsReducer
+  entities: entitiesReducer,
+  ui: uiReducer,
+  errors: errorsReducer
 }) 
 
 

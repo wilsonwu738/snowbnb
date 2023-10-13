@@ -26,7 +26,7 @@ const ReservationForm = ({ listingId }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [errors, setErrors] = useState();
-  const listingReservations = useSelector((state) => state.reservations)
+  const listingReservations = useSelector((state) => state.entities.reservations)
 
   useEffect(() => {
     dispatch(fetchListingReservations(listingId))

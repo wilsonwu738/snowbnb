@@ -19,7 +19,7 @@ export const removeReview = reviewId => ({
   reviewId
 })
 
-export const getReviews = (state) => state.reviews ? Object.values(state.reviews) : []
+export const getReviews = (state) => state.entities.reviews ? Object.values(state.entities.reviews) : []
 
 
 export const fetchReviews = (listingId) => async dispatch => {

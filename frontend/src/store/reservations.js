@@ -29,8 +29,8 @@ export const removeReservation = reservationId => ({
 
 
 //for useSelector hook
-export const getReservations = (state) => state.reservations ? Object.values(state.reservations) : []
-export const getReservation = (reservationId) => (state) => state && state.reservations ? state.reservations[reservationId] : null
+export const getReservations = (state) => state.entities.reservations ? Object.values(state.entities.reservations) : []
+export const getReservation = (reservationId) => (state) => state && state.entities.reservations ? state.entities.reservations[reservationId] : null
 
 
 //thunk action creators

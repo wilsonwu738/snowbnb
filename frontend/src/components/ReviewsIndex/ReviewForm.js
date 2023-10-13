@@ -25,7 +25,7 @@ const ReviewForm = () => {
     history.push(`/listings/${listingId}`)
   }
 
-  const curReview = useSelector(state => state.reviews[reviewId])
+  const curReview = useSelector(state => state.entities.reviews[reviewId])
   
 
   const [reviewData, setReviewData] = useState({
