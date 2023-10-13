@@ -17,7 +17,9 @@
 #
 class Review < ApplicationRecord
   validates :user_id, :listing_id, presence: true
-  validates :content, presence: true, length: { minimum: 5, maximum: 1000, message: "Too many characters entered, maximum allowed is 1000!"  }
+  validates :content, presence: true, length: { minimum: 5, maximum: 1000, 
+  too_short: "for review must have at least 5 characters",
+  too_long: "for review cannot exceed 1000 characters" }
   validates :communication, :cleanliness, :accuracy, :location, :value, :check_in,
     presence: true, inclusion: { in: 0..5 }
 

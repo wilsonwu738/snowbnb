@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { setErrors } from "./errors";
 
 const RECEIVE_REVIEWS = 'reviews/receiveReviews'
 const RECEIVE_REVIEW = 'reviews/receiveReview'
@@ -45,40 +46,60 @@ export const fetchReview = (listingId, reviewId) => async dispatch => {
 }
 
 export const createReview = (listingId, review) => async dispatch => {
-  const res = await csrfFetch(`/api/listings/${listingId}/reviews`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(review)
-  });
+  try {
+    const res = await csrfFetch(`/api/listings/${listingId}/reviews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(review)
+    });
+  
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(receiveReview(data));
+      return res;
+    } 
+  } catch (errRes) {
+      debugger
+      const errData = await errRes.json();
+      console.log("inside catch")
+      dispatch(setErrors({
+        messages: errData.errors || "An unexpected error occurred.",
+        type: 'CREATE_REVIEW_ERROR'
+    }))
 
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(receiveReview(data));
   }
 
-  return res;
 }
 
 export const updateReview = (listingId, review) => async dispatch => {
   // console.log("inside updateReview:", review)
   // console.log("inside updateReview for id:", review.review.id)
 
-  const res = await csrfFetch(`/api/listings/${listingId}/reviews/${review.review.id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(review)
-  });
-
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(receiveReview(data));
+  try {
+    const res = await csrfFetch(`/api/listings/${listingId}/reviews/${review.review.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(review)
+    });
+    
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(receiveReview(data));
+      return res;
+    }
+  } catch (errRes) {
+    const errData = await errRes.json();
+    console.log("inside catch")
+    dispatch(setErrors({
+      messages: errData.errors || "An unexpected error occurred.",
+      type: 'CREATE_REVIEW_ERROR'
+  }))
   }
 
-  return res;
 
 }
 

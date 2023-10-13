@@ -38,6 +38,7 @@ class Api::ReviewsController < ApplicationController
     if @review.update(review_params)
       render :show
     else
+      puts @review.errors.full_messages
       render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
     end
 
