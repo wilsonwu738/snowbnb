@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { createReview, updateReview, fetchReview } from '../../store/reviews';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import StarRatingComponent from 'react-star-rating-component';
+import ReviewSuccess from './ReviewSuccess';
 
 
 const categories = [
@@ -17,13 +18,9 @@ const categories = [
 const ReviewForm = () => {
 
   const { listingId, reviewId } = useParams();
-
   const dispatch = useDispatch();
-  const history = useHistory();
 
-  const backToListing = (listingId) => {
-    history.push(`/listings/${listingId}`)
-  }
+  const showReviewSuccess = useSelector(state => state.ui.showReviewSuccess)
 
   const curReview = useSelector(state => state.entities.reviews[reviewId])
   
@@ -46,7 +43,7 @@ const ReviewForm = () => {
         setReviewData(curReview);
       }
     }
-  }, [curReview, reviewId]);
+  }, [curReview, reviewId, listingId, dispatch]);
 
 
   const handleRatingChange = (categoryKey, rating) => {
@@ -66,30 +63,32 @@ const ReviewForm = () => {
     } else {
       dispatch(createReview(listingId, finalReviewData))
     }
-    
-    backToListing(listingId);
+  
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {categories.map(({ display, key }) => (
-        <div key={key}>
-          <p>{display}</p>
-          <StarRatingComponent 
-            name={key} 
-            starCount={5}
-            value={reviewData[key]}
-            onStarClick={(nextValue) => handleRatingChange(key, nextValue)}
+    <>
+      <form onSubmit={handleSubmit}>
+        {categories.map(({ display, key }) => (
+          <div key={key}>
+            <p>{display}</p>
+            <StarRatingComponent 
+              name={key} 
+              starCount={5}
+              value={reviewData[key]}
+              onStarClick={(nextValue) => handleRatingChange(key, nextValue)}
+              />
+          </div>
+        ))}
+        <textarea
+          value={reviewData.content}
+          onChange={handleCommentChange}
+          placeholder="Additional comments..."
           />
-        </div>
-      ))}
-      <textarea
-        value={reviewData.content}
-        onChange={handleCommentChange}
-        placeholder="Additional comments..."
-      />
-      <button type="submit">Submit Review</button>
-    </form>
+        <button type="submit">Submit Review</button>
+      </form>
+      {showReviewSuccess && <ReviewSuccess listingId={listingId} />}
+    </>
   );
 };
 

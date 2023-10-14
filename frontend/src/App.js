@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation";
 import ListingIndex from "./components/ListingIndex";
 import ListingShow from "./components/ListingShow";
 import ReservationIndex from "./components/ReservationIndex";
-import ReviewForm from "./components/ReviewsIndex/ReviewForm";
+import ReviewForm from "./components/ReviewForm";
 
 //routes are defined here, specific component in each route will be render when the route matches. useParams can be used for the :id
 

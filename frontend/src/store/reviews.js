@@ -1,5 +1,6 @@
 import csrfFetch from "./csrf";
 import { setErrors } from "./errors";
+import { toggleReviewSuccess } from "./ui";
 
 const RECEIVE_REVIEWS = 'reviews/receiveReviews'
 const RECEIVE_REVIEW = 'reviews/receiveReview'
@@ -58,12 +59,13 @@ export const createReview = (listingId, review) => async dispatch => {
     if (res.ok) {
       const data = await res.json();
       dispatch(receiveReview(data));
+      dispatch(toggleReviewSuccess());
       return res;
     } 
   } catch (errRes) {
-      debugger
+  
       const errData = await errRes.json();
-      console.log("inside catch")
+    
       dispatch(setErrors({
         messages: errData.errors || "An unexpected error occurred.",
         type: 'CREATE_REVIEW_ERROR'
@@ -93,10 +95,9 @@ export const updateReview = (listingId, review) => async dispatch => {
     }
   } catch (errRes) {
     const errData = await errRes.json();
-    console.log("inside catch")
     dispatch(setErrors({
       messages: errData.errors || "An unexpected error occurred.",
-      type: 'CREATE_REVIEW_ERROR'
+      type: 'UPDATE_REVIEW_ERROR'
   }))
   }
 
