@@ -5,19 +5,29 @@ import { fetchListing, getListing } from "../../store/listings";
 import './ListingShow.css'
 import ReservationForm from "../ReservationForm";
 import ReviewsIndex from "../ReviewsIndex";
+import { fetchReviews, getReviews } from "../../store/reviews";
 
 const ListingShow = () => {
   const { listingId } = useParams();
   const dispatch = useDispatch();
   
  
-  const listing = useSelector(getListing(listingId))   
+  const listing = useSelector(getListing(listingId))
+  // const reviews = useSelector(getReviews)   
+
  
   useEffect(() => {
   
     dispatch(fetchListing(listingId))
   
   }, [dispatch, listingId])
+
+  // useEffect(() => {
+  //   console.log("in listing review fetch", listingId)
+  
+  //   dispatch(fetchReviews(listingId))
+  
+  // }, [dispatch, listingId])
 
   if (!listing) {
     return null

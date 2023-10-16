@@ -10,14 +10,14 @@ const ReviewSuccess = ({listingId}) => {
 
   
   const handleBackToListing = () => {
-    history.push(`/listings/${listingId}`)
     dispatch(toggleReviewSuccess());
+    history.push(`/listings/${listingId}`)
   }
 
  
 
   return(
-    <Modal onClose={dispatch(toggleReviewSuccess())}>
+    <Modal onClose={() => dispatch(toggleReviewSuccess())}>
       <h1>Thanks for your review</h1>
       <button className="success-review" onClick={handleBackToListing}>
         Stay at this listing

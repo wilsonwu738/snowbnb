@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { createReview, updateReview, fetchReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import StarRatingComponent from 'react-star-rating-component';
 import ReviewSuccess from './ReviewSuccess';
+import StarRatings from 'react-star-ratings';
+import { setErrors } from '../../store/errors';
+
 
 
 const categories = [
@@ -21,6 +23,7 @@ const ReviewForm = () => {
   const dispatch = useDispatch();
 
   const showReviewSuccess = useSelector(state => state.ui.showReviewSuccess)
+  const errors = useSelector(state => state.ui.showReviewSuccess)
 
   const curReview = useSelector(state => state.entities.reviews[reviewId])
   
@@ -72,12 +75,14 @@ const ReviewForm = () => {
         {categories.map(({ display, key }) => (
           <div key={key}>
             <p>{display}</p>
-            <StarRatingComponent 
-              name={key} 
-              starCount={5}
-              value={reviewData[key]}
-              onStarClick={(nextValue) => handleRatingChange(key, nextValue)}
-              />
+            <StarRatings
+              rating={reviewData[key]}
+              starHoverColor="gold"
+              starRatedColor="orange"
+              changeRating={(newRating) => handleRatingChange(key, newRating)}
+              numberOfStars={5}
+              name={key}
+            />
           </div>
         ))}
         <textarea

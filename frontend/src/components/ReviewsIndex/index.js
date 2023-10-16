@@ -7,25 +7,27 @@ import ReviewsSummary from "../ReviewsSummary";
 
 
 const ReviewsIndex = ({ listingId }) => {
-  const dispatch = useDispatch();
-
   
+  const dispatch = useDispatch();
+    
   useEffect(() => {
+
     dispatch(fetchReviews(listingId))
 
   }, [dispatch, listingId]);
 
   const reviews = useSelector(getReviews)
+
   const sessionUser = useSelector(state => state.session.user);
 
-  if (!reviews?.length) {
-    return <p>Loading reviews...</p>;
-  }
+  // if (!reviews?.length) {
+    // return <p>No reivews for this listing yet</p>;
+  // }
 
   return (
     <div className="reviews-list">
       <ul>
-        {reviews.map(review => (
+        {reviews?.map(review => (
           <ReviewsIndexItem key={review.id} review={review} />
         ))}
       </ul>

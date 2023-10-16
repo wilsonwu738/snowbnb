@@ -25,10 +25,12 @@ export const getReviews = (state) => state.entities.reviews ? Object.values(stat
 
 
 export const fetchReviews = (listingId) => async dispatch => {
+  console.log("insider csrf fetch", listingId)
   const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
 
   if (res.ok) {
     const data = await res.json();
+  
     dispatch(receiveReviews(data))
   }
 
@@ -91,6 +93,8 @@ export const updateReview = (listingId, review) => async dispatch => {
     if (res.ok) {
       const data = await res.json();
       dispatch(receiveReview(data));
+      dispatch(toggleReviewSuccess());
+
       return res;
     }
   } catch (errRes) {
@@ -120,7 +124,8 @@ const reviewsReducer = (state = {}, action) => {
   const newState = { ...state }
   switch (action.type) {
     case RECEIVE_REVIEWS:
-      return { ...state, ...action.reviews };
+      console.log("inside reducer", action.reviews)
+      return action.reviews
     case RECEIVE_REVIEW:
       newState[action.review.id] = action.review;
       return newState;
