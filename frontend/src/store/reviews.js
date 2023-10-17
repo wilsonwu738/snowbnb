@@ -25,7 +25,7 @@ export const getReviews = (state) => state.entities.reviews ? Object.values(stat
 
 
 export const fetchReviews = (listingId) => async dispatch => {
-  console.log("insider csrf fetch", listingId)
+
   const res = await csrfFetch(`/api/listings/${listingId}/reviews`);
 
   if (res.ok) {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchReviews, getReviews } from "../../store/reviews";
 import ReviewsIndexItem from "./ReviewsIndexItem";
 import { Link } from "react-router-dom";
-import ReviewsSummary from "../ReviewsSummary";
+import ReviewsSummary from "../ReviewSummary";
 
 
 const ReviewsIndex = ({ listingId }) => {
@@ -26,6 +26,7 @@ const ReviewsIndex = ({ listingId }) => {
 
   return (
     <div className="reviews-list">
+      <ReviewsSummary reviews={reviews} />
       <ul>
         {reviews?.map(review => (
           <ReviewsIndexItem key={review.id} review={review} />
