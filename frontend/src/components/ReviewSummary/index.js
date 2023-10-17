@@ -1,4 +1,4 @@
-import { Bar } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 
 const ReviewSummary = ( { reviews }) => {
 
@@ -37,11 +37,11 @@ const ReviewSummary = ( { reviews }) => {
     averageRatings[category] = Math.round((totalRatings[category] / numReviews) * 10) / 10; // Rounded to 1 decimal place
   });
 
-
   const overallAverage = categories.reduce((sum, category) => sum + averageRatings[category], 0) / categories.length;
   const roundedOverall= Math.round(overallAverage * 100)/100
 
-  // Bar chart data
+
+  // Bar chart
   const chartData = {
     labels: ['1', '2', '3', '4', '5'],
     datasets: [{
@@ -65,40 +65,52 @@ const ReviewSummary = ( { reviews }) => {
     }]
   };
 
-
- 
-  
-  const roundedCommunication = Math.round(averageRatings.communication*100)/100
-  const roundedCleanliness = Math.round(averageRatings.cleanliness*100)/100
-  const roundedAccuracy = Math.round(averageRatings.accuracy*100)/100
-  const roundedLocation = Math.round(averageRatings.location*100)/100
-  const roundedValue = Math.round(averageRatings.value*100)/100
-  const roundedCheckIn = Math.round(averageRatings.checkIn*100)/100
-
-  
+  const categoryIcons = {
+    communication: "📞",
+    cleanliness: "🧼",
+    accuracy: "✔️",
+    location: "📍",
+    value: "💲",
+    checkIn: "🔑",
+  };
 
 
-
-  // return (
-  //   <div className="review-summary">
-  //     <p>{numReviews} Reviews</p>
-  //     <p>Overall average: {roundedOverall}</p>
-  //     <p>Communication: {roundedCommunication}</p>
-  //     <p>Accuracy: {roundedAccuracy}</p>
-  //     <p>Cleanliness: {roundedCleanliness}</p>
-  //     <p>Location: {roundedLocation}</p>
-  //     <p>Value: {roundedValue}</p>
-  //     <p>CheckIn: {roundedCheckIn}</p>
-  //   </div>
-  // )
 
   return (
-    <div>
-      {categories.map(category => (
-        <p key={category}>{category}: {averageRatings[category]}</p>
-      ))}
-      <p>Overall Average: {roundedOverall}</p>
-      <Bar data={chartData} options={{scales: {y: {beginAtZero: true}}}} />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+        <h1 style={{ marginRight: '10px' }}>★ {roundedOverall}</h1>
+        <span>{numReviews} reviews</span>
+      </div>
+
+      <HorizontalBar data={chartData} options={{
+        scales: {
+          x: {
+            display: false, 
+            beginAtZero: true
+          },
+          y: {
+            grid: {
+              display: false, 
+            },
+          }
+        },
+        plugins: {
+          legend: {
+            display: false, // Hide the legend
+          }
+        }
+      }} />
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', width: '80%', marginTop: '20px' }}>
+        {categories.map(category => (
+          <div key={category} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
+            <span>{averageRatings[category]}</span>
+            <span>{categoryIcons[category]}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
