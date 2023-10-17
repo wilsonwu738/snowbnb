@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ReviewSuccess from './ReviewSuccess';
 import StarRatings from 'react-star-ratings';
-import { setErrors } from '../../store/errors';
+import ErrorShow from '../ErrorShow';
 
 
 
@@ -23,7 +23,7 @@ const ReviewForm = () => {
   const dispatch = useDispatch();
 
   const showReviewSuccess = useSelector(state => state.ui.showReviewSuccess)
-  const errors = useSelector(state => state.ui.showReviewSuccess)
+  const errorMessges = useSelector(state => state.errors.messages)
 
   const curReview = useSelector(state => state.entities.reviews[reviewId])
   
@@ -71,6 +71,7 @@ const ReviewForm = () => {
 
   return (
     <>
+      {errorMessges && <ErrorShow messages={errorMessges} />}
       <form onSubmit={handleSubmit}>
         {categories.map(({ display, key }) => (
           <div key={key}>
