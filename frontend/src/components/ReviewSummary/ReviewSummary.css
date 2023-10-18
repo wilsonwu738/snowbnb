@@ -11,25 +11,37 @@
 }
 
 .rating-bars {
-  width: 100%;
-  margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .rating-bar {
-  height: 20px;
-  background: #e0e0e0;
-  margin-bottom: 5px;
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 5px; 
+}
+
+.rating-number {
+    margin-right: 10px; 
+    font-size: 14px; 
+    font-weight: bold;
+}
+
+.rating-fill-background {
+    flex-grow: 1;
+    height: 10px;
+    background-color: lightgrey;
+    position: relative;
 }
 
 .rating-fill {
-  height: 100%;
+    height: 10px;
+    background-color: black;  /* Change to desired color */
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.rating-5 { background: rgba(153, 102, 255, 0.2); }
-.rating-4 { background: rgba(75, 192, 192, 0.2); }
-.rating-3 { background: rgba(255, 206, 86, 0.2); }
-.rating-2 { background: rgba(54, 162, 235, 0.2); }
-.rating-1 { background: rgba(255, 99, 132, 0.2); }
 
 .categories {
   display: flex;

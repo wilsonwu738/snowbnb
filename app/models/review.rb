@@ -21,7 +21,7 @@ class Review < ApplicationRecord
   too_short: "for review must have at least 5 characters",
   too_long: "for review cannot exceed 1000 characters" }
   validates :communication, :cleanliness, :accuracy, :location, :value, :check_in,
-    presence: true, inclusion: { in: 0..5 }
+    presence: true, inclusion: { in: 1..5 }
 
 
   belongs_to :user,

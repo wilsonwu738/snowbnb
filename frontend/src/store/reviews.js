@@ -124,7 +124,6 @@ const reviewsReducer = (state = {}, action) => {
   const newState = { ...state }
   switch (action.type) {
     case RECEIVE_REVIEWS:
-      console.log("inside reducer", action.reviews)
       return action.reviews
     case RECEIVE_REVIEW:
       newState[action.review.id] = action.review;

@@ -397,12 +397,12 @@ ApplicationRecord.transaction do
     user_id: 3,
     listing_id: 1,
     content: "Worst house, would not recommend",
-    communication: 0,
-    cleanliness: 0,
-    accuracy: 0,
-    location: 0,
-    value: 0,
-    check_in: 0
+    communication: 1,
+    cleanliness: 1,
+    accuracy: 1,
+    location: 1,
+    value: 1,
+    check_in: 1
   )
 
   Review.create!(
