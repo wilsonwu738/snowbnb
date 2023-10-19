@@ -58,6 +58,7 @@ const ReviewForm = () => {
   };
 
   const handleSubmit = (event) => {
+    //prevent the rerender of the page
     event.preventDefault();
     const finalReviewData = {review: {...reviewData, listingId: listingId}}
     
