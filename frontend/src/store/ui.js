@@ -7,7 +7,8 @@ const uiSlice = createSlice({
     showSignup: false,
     showMenu: false,
     showReservationSuccess: false,
-    showReviewSuccess: false
+    showReviewSuccess: false,
+    showLoading: false
   },
   reducers: {
     toggleLogin: (state) => {state.showLogin = !state.showLogin},
@@ -15,10 +16,10 @@ const uiSlice = createSlice({
     toggleMenu: (state) => {state.showMenu = !state.showMenu},
     toggleReservationSuccess: (state) => {state.showReservationSuccess = !state.showReservationSuccess},
     toggleReviewSuccess: (state) => {state.showReviewSuccess = !state.showReviewSuccess},
-
+    toggleLoading: (state) => {state.showLoading = !state.showLoading}
   }
 });
 
-export const { toggleLogin, toggleSignup, toggleMenu, toggleReservationSuccess, toggleReviewSuccess } = uiSlice.actions;
+export const { toggleLogin, toggleSignup, toggleMenu, toggleReservationSuccess, toggleReviewSuccess, toggleLoading } = uiSlice.actions;
 
 export default uiSlice.reducer;
