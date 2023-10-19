@@ -28,11 +28,6 @@ const ListingIndex = () => {
         <FiltersBar />
       </div>
 
-      <div>
-      <p>Current Pathname: {location.pathname}</p>
-      <p>Current Search: {location.search}</p>
-      <p>Current Hash: {location.hash}</p>
-      </div>
       
       <div className="index-container">
         {listingIndexItems}
