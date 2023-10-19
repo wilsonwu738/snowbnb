@@ -20,9 +20,10 @@ export const getListing = (listingId) => (state) => state && state.entities.list
 
 
 
-export const fetchListings = () => async dispatch => {
-  
-  const res = await csrfFetch(`/api/listings`);
+export const fetchListings = (query = '') => async dispatch => {
+  const endpoint = query ? `/api/listings?location=${encodeURIComponent(query)}`
+  : `/api/listings`;
+  const res = await csrfFetch(endpoint);
   
   if (res.ok) {
     const data = await res.json();
@@ -49,7 +50,7 @@ const listingsReducer = (state = {}, action) => {
   const newState = { ...state }
   switch (action.type) {
     case RECEIVE_LISTINGS:
-      return { ...state, ...action.listings }
+      return { ...action.listings }
     case RECEIVE_LISTING:
       newState[action.listing.id] = action.listing
       return newState

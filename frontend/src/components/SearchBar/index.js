@@ -1,13 +1,15 @@
 import './SearchBar.css'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchListings } from '../../store/listings';
 
-const SearchBar = ({ onSearch }) => {
-
+const SearchBar = () => {
+  const dispatch = useDispatch();
   const [query, setQuery] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSearch(query);
+    dispatch(fetchListings(query))    
   };
 
   return (
@@ -18,7 +20,7 @@ const SearchBar = ({ onSearch }) => {
         value={query}
         onChange={e => setQuery(e.target.value)}
       />
-      <button type="submit"></button>
+      <button type="submit">Search</button>
     </form>
   );
 }

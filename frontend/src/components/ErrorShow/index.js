@@ -1,3 +1,4 @@
+import './ErrorShow.css'
 
 const ErrorShow = ({ messages }) => {
   console.log(messages)
