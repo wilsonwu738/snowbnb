@@ -9,7 +9,8 @@ const SearchBar = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(fetchListings(query))    
+    dispatch(fetchListings(query))  
+    setQuery('')  
   };
 
   return (
