@@ -6,7 +6,7 @@ import './ListingIndex.css'
 import FiltersBar from "../FiltersBar";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import LoadingModal from "../LoadingModal";
+
 
 
 
@@ -14,7 +14,7 @@ const ListingIndex = () => {
   const dispatch = useDispatch()
   const listings = useSelector(getListings)
   const location = useLocation();
-  const loading = useSelector((state) => state.ui.showLoading)
+
   
   useEffect(() => {
     dispatch(fetchListings())
@@ -35,10 +35,10 @@ const ListingIndex = () => {
           {listingIndexItems}
         </div>
        : <div className="bad-search">
-            <p>No listings available. <Link to="/">Go back to the homepage</Link></p>
+            <p>No listings available. <Link to="/">Check out other houses</Link></p>
           </div>
       }
-      {loading && <LoadingModal/>}
+     
     </ div>
   )
 

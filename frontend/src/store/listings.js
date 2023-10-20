@@ -22,7 +22,6 @@ export const getListing = (listingId) => (state) => state && state.entities.list
 
 
 export const fetchListings = (query = '') => async dispatch => {
-  dispatch(toggleLoading())
   const endpoint = query ? `/api/listings?location=${encodeURIComponent(query)}`
   : `/api/listings`;
   const res = await csrfFetch(endpoint);
@@ -30,7 +29,6 @@ export const fetchListings = (query = '') => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveListings(data));
-    dispatch(toggleLoading());
   }
 
 }
