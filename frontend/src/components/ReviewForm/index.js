@@ -23,7 +23,7 @@ const ReviewForm = () => {
   const dispatch = useDispatch();
 
   const showReviewSuccess = useSelector(state => state.ui.showReviewSuccess)
-  const errorMessges = useSelector(state => state.errors.messages)
+  // const errorMessges = useSelector(state => state.errors.messages)
 
   const curReview = useSelector(state => state.entities.reviews[reviewId])
   
@@ -72,7 +72,7 @@ const ReviewForm = () => {
 
   return (
     <>
-      {errorMessges && <ErrorShow messages={errorMessges} />}
+      {/* {errorMessges && <ErrorShow messages={errorMessges} />} */}
       <form onSubmit={handleSubmit}>
         {categories.map(({ display, key }) => (
           <div key={key}>
@@ -84,6 +84,7 @@ const ReviewForm = () => {
               changeRating={(newRating) => handleRatingChange(key, newRating)}
               numberOfStars={5}
               name={key}
+            
             />
           </div>
         ))}
@@ -91,6 +92,7 @@ const ReviewForm = () => {
           value={reviewData.content}
           onChange={handleCommentChange}
           placeholder="Additional comments..."
+          required
           />
         <button type="submit">Submit Review</button>
       </form>

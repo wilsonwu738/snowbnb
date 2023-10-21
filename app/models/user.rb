@@ -25,6 +25,7 @@ class User < ApplicationRecord
   
   validates :session_token, presence: true, uniqueness: true
   validates :password, length: { in: 6..255 }, allow_nil: true
+  validates :first_name, :last_name, presence: true
 
   before_validation :ensure_session_token
 
@@ -46,7 +47,6 @@ class User < ApplicationRecord
 
   # checking if the user had a reservation before
   def review_allowed?(listing_id)
-    puts listing_id
     self.reservations.where(listing_id: listing_id).where("end_date < ?", Date.current).exists?
   end
 

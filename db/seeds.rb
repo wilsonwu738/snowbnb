@@ -27,7 +27,9 @@ ApplicationRecord.transaction do
   User.create!(
     username: 'Demo-lition', 
     email: 'demo@user.io', 
-    password: 'password'
+    password: 'password',
+    first_name: 'Winston',
+    last_name: 'Wizz'
   )
 
   # More users
@@ -35,7 +37,9 @@ ApplicationRecord.transaction do
     User.create!({
       username: Faker::Internet.unique.username(specifier: 3),
       email: Faker::Internet.unique.email,
-      password: 'password'
+      password: 'password',
+      first_name: Faker::Name.unique.first_name,
+      last_name: Faker::Name.unique.last_name 
     }) 
   end
 
@@ -378,7 +382,8 @@ ApplicationRecord.transaction do
     accuracy: 5,
     location: 5,
     value: 5,
-    check_in: 5
+    check_in: 5,
+    rating: 5
   )
 
   Review.create!(
@@ -390,7 +395,8 @@ ApplicationRecord.transaction do
     accuracy: 4,
     location: 5,
     value: 5,
-    check_in: 5
+    check_in: 5,
+    rating: 4.50
   )
 
   Review.create!(
@@ -402,7 +408,8 @@ ApplicationRecord.transaction do
     accuracy: 1,
     location: 1,
     value: 1,
-    check_in: 1
+    check_in: 1,
+    rating: 1
   )
 
   Review.create!(
@@ -414,7 +421,8 @@ ApplicationRecord.transaction do
     accuracy: 5,
     location: 5,
     value: 5,
-    check_in: 5
+    check_in: 5,
+    rating: 5
   )
 
   Review.create!(
@@ -426,7 +434,8 @@ ApplicationRecord.transaction do
     accuracy: 3,
     location: 3,
     value: 3,
-    check_in: 3
+    check_in: 3,
+    rating: 3
   )
 
   Review.create!(
@@ -438,7 +447,8 @@ ApplicationRecord.transaction do
     accuracy: 5,
     location: 4,
     value: 4,
-    check_in: 5 
+    check_in: 5,
+    rating: 4.67
   )
 
   Review.create!(
@@ -450,7 +460,8 @@ ApplicationRecord.transaction do
     accuracy: 3,
     location: 3,
     value: 4,
-    check_in: 5
+    check_in: 5,
+    rating: 3.67
   )
 
 
