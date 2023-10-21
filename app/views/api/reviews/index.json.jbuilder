@@ -10,9 +10,10 @@
       :value,
       :check_in,
       :user_id,
-      :listing_id
+      :listing_id,
+      :rating
 
-    json.reviewerName review.user.username
+    json.reviewerName review.user.first_name
     json.reviewDate review.created_at
 
 
