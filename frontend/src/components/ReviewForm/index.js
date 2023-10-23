@@ -57,9 +57,26 @@ const ReviewForm = () => {
     setReviewData((prevData) => ({ ...prevData, content: event.target.value }));
   };
 
+  const hasZeroValue = () => {
+    for (let category in reviewData) {
+      // Skip checking the 'content' key
+      if (category !== 'content' && reviewData[category] === 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+  
+
   const handleSubmit = (event) => {
     //prevent the rerender of the page
     event.preventDefault();
+
+    if (hasZeroValue()) {
+      alert('Please ensure all categories are rated.'); 
+      return;
+    }
+
     const finalReviewData = {review: {...reviewData, listingId: listingId}}
     
     if (curReview) {
@@ -86,7 +103,9 @@ const ReviewForm = () => {
               name={key}
             
             />
+            <div></div>
           </div>
+          
         ))}
         <textarea
           value={reviewData.content}
