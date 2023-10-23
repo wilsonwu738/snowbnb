@@ -17,6 +17,12 @@ class Api::ReviewsController < ApplicationController
   def create
     # this will automatically set the user_id
     @review = current_user.reviews.new(review_params)
+    @review.rating = ((review_params[:cleanliness] + 
+      review_params[:communication] + 
+      review_params[:accuracy] +
+      review_params[:location] +
+      review_params[:value] + 
+      review_params[:check_in]) / 6.0).round(2)
 
     # making sure the user had reservation in the past before
     unless current_user.review_allowed?(@review.listing_id)

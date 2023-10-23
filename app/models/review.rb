@@ -16,7 +16,7 @@
 #  updated_at    :datetime         not null
 #
 class Review < ApplicationRecord
-  validates :user_id, :listing_id, presence: true
+  validates :user_id, :listing_id, :rating, presence: true
   validates :content, presence: true, length: { minimum: 5, maximum: 1000, 
   too_short: "for review must have at least 5 characters",
   too_long: "for review cannot exceed 1000 characters" }
