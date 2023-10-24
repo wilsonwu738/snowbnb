@@ -1,24 +1,46 @@
 .review-summary-container{
   display: flex;
   flex-direction: column;
-  align-items: center;
+
 }
 
 .review-summary-header {
   display: flex;
+  margin-bottom: 30px;
+  margin-top: 20px;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 8px;
+  font-weight: bold
 }
+
+.review-summary-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-summary-rating {
+  font-size: 30px;
+}
+
+.review-summary-numReviews {
+  font-size: 30px;
+}
+
 
 .rating-bars {
     width: 100%;
     margin-bottom: 20px;
 }
 
+
 .rating-bar {
     display: flex; 
     align-items: center; 
-    margin-bottom: 5px; 
+    margin-bottom: 1px; 
+}
+
+.rating-text {
+  margin-bottom: 10px;
 }
 
 .rating-number {
@@ -28,14 +50,15 @@
 }
 
 .rating-fill-background {
-    width: 200px;
-    height: 10px;
+    width: 150px;
+    height: 5px;
     background-color: lightgrey;
     position: relative;
+    border-radius: 10px;
 }
 
 .rating-fill {
-    height: 10px;
+    height: 5px;
     background-color: black;  /* Change to desired color */
     position: absolute;
     top: 0;

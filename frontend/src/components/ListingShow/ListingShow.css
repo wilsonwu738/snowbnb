@@ -1,7 +1,11 @@
-.show-container {
+.show-page-container {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
+  padding-left: 80px;
+  padding-right: 80px;
+
+
 }
 
 .photo-container {
@@ -11,7 +15,7 @@
 
 }
 
-.show-title {
+.listing-title {
   margin-left: 170px;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -20,7 +24,7 @@
 
 }
 
-.show-location {
+.listing-location {
   margin-left: 170px;
   margin-bottom: 10px;
 }
@@ -95,6 +99,11 @@
 .map-img {
   margin-left: 170px;
   
+}
+
+.reviews-container {
+  display: flex;
+  flex-direction: column;
 }
 
 

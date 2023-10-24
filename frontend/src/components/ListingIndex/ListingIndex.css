@@ -6,17 +6,17 @@
 
 .index-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
-  margin-left: 65px;
-  margin-right:100px;
+  gap: 0.5em;
+
 }
 
 .listing-container {
-  width: 20%;
   display: flex;
   flex-direction: column;
-  margin: 20px
+  margin: 20px;
+  flex: 1 0
 }
 
 .listing-photo {

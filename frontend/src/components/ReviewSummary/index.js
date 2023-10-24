@@ -76,33 +76,36 @@ const ReviewSummary = ({ reviews }) => {
   return (
     <div className="review-summary-container">
       <div className="review-summary-header">
-        <h1>★ {roundedOverall} </h1>
-        <span>• {numReviews} reviews</span>
+        <h1 className='review-summary-rating'>★ {roundedOverall} </h1>
+        <span>•</span>
+        <span className='review-summary-numReviews'>{numReviews} reviews</span>
       </div>
 
-      <div className="rating-bars">
-        {Object.keys(ratingCounts).sort().reverse().map(rating => (
+      <div className='review-summary-content'>
+
+        <div className="rating-bars">
+          <div className='rating-text'>Overall rating</div>
+          {Object.keys(ratingCounts).sort().reverse().map(rating => (
             <div key={rating} className="rating-bar">
-                <span className="rating-number">{rating}</span>
-                <div className="rating-fill-background">
-                <div className={`rating-fill rating-${rating}`} 
-                     style={{width: `${(ratingCounts[rating] / numReviews) * 100}%`}}
-                ></div>
+                  <span className="rating-number">{rating}</span>
+                  <div className="rating-fill-background">
+                  <div className={`rating-fill rating-${rating}`} 
+                       style={{width: `${(ratingCounts[rating] / numReviews) * 100}%`}}
+                       ></div>
+              </div>
+              </div>
+          ))}
+        </div>
+
+        <div className='categories'>
+          {categories.map(category => (
+            <div key={category}>
+              <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
+              <span>{averageRatings[category]}</span>
+              <span>{categoryIcons[category]}</span>
             </div>
-            </div>
-        ))}
-      </div>
-
-
-
-      <div className='categories'>
-        {categories.map(category => (
-          <div key={category}>
-            <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
-            <span>{averageRatings[category]}</span>
-            <span>{categoryIcons[category]}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

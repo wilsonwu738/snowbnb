@@ -25,9 +25,9 @@ const ReviewsIndex = ({ listingId }) => {
   // }
 
   return (
-    <div className="reviews-list">
+    <>
       <ReviewsSummary reviews={reviews} />
-      <ul>
+      <ul className="reviews-list">
         {reviews?.map(review => (
           <ReviewsIndexItem key={review.id} review={review} />
         ))}
@@ -35,7 +35,7 @@ const ReviewsIndex = ({ listingId }) => {
       {sessionUser && 
         <Link to={`/listings/${listingId}/newreview`}>Write your own review</Link>
       }
-    </div>
+    </>
   ) 
 
 }
