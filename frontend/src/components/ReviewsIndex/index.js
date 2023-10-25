@@ -33,9 +33,11 @@ const ReviewsIndex = ({ listingId }) => {
           <ReviewsIndexItem key={review.id} review={review} />
         ))}
       </ul>
-      {sessionUser && 
-        <Link to={`/listings/${listingId}/newreview`}>Write your own review</Link>
-      }
+      <div className="review-create">
+        {sessionUser && 
+          <Link to={`/listings/${listingId}/newreview`}>Write your own review</Link>
+        }
+      </div>
     </>
   ) 
 
