@@ -15,7 +15,7 @@
 
 .review-summary-content {
   display: flex;
-  justify-content: space-between;
+
 }
 
 .review-summary-rating {
@@ -28,8 +28,10 @@
 
 
 .rating-bars {
-    width: 100%;
+    width: 15%;
     margin-bottom: 20px;
+    padding-right: 10px;
+    border-right: 1px solid lightgray;
 }
 
 
@@ -65,9 +67,36 @@
     left: 0;
 }
 
+.review-categories > div {
+  border-right: 1px solid lightgray;
+  /* padding-right: 15px; */
+  /* margin-right: 5px; */
+}
 
-.categories {
+.review-categories > div:last-child {
+  border-right: none;
+}
+
+.review-categories > div:first-child {
+  padding-left: 20px;
+}
+
+
+.review-categories {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 85%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  flex: 1 0 15%
+
+
+}
+
+.review-category {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 15%;
+  
 }

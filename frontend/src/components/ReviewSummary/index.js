@@ -97,9 +97,9 @@ const ReviewSummary = ({ reviews }) => {
           ))}
         </div>
 
-        <div className='categories'>
+        <div className='review-categories'>
           {categories.map(category => (
-            <div key={category}>
+            <div className='review-category' key={category}>
               <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
               <span>{averageRatings[category]}</span>
               <span>{categoryIcons[category]}</span>
