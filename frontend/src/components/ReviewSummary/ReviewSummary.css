@@ -98,5 +98,8 @@
   flex-direction: column;
   justify-content: space-between;
   width: 15%;
+
+  min-width: 100px;
+  max-width: 200px;
   
 }

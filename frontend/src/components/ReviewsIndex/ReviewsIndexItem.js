@@ -2,6 +2,7 @@ import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReview } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
+import './ReviewsIndexItem.css'
 
 const ReviewsIndexItem = ({ review }) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -23,6 +24,7 @@ const ReviewsIndexItem = ({ review }) => {
     <li className='individual-review'>
       <h2>{review.reviewerName}</h2>
       <h3>{date}</h3>
+      <br />
       <div>{review.content}</div>
 
       {sessionUser && sessionUser.id === review.userId && (

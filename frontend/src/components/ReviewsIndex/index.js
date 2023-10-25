@@ -4,6 +4,7 @@ import { fetchReviews, getReviews } from "../../store/reviews";
 import ReviewsIndexItem from "./ReviewsIndexItem";
 import { Link } from "react-router-dom";
 import ReviewsSummary from "../ReviewSummary";
+import "./ReviewsIndexItem.css";
 
 
 const ReviewsIndex = ({ listingId }) => {

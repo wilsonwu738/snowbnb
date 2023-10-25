@@ -1,0 +1,9 @@
+.reviews-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.individual-review {
+  flex: 1 0 48%;
+}
