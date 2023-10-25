@@ -1,0 +1,34 @@
+.review-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.review-success-container h1 {
+  color:  rgb(241, 91, 96);
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+
+.review-success-stay, .review-success-back {
+  background: none;          
+  border: none;             
+  color: blue;              
+  text-decoration: underline;
+  cursor: pointer;           
+  font-size: 1rem;           
+  margin: 0;               
+  padding: 0;               
+}
+
+
+.review-success-stay:hover, .review-success-back:hover {
+  color: darkblue; 
+}
+
+.review-success-stay:active, .review-success-back:active {
+  color: navy; 
+}

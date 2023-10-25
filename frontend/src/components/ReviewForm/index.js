@@ -115,7 +115,7 @@ const ReviewForm = () => {
           placeholder="Additional comments..."
           required
           />
-        <button className='review-form-button' type="submit">Submit Review</button>
+        <button className='review-form-button' type="submit">Post Review</button>
       </form>
       {showReviewSuccess && <ReviewSuccess listingId={listingId} />}
     </div>

@@ -43,6 +43,8 @@
   background-color: darkgray;
   color: white;
   border-radius: 3px;
+  padding: 2px;
+  font-size: 0.9em;
 }
 
 .review-delete {
