@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReviewSuccess from './ReviewSuccess';
 import StarRatings from 'react-star-ratings';
 import ErrorShow from '../ErrorShow';
+import './ReviewForm.css'
 
 
 
@@ -88,7 +89,7 @@ const ReviewForm = () => {
   };
 
   return (
-    <>
+    <div className='review-form-container'>
       {/* {errorMessges && <ErrorShow messages={errorMessges} />} */}
       <form onSubmit={handleSubmit}>
         {categories.map(({ display, key }) => (
@@ -108,15 +109,16 @@ const ReviewForm = () => {
           
         ))}
         <textarea
+          className='review-content-box'
           value={reviewData.content}
           onChange={handleCommentChange}
           placeholder="Additional comments..."
           required
           />
-        <button type="submit">Submit Review</button>
+        <button className='review-form-button' type="submit">Submit Review</button>
       </form>
       {showReviewSuccess && <ReviewSuccess listingId={listingId} />}
-    </>
+    </div>
   );
 };
 

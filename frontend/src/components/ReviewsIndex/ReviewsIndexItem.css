@@ -1,8 +1,10 @@
 .reviews-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   margin-top: 20px;
+  margin-bottom: 20px;
+
 }
 
 .individual-review {
@@ -25,28 +27,39 @@
   border: none;
   cursor: pointer;
   margin-left: 5px;
-
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+
 }
 
 .review-update {
-  background-color: #007BFF;
+  background-color: darkgray;
   color: white;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .review-delete {
-  background-color: #FF4136;
+  background-color: lightcoral;
   color: white;
-  border-radius: 50%;  /* Makes the button round */
-  width: 25px;
-  height: 25px;
+  border-radius: 75%;  /* Makes the button round */
+  width: 20px;
+  height: 20px;
   text-align: center;
-  font-weight: bold;
 }
 
 .review-buttons:hover {
-  opacity: 0.7;
+  opacity: 1;
+}
+
+.review-content {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 100;
+  font-size: 0.8em;
 }

@@ -17,6 +17,7 @@
 
 .review-summary-content {
   display: flex;
+  gap: 20px;
 
 }
 
