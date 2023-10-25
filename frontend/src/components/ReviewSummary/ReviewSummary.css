@@ -1,6 +1,8 @@
 .review-summary-container{
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid lightgray
+
 
 }
 
@@ -78,7 +80,7 @@
 }
 
 .review-categories > div:first-child {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 
@@ -87,9 +89,7 @@
   justify-content: space-between;
   width: 85%;
   margin-bottom: 20px;
-  font-size: 18px;
-  flex: 1 0 15%
-
+  font-size: 1rem;
 
 }
 
@@ -98,8 +98,8 @@
   flex-direction: column;
   justify-content: space-between;
   width: 15%;
+  flex: 0 0 auto;
 
-  min-width: 100px;
-  max-width: 200px;
   
 }
+

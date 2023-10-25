@@ -22,16 +22,16 @@ const ReviewsIndexItem = ({ review }) => {
   
   return (
     <li className='individual-review'>
-      <h2>{review.reviewerName}</h2>
-      <h3>{date}</h3>
+      <h2 className='reviewer-name'>{review.reviewerName}</h2>
+      <h3 className='review-date'>{date}</h3>
       <br />
-      <div>{review.content}</div>
+      <div className='review-content'>{review.content}</div>
 
       {sessionUser && sessionUser.id === review.userId && (
-        <>
-          <button onClick={handleUpdate}>Update</button>
-          <button onClick={handleDelete}>Delete</button>
-        </>
+        <div className='review-buttons'>
+          <button className='review-update' onClick={handleUpdate}>Update</button>
+          <button className='review-delete' onClick={handleDelete}>X</button>
+        </div>
       )}
 
 

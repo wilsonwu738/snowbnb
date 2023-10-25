@@ -2,8 +2,51 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .individual-review {
   flex: 1 0 48%;
+  font-size: 1em;
+  position: relative;
+}
+
+.reviewer-name {
+  font-weight: bold;
+}
+
+.review-date {
+  font-size: 0.7em;
+  font-weight: lighter;
+}
+
+.review-buttons {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.review-update {
+  background-color: #007BFF;
+  color: white;
+  border-radius: 5px;
+}
+
+.review-delete {
+  background-color: #FF4136;
+  color: white;
+  border-radius: 50%;  /* Makes the button round */
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.review-buttons:hover {
+  opacity: 0.7;
 }
