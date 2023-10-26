@@ -31,10 +31,12 @@
 
 
 .rating-bars {
-    width: 15%;
     margin-bottom: 20px;
     padding-right: 10px;
     border-right: 1px solid lightgray;
+    flex: 0 1 150px;
+    min-width: 125px;
+    max-width: 500px;
 }
 
 
@@ -55,7 +57,7 @@
 }
 
 .rating-fill-background {
-    width: 150px;
+    width: 100%;
     height: 5px;
     background-color: lightgrey;
     position: relative;
@@ -64,7 +66,7 @@
 
 .rating-fill {
     height: 5px;
-    background-color: black;  /* Change to desired color */
+    background-color: black; 
     position: absolute;
     top: 0;
     left: 0;
@@ -72,25 +74,22 @@
 
 .review-categories > div {
   border-right: 1px solid lightgray;
-  /* padding-right: 15px; */
-  /* margin-right: 5px; */
+  padding-left: 10px;
+  margin-right: 5px;
 }
 
 .review-categories > div:last-child {
   border-right: none;
 }
 
-.review-categories > div:first-child {
-  padding-left: 10px;
-}
 
 
 .review-categories {
   display: flex;
-  justify-content: space-between;
-  width: 85%;
+  flex: 1 0 300px;
   margin-bottom: 20px;
   font-size: 1.2rem;
+  flex-wrap: wrap;
 
 }
 
@@ -98,8 +97,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 15%;
-  flex: 0 0 auto;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  font-size: 1.1em;
+  flex: 1 0 auto
 
   
 }

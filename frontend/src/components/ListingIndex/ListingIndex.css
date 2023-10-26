@@ -1,6 +1,7 @@
 .outer-wrapper {
   display: flex;
   flex-direction: column;
+
 }
 
 
@@ -8,15 +9,16 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1em;
+  margin: 2.5% 5%
 
 }
 
 .listing-container {
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  flex: 1 0
+  flex: 1 0 20%;
+  
 }
 
 .listing-photo {
