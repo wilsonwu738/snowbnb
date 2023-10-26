@@ -18,6 +18,7 @@ const ReviewsIndex = ({ listingId }) => {
   }, [dispatch, listingId]);
 
   const reviews = useSelector(getReviews)
+  console.log(reviews)
 
   const sessionUser = useSelector(state => state.session.user);
 

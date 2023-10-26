@@ -10,13 +10,6 @@
 
 }
 
-.photo-container {
-  display: flex;
-  justify-content: center;
-  
-
-}
-
 .listing-show-title {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -29,29 +22,39 @@
   margin-bottom: 10px;
 }
 
+.photo-container {
+  display: flex;
+  gap: 0.5rem;
+  aspect-ratio: 3/1;
+
+}
+
+.photo-box1 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.photo-box2, .photo-box3 {
+  width: 25%;
+  height: 98%;
+  display: flex;
+  flex-direction: column; 
+  gap: 2%
+}
+
 .photo-box1 img {
-  width: 550px;
-  height: 455px;
-  margin: 5px;
+  width: 100%;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 
 }
 
-.photo-box2 img {
-  width: 300px;
-  height: 225px;
+.photo-box2 img, .photo-box3 img {
+  width: 100%;
+  height: 50%; 
   display: flex;
-  margin: 5px
-
-}
-
-.photo-box3 img {
-  width: 300px;
-  height: 225px;
-  display: flex;
-  margin: 5px
-
 }
 
 #p4 {
