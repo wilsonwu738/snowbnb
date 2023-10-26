@@ -1,7 +1,6 @@
 .show-page-container {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   padding-left: 10%;
   padding-right: 10%;
   min-width: 600px;
@@ -18,8 +17,7 @@
 
 }
 
-.listing-title {
-  margin-left: 170px;
+.listing-show-title {
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 30px;
@@ -27,8 +25,7 @@
 
 }
 
-.listing-location {
-  margin-left: 170px;
+.listing-show-location {
   margin-bottom: 10px;
 }
 
@@ -72,22 +69,19 @@
 
 .show-host {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-left: 170px;
   font-size: 20px;
   margin-top: 30px;
 }
 
 .show-details {
-  margin-left: 170px;
-  border-bottom: 1px solid gainsboro;
+  border-bottom: 1px solid lightgray
 }
 
 
 .show-description {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-left: 170px;
   width:700px;
-  border-bottom: 1px solid gainsboro;
+  border-bottom: 1px solid lightgray;
   padding-top: 10px;
   padding-bottom: 20px;
 }
