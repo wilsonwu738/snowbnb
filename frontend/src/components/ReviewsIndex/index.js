@@ -7,18 +7,18 @@ import ReviewsSummary from "../ReviewSummary";
 import "./ReviewsIndexItem.css";
 
 
-const ReviewsIndex = ({ listingId }) => {
+const ReviewsIndex = ({ listingId, reviews }) => {
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
     
-  useEffect(() => {
+  // useEffect(() => {
 
-    dispatch(fetchReviews(listingId))
+  //   dispatch(fetchReviews(listingId))
 
-  }, [dispatch, listingId]);
+  // }, [dispatch, listingId]);
 
-  const reviews = useSelector(getReviews)
-  console.log(reviews)
+  // const reviews = useSelector(getReviews)
+ 
 
   const sessionUser = useSelector(state => state.session.user);
 

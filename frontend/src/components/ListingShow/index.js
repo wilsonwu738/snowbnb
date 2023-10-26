@@ -13,7 +13,7 @@ const ListingShow = () => {
   
  
   const listing = useSelector(getListing(listingId))
-  // const reviews = useSelector(getReviews)   
+  const reviews = useSelector(getReviews)   
 
  
   useEffect(() => {
@@ -22,12 +22,11 @@ const ListingShow = () => {
   
   }, [dispatch, listingId])
 
-  // useEffect(() => {
-  //   console.log("in listing review fetch", listingId)
+  useEffect(() => {
   
-  //   dispatch(fetchReviews(listingId))
+    dispatch(fetchReviews(listingId))
   
-  // }, [dispatch, listingId])
+  }, [dispatch, listingId])
 
   if (!listing) {
     return null
@@ -75,7 +74,7 @@ const ListingShow = () => {
       </div>
 
       <div className="reviews-container">
-        <ReviewsIndex listingId={listingId} />
+        <ReviewsIndex listingId={listingId} reviews={reviews} />
       </div>
 
       <div className="bottom-container">

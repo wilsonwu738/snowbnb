@@ -68,9 +68,7 @@ const ReviewSummary = ({ reviews }) => {
     });
   }
 
-
-
-
+  
 
   //cmd+ctrl+sce for •
 
@@ -91,7 +89,7 @@ const ReviewSummary = ({ reviews }) => {
                   <span className="rating-number">{rating}</span>
                   <div className="rating-fill-background">
                   <div className={`rating-fill rating-${rating}`} 
-                       style={{width: `${(ratingCounts[rating] / numReviews) * 100}%`}}
+                       style={{width: numReviews !== 0 ? `${(ratingCounts[rating] / numReviews) * 100}%` : '0%'}}
                        ></div>
               </div>
               </div>
@@ -102,7 +100,7 @@ const ReviewSummary = ({ reviews }) => {
           {categories.map(category => (
             <div className='review-category' key={category}>
               <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
-              <span>{averageRatings[category]}</span>
+              <span>{averageRatings[category] || 0}</span>
               <span>{categoryIcons[category]}</span>
             </div>
           ))}
