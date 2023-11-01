@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchListing, getListing } from "../../store/listings";
@@ -10,8 +10,10 @@ import { fetchReviews, getReviews } from "../../store/reviews";
 const ListingShow = () => {
   const { listingId } = useParams();
   const dispatch = useDispatch();
+  const [selectedRange, setSelectedRange] = useState();
+  const [fromValue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
   
- 
   const listing = useSelector(getListing(listingId))
   const reviews = useSelector(getReviews)   
 
@@ -70,7 +72,7 @@ const ListingShow = () => {
 
 
       <div className="reservation-container">
-        <ReservationForm listingId={listingId}/> 
+        <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange}/> 
       </div>
 
       <div className="reviews-container">

@@ -1,9 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import { DateRangePicker } from "react-dates";
 import { updateReservation, deleteReservation } from "../../store/reservations";
 import React, { useState, useEffect } from 'react';
-import "react-dates/lib/css/_datepicker.css";
 import { fetchListing, getListing } from "../../store/listings";
 import "./ReservationIndexItem.css"
 
@@ -58,7 +56,7 @@ const ReservationIndexItem = ({ reservation }) => {
     <div className="reservation-item">
       {isEditing ? (
         <form onSubmit={handleUpdate}>
-          <DateRangePicker
+          {/* <DateRangePicker
             startDate={editingStartDate}
             startDateId="start_date"
             endDate={editingEndDate}
@@ -66,7 +64,7 @@ const ReservationIndexItem = ({ reservation }) => {
             onDatesChange={handleDatesChange}
             focusedInput={focusedInput}
             onFocusChange={focused => setFocusedInput(focused)}
-          />
+          /> */}
           <button type="submit">Save Changes</button>
           <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
         </form>
