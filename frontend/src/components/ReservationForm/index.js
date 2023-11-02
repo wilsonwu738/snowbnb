@@ -8,13 +8,12 @@ import { fetchListingReservations, fetchUserReservations, createReservation } fr
 import { getListing } from "../../store/listings";
 import ReservationSuccess from './ReservationSuccess'
 import LoginFormModal from "../LoginFormModal";
-import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { format, isAfter, isBefore, isValid, parse } from 'date-fns';
+import DayPickerWrapper from '../DayPickerWrapper';
 
 
-
-const ReservationForm = ({ listingId, selectedRange, setSelectedRange, fromValue, setFromValue, toValue, setToValue }) => {
+const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedDates }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const listing = useSelector(getListing(listingId));
@@ -26,6 +25,8 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, fromValue
   const listingReservations = useSelector((state) => state.entities.reservations)
 
   const [showCalendar, setShowCalendar] = useState(false);
+  const [fromValue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
 
 
   useEffect(() => {
@@ -153,35 +154,40 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, fromValue
         <p className="date-error">Please select the first and last day of your stay.</p>
       )} */}
 
+    <div>
+      <input 
+        type="text" 
+        value={fromValue} 
+        onChange={handleFromChange}
+        onFocus={() => {
+          setSelectedRange({});
+          setShowCalendar(true);
+        }}
+        placeholder="Start Date"
+      />
+      {' | '}
+      <input 
+        type="text" 
+        value={toValue} 
+        onChange={handleToChange}
+        onFocus={() => {
+          setSelectedRange({});
+          setShowCalendar(true);
+        }}
+        placeholder="End Date"
+        />
+        <div style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
 
-      <form className="ma2">
-        <input
-          size={10}
-          placeholder="From Date"
-          value={fromValue}
-          onChange={handleFromChange}
-          onFocus={() => setShowCalendar(true)}
+      <DayPickerWrapper
+        selectedRange={selectedRange}
+        setSelectedRange={setSelectedRange}
+        reservedDates={reservedDates}
+        showCalendar={showCalendar}
+        setShowCalendar={setShowCalendar}
+        onSelect={handleRangeSelect}
         />
-        {' – '}
-        <input
-          size={10}
-          placeholder="To Date"
-          value={toValue}
-          onChange={handleToChange}
-          onFocus={() => setShowCalendar(true)}
-        />
-      </form>
-      
-      {/* Calendar Picker */}
-      {showCalendar && (
-        <DayPicker
-          mode="range"
-          selected={selectedRange}
-          onSelect={handleRangeSelect}
-          numberOfMonths={2}
-        />
-      )}
-
+        </div>
+    </div>
 
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
         {Array.from({ length: listing.maxGuests }, (_, i) => (

@@ -6,18 +6,18 @@ import './ListingShow.css'
 import ReservationForm from "../ReservationForm";
 import ReviewsIndex from "../ReviewsIndex";
 import { fetchReviews, getReviews } from "../../store/reviews";
+import DayPickerWrapper from "../DayPickerWrapper";
 
 const ListingShow = () => {
   const { listingId } = useParams();
   const dispatch = useDispatch();
-  const [selectedRange, setSelectedRange] = useState();
-  const [fromValue, setFromValue] = useState('');
-  const [toValue, setToValue] = useState('');
-  
   const listing = useSelector(getListing(listingId))
   const reviews = useSelector(getReviews)   
-
- 
+  
+  const [selectedRange, setSelectedRange] = useState();
+  const reservedDates = ['2023-11-15', '2023-11-16', '2023-11-20'];
+  
+  
   useEffect(() => {
   
     dispatch(fetchListing(listingId))
@@ -72,7 +72,13 @@ const ListingShow = () => {
 
 
       <div className="reservation-container">
-        <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange}/> 
+        <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservedDates={reservedDates}/>
+        <DayPickerWrapper
+        reservedDates={reservedDates}
+        selectedRange={selectedRange}
+        setSelectedRange={setSelectedRange}
+        alwaysShow={true}
+      /> 
       </div>
 
       <div className="reviews-container">
