@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -28,10 +28,25 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   const [fromValue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
 
+  const calendarRef = useRef();
+
 
   useEffect(() => {
     dispatch(fetchListingReservations(listingId))
   }, [dispatch, listingId]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setShowCalendar(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   
 
@@ -112,7 +127,9 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     } else {
       setToValue('');
     }
-    setShowCalendar(false); // Hide the calendar once dates are selected
+    if (range?.from && range?.to) {
+      setShowCalendar(false); 
+    }
   };
 
   return (
@@ -176,17 +193,15 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
         }}
         placeholder="End Date"
         />
-        <div style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
+      <div ref={calendarRef} style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
 
-      <DayPickerWrapper
+      {showCalendar && <DayPickerWrapper
         selectedRange={selectedRange}
         setSelectedRange={setSelectedRange}
         reservedDates={reservedDates}
-        showCalendar={showCalendar}
-        setShowCalendar={setShowCalendar}
         onSelect={handleRangeSelect}
-        />
-        </div>
+        />}
+      </div>
     </div>
 
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>

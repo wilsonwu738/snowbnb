@@ -73,12 +73,12 @@ const ListingShow = () => {
 
       <div className="reservation-container">
         <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservedDates={reservedDates}/>
-        <DayPickerWrapper
+        {/* <DayPickerWrapper
         reservedDates={reservedDates}
         selectedRange={selectedRange}
         setSelectedRange={setSelectedRange}
-        alwaysShow={true}
-      /> 
+      
+      />  */}
       </div>
 
       <div className="reviews-container">
