@@ -48,6 +48,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     };
   }, []);
 
+
   
 
   const isDateBlocked = (day) => {
@@ -92,24 +93,32 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     const date = parse(e.target.value, 'y-MM-dd', new Date());
 
     if (!isValid(date)) {
+      setFromValue('');
+      setToValue('');
       return setSelectedRange({ from: undefined, to: undefined });
     }
     if (selectedRange?.to && isAfter(date, selectedRange.to)) {
-      setSelectedRange({ from: selectedRange.to, to: date });
+      setSelectedRange({ from: date, to: undefined });
+      setToValue('');
     } else {
       setSelectedRange({ from: date, to: selectedRange?.to });
     }
   };
+  
 
   const handleToChange = (e) => {
+    console.log('HI')
     setToValue(e.target.value);
     const date = parse(e.target.value, 'y-MM-dd', new Date());
 
     if (!isValid(date)) {
+      setFromValue('');
+      setToValue('');
       return setSelectedRange({ from: selectedRange?.from, to: undefined });
     }
     if (selectedRange?.from && isBefore(date, selectedRange.from)) {
-      setSelectedRange({ from: date, to: selectedRange.from });
+      setSelectedRange({ from: date, to: undefined });
+      setFromValue(format(date, 'y-MM-dd'));
     } else {
       setSelectedRange({ from: selectedRange?.from, to: date });
     }
@@ -173,22 +182,19 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
 
     <div>
       <input 
-        type="text" 
+
         value={fromValue} 
         onChange={handleFromChange}
-        onFocus={() => {
-          setSelectedRange({});
+        onClick={() => {
           setShowCalendar(true);
         }}
         placeholder="Start Date"
       />
       {' | '}
       <input 
-        type="text" 
         value={toValue} 
         onChange={handleToChange}
         onFocus={() => {
-          setSelectedRange({});
           setShowCalendar(true);
         }}
         placeholder="End Date"
@@ -203,6 +209,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
         />}
       </div>
     </div>
+    <button onClick={handleFromChange}>Test handleFromChange</button>
 
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
         {Array.from({ length: listing.maxGuests }, (_, i) => (
@@ -212,7 +219,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
       <br />
       <button className="book-button">Reserve</button>
       
-      <div>You won't be charge yet</div>
+      <div>You won't be charged yet</div>
 
       {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 

@@ -73,17 +73,19 @@ const ListingShow = () => {
 
       <div className="reservation-container">
         <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservedDates={reservedDates}/>
-        {/* <DayPickerWrapper
+        <DayPickerWrapper
         reservedDates={reservedDates}
         selectedRange={selectedRange}
         setSelectedRange={setSelectedRange}
       
-      />  */}
+      /> 
       </div>
 
       <div className="reviews-container">
         <ReviewsIndex listingId={listingId} reviews={reviews} />
       </div>
+
+  
 
       <div className="bottom-container">
           <div className="map-text">Google Map coming soon!</div>

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+import './DayPickerWrapper.css'
 
 function DayPickerWrapper({ selectedRange, setSelectedRange, reservedDates, showCalendar, setShowCalendar, onSelect, alwaysShow }) {
   
@@ -16,7 +17,7 @@ function DayPickerWrapper({ selectedRange, setSelectedRange, reservedDates, show
         <DayPicker 
           mode="range"
           selected={selectedRange}
-          onSelect={onSelect}
+          onSelect={onSelect || setSelectedRange}
           modifiers={modifiers}
           numberOfMonths={2}
         />
