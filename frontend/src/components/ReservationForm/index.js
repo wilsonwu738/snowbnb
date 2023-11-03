@@ -48,7 +48,19 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     };
   }, []);
 
-
+  useEffect(() => {
+    if (selectedRange?.from) {
+      setFromValue(format(selectedRange.from, 'y-MM-dd'));
+    } else {
+      setFromValue('');
+    }
+    
+    if (selectedRange?.to) {
+      setToValue(format(selectedRange.to, 'y-MM-dd'));
+    } else {
+      setToValue('');
+    }
+  }, [selectedRange]);
   
 
   const isDateBlocked = (day) => {
