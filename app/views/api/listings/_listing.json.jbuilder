@@ -7,6 +7,8 @@ json.extract! listing, :id, :title, :description, :lat, :long,
 json.photo_url listing.photos.map { |file| url_for(file) }
 
 json.username listing.host.username
+json.firstName listing.host.first_name
+
 
 # {
 #   id: 

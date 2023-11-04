@@ -56,29 +56,31 @@ const ListingShow = () => {
             <img id="p5" src={listing.photoUrl[4]} alt="" />
           </div>
         </div>
-
-        <div className="listing-show-info">
-          <div className="show-host">House host by {listing.username}</div>
-          <br />
-          <div className="show-details">{listing.maxGuests} guests · {listing.numBedrooms} bedrooms · {listing.numBaths} baths</div>
-          <br />
-          <div className="show-description">{listing.description}</div>
-        </div>
-      
-      
       </div>
 
+      <div className="main-content-container">
+        <div className="left-container">
+          <div className="listing-show-info">
+            <div className="show-host">House hosted by {listing.firstName}</div>
+            <br />
+            <div className="show-details">{listing.maxGuests} guests · {listing.numBedrooms} bedrooms · {listing.numBaths} baths</div>
+            <br />
+            <div className="show-description">{listing.description}</div>
+          </div>
+          <div className="standalone-calendar">
+            <DayPickerWrapper
+            reservedDates={reservedDates}
+            selectedRange={selectedRange}
+            setSelectedRange={setSelectedRange}
+            /> 
+          </div>
+        </div>
 
-
-
-      <div className="reservation-container">
-        <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservedDates={reservedDates}/>
-        <DayPickerWrapper
-        reservedDates={reservedDates}
-        selectedRange={selectedRange}
-        setSelectedRange={setSelectedRange}
-      
-      /> 
+          <div className="reservation-form-container">
+            <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservedDates={reservedDates}/>
+           
+          </div>
+        
       </div>
 
       <div className="reviews-container">

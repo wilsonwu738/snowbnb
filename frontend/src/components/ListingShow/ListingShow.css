@@ -1,13 +1,19 @@
+/* body {
+  display: flex;
+  justify-content: center;
+} */
+
 .show-page-container {
   display: flex;
   flex-direction: column;
   padding-left: 10%;
   padding-right: 10%;
-  min-width: 600px;
-  max-width: 2000px;
+  /* min-width: 600px; */
+  max-width: 1500px;
   gap: 50px;
-
-
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .listing-show-title {
@@ -89,6 +95,20 @@
   padding-bottom: 20px;
 }
 
+.main-content-container {
+  display: flex;
+  position: relative;
+}
+
+.left-container {
+  flex-grow: 1;
+}
+
+.reservation-form-container {
+  max-width: 600px;
+  position: sticky;
+
+}
 
 
 .reviews-container {
