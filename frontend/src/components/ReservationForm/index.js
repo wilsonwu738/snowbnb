@@ -28,6 +28,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   const [fromValue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
   const calendarRef = useRef();
+  const days = differenceInDays(selectedRange?.to, selectedRange?.from)
 
 
   useEffect(() => {
@@ -150,88 +151,67 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     }
     if (range?.from && range?.to) {
       setShowCalendar(false); 
-      const days = differenceInDays(range.to, range.from);
       setTotalCost(listing.nightlyPrice * days);
     }
   };
 
   return (
     <div className="reservation-form-wrapper">
-      {/* <DateRangePicker
-        startDate={startDate}
-        startDateId="start_date"
-        endDate={endDate}
-        endDateId="end_date"
-        onDatesChange={({ startDate, endDate }) => {
-          setStartDate(startDate);
-          setEndDate(endDate);
-          //for day count calculation, 
-          if(startDate && endDate) {
-            const days = endDate.diff(startDate, 'days');
-            setTotalCost(listing.nightlyPrice * days);
-          }
-        }}
-        focusedInput={focusedInput}
-        onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
-        numberOfMonths={2}
-        isDayBlocked={isDateBlocked}
-        isOutsideRange={(day) => day.isBefore(moment(), "day")}
-        // small={true}
-        // noBorder={true}
-        // hideKeyboardShortcutsPanel
-      /> */}
-      {/* {startDate && endDate ? (
-        <>
-          <p>
-            Selected from {startDate.format("MM/DD/YYYY")} to{" "}
-            {endDate.format("MM/DD/YYYY")}
-          </p>
-          <p>{setTotalCost(listing.nightlyPrice * endDate.diff(startDate, 'days'))}</p>
+      <div className="reservation-selections">
+        <div className="date-inputs">
+          <div className="start-date">
+          <label for="check-in">CHECK-IN</label>
+            <input
+              className="date-input" 
+              value={fromValue} 
+              onChange={handleFromChange}
+              onClick={() => {
+                setShowCalendar(true);
+              }}
+              placeholder="Start Date"
+            />
+            </div>
+          <input 
+            className="date-input" 
+            value={toValue} 
+            onChange={handleToChange}
+            onFocus={() => {
+              setShowCalendar(true);
+            }}
+            placeholder="End Date"
+            />
+          <div ref={calendarRef} style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
+            {showCalendar && <DayPickerWrapper
+              selectedRange={selectedRange}
+              setSelectedRange={setSelectedRange}
+              reservedDates={reservedDates}
+              onSelect={handleRangeSelect}
+              />}
+          </div>
+        </div>
 
-        </>
-      ) : (
-        <p className="date-error">Please select the first and last day of your stay.</p>
-      )} */}
-
-    <div>
-      <input 
-
-        value={fromValue} 
-        onChange={handleFromChange}
-        onClick={() => {
-          setShowCalendar(true);
-        }}
-        placeholder="Start Date"
-      />
-      {' | '}
-      <input 
-        value={toValue} 
-        onChange={handleToChange}
-        onFocus={() => {
-          setShowCalendar(true);
-        }}
-        placeholder="End Date"
-        />
-      <div ref={calendarRef} style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
-
-      {showCalendar && <DayPickerWrapper
-        selectedRange={selectedRange}
-        setSelectedRange={setSelectedRange}
-        reservedDates={reservedDates}
-        onSelect={handleRangeSelect}
-        />}
+        <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
+          {Array.from({ length: listing.maxGuests }, (_, i) => (
+            <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
+            ))}
+        </select>
       </div>
-    </div>
 
-      <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
-        {Array.from({ length: listing.maxGuests }, (_, i) => (
-        <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
-        ))}
-      </select>
+
+
       <br />
       <div className="book-button" onClick={handleBook}>Reserve</div>
       
       <div>You won't be charged yet</div>
+
+      <div className="cost-breakdown">
+        <div className="nights-fee"></div>
+          <div className="nights-text">${listing.nightlyPrice} 𝗑 {days}</div>
+
+        <div className="cleaning-fee"></div>
+        <div className="service-fee"></div>
+
+      </div>
 
       {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 
