@@ -3,13 +3,13 @@
 }
 .reservation-form-wrapper {
   border: 1px solid #ccc;
-  padding: 30px;
-  margin-right: 160px;
+  /* padding: 30px;
+  margin-right: 160px; */
   border-radius: 20px;
   position: sticky;
-  top: 20px;
+  /* top: 20px; */
   z-index: 999;
-  background-color: white;
+  /* background-color: white; */
 }
 /* .guest-input {
   width: 50px;

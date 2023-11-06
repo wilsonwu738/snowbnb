@@ -9,8 +9,9 @@ import { getListing } from "../../store/listings";
 import ReservationSuccess from './ReservationSuccess'
 import LoginFormModal from "../LoginFormModal";
 import 'react-day-picker/dist/style.css';
-import { format, isAfter, isBefore, isValid, parse } from 'date-fns';
+import { format, isAfter, isBefore, isValid, parse, differenceInDays } from 'date-fns';
 import DayPickerWrapper from '../DayPickerWrapper';
+import { toggleLogin, toggleReservationSuccess } from "../../store/ui";
 
 
 const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedDates }) => {
@@ -19,15 +20,13 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   const listing = useSelector(getListing(listingId));
   const [numGuests, setNumGuests] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
   const [errors, setErrors] = useState();
   const listingReservations = useSelector((state) => state.entities.reservations)
-
+  const showReservationSuccess = useSelector(state => state.ui.showReservationSuccess)
+  const showLogin = useSelector(state => state.ui.showLogin)
   const [showCalendar, setShowCalendar] = useState(false);
   const [fromValue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
-
   const calendarRef = useRef();
 
 
@@ -50,13 +49,13 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
 
   useEffect(() => {
     if (selectedRange?.from) {
-      setFromValue(format(selectedRange.from, 'y-MM-dd'));
+      setFromValue(format(selectedRange.from, 'yyyy-MM-dd'));
     } else {
       setFromValue('');
     }
     
     if (selectedRange?.to) {
-      setToValue(format(selectedRange.to, 'y-MM-dd'));
+      setToValue(format(selectedRange.to, 'yyyy-MM-dd'));
     } else {
       setToValue('');
     }
@@ -72,34 +71,35 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     );
   };
 
-  // const handleBook = async (e) => {
-  //   e.preventDefault();
-  //   setErrors([]);
+  const handleBook = async (e) => {
+    e.preventDefault();
+    setErrors([]);
 
-  //   if (sessionUser) {
-      // if(!startDate || !endDate) {
-      //   setErrors(["Please select both a start and end date."]);
-      //   return;
-      // }
-      // const res = await dispatch(createReservation({
-      //   reservation: {
-      //     startDate: startDate.format('YYYY-MM-DD'),
-      //     endDate: endDate.format('YYYY-MM-DD'),
-      //     listingId: listingId,
-      //     numGuests: numGuests,
-      //     totalCost: totalCost
-      //   }
-      // }))
+    if (sessionUser) {
+      if(!selectedRange.from || !selectedRange.to) {
+        setErrors(["Please select both a start and end date."]);
+        return;
+      }
+      const res =  await dispatch(createReservation({
+        reservation: {
+          startDate: format(selectedRange.from, 'yyyy-MM-dd'),
+          endDate: format(selectedRange.to, 'yyyy-MM-dd'),
+          listingId: listingId,
+          numGuests: numGuests,
+          totalCost: totalCost
+        }
+      }))
 
-      // if (!res.ok) {
-      //   setErrors(res.errors)
-      // } else {
-      //   setShowSuccess(true)
-      // }
+      if (!res.ok) {
+        setErrors(res.errors);
+      } else {
+        dispatch(toggleReservationSuccess());
+      }
     
-  //   }
-  //   else setShowLogin(true)
-  // };
+    }
+    else dispatch(toggleLogin());
+  };
+
   const handleFromChange = (e) => {
     setFromValue(e.target.value);
     const date = parse(e.target.value, 'y-MM-dd', new Date());
@@ -150,11 +150,12 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     }
     if (range?.from && range?.to) {
       setShowCalendar(false); 
+      const days = differenceInDays(range.to, range.from);
+      setTotalCost(listing.nightlyPrice * days);
     }
   };
 
   return (
-    // this section is using calendar library
     <div className="reservation-form-wrapper">
       {/* <DateRangePicker
         startDate={startDate}
@@ -221,7 +222,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
         />}
       </div>
     </div>
-    <button onClick={handleFromChange}>Test handleFromChange</button>
 
       <select value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
         {Array.from({ length: listing.maxGuests }, (_, i) => (
@@ -229,18 +229,19 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
         ))}
       </select>
       <br />
-      <button className="book-button">Reserve</button>
+      <div className="book-button" onClick={handleBook}>Reserve</div>
       
       <div>You won't be charged yet</div>
 
       {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 
-      <p>TotalCost: $ {totalCost}</p>
+      <div>Total before taxes: ${totalCost}</div>
+
       
 
       
-      {showLogin && <LoginFormModal onClose={() => setShowLogin(false)} />}
-      {showSuccess && <ReservationSuccess onClose={() => setShowSuccess(false)} /> }
+      {showLogin && <LoginFormModal onClose={() => dispatch(toggleLogin())} />}
+      {showReservationSuccess && <ReservationSuccess onClose={() => dispatch(toggleReservationSuccess())} /> }
     </div>
    
   );

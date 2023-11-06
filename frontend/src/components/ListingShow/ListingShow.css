@@ -1,7 +1,3 @@
-/* body {
-  display: flex;
-  justify-content: center;
-} */
 
 .show-page-container {
   display: flex;
@@ -11,7 +7,6 @@
   /* min-width: 600px; */
   max-width: 1500px;
   gap: 50px;
-  align-items: center;
   margin-left: auto;
   margin-right: auto;
 }
@@ -106,7 +101,9 @@
 
 .reservation-form-container {
   max-width: 600px;
-  position: sticky;
+  position: relative;
+  border: 1px solid #ccc;
+
 
 }
 
