@@ -41,7 +41,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
         setShowCalendar(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -126,7 +125,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   
 
   const handleToChange = (e) => {
-    console.log('HI')
     setToValue(e.target.value);
     const date = parse(e.target.value, 'yyyy-MM-dd', new Date());
 
@@ -145,7 +143,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
 
   const handleRangeSelect = (range) => {
     setSelectedRange(range);
-    setDays(differenceInDays(range?.to, range?.from))
     if (range?.from) {
       setFromValue(format(range.from, 'yyyy-MM-dd'));
     } else {
@@ -157,16 +154,18 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
       setToValue('');
     }
     if (range?.from && range?.to) {
+      const newDays = differenceInDays(range.to, range.from);
+      setDays(newDays);
+      setTotalCost(listing.nightlyPrice * newDays);
       setShowCalendar(false); 
-      setTotalCost(listing.nightlyPrice * days);
-      console.log('price:', listing.nightlyPrice)
-      console.log('days:', days)
+
 
     }
   };
 
   return (
     <div className="reservation-form-wrapper">
+      <div>{days}</div>
       <div className="reservation-selections">
         <div className="date-inputs">
           <div className="start-date">
