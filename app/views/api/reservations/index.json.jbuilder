@@ -8,6 +8,8 @@
       :start_date,
       :end_date,
       :total_cost
+    json.listingPhotoUrl reservation.listing.photos.map { |file| url_for(file) }
+    json.listingMaxGuests reservation.listing.max_guests
   end
 
 end

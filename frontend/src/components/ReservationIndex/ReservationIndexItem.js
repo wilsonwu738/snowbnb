@@ -7,84 +7,86 @@ import { fetchUserReservations } from "../../store/reservations";
 import "./ReservationIndexItem.css"
 import { format, differenceInDays, parseISO } from "date-fns";
 
-//can i use reservation connecting to listings?
-const ReservationIndexItem = ({ reservation }) => {
-  // const listingUrl = useSelector(state => {
-  //   return state.listings[reservation.listingId].photoUrl
-  // })
+
+const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit, onDelete }) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchUserReservations());
-  }, [])
-
-  const listing = useSelector(getListing(reservation.listingId))
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingStartDate, setEditingStartDate] = useState(null);
-  const [editingEndDate, setEditingEndDate] = useState(null);
-  const [focusedInput, setFocusedInput] = useState(null);
-
-  const startEditing = () => {
-    setIsEditing(true);
-    setEditingStartDate(moment(reservation.startDate));
-    setEditingEndDate(moment(reservation.endDate));
-  };
+  // const listing = useSelector(getListing(reservation.listingId))
+  const [startDate, setStartDate] = useState(format(parseISO(reservation.startDate), 'yyyy-MM-dd'));
+  const [endDate, setEndDate] = useState(format(parseISO(reservation.endDate), 'yyyy-MM-dd'));
+  const [numGuests, setNumGuests] = useState(reservation.numGuests);
   
-  const handleDatesChange = ({ startDate, endDate }) => {
-    setEditingStartDate(startDate);
-    setEditingEndDate(endDate);
-  };
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    reservation.startDate = editingStartDate.format('YYYY-MM-DD');
-    reservation.endDate = editingEndDate.format('YYYY-MM-DD');
-    console.log("before dispatch",reservation)
-    await dispatch(updateReservation(reservation
-      // id: reservation.id,
-      // startDate: editingStartDate.format('YYYY-MM-DD'), 
-      // endDate: editingEndDate.format('YYYY-MM-DD')
-    ));
-    setIsEditing(false);
-  };
+  // const handleUpdate = async (e) => {
+  //   e.preventDefault();
+  //   reservation.startDate = editingStartDate.format('YYYY-MM-DD');
+  //   reservation.endDate = editingEndDate.format('YYYY-MM-DD');
+  //   console.log("before dispatch",reservation)
+  //   await dispatch(updateReservation(reservation
+  //     // id: reservation.id,
+  //     // startDate: editingStartDate.format('YYYY-MM-DD'), 
+  //     // endDate: editingEndDate.format('YYYY-MM-DD')
+  //   ));
+  //   setIsEditing(false);
+  // };
 
-  const handleDelete = () => {
-    dispatch(deleteReservation(reservation.id))
+  
+
+  if (isEditing) {
+    return (
+      <div className="reservation-item">
+        <div className="listing-photo">
+           <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
+        </div>
+        <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+        <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+        <select value={numGuests} onChange={e => setNumGuests(e.target.value)}>
+          {/* Options would be dynamic based on the max number of guests */}
+          <option value="1">1 guest</option>
+          <option value="2">2 guests</option>
+          {/* ... */}
+        </select>
+        <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
+        <button onClick={onCancel}>Cancel</button>
+      </div>
+    );
   }
-
-
-
   return (
     <div className="reservation-item">
-      {isEditing ? (
-        <form onSubmit={handleUpdate}>
-          {/* <DateRangePicker
-            startDate={editingStartDate}
-            startDateId="start_date"
-            endDate={editingEndDate}
-            endDateId="end_date"
-            onDatesChange={handleDatesChange}
-            focusedInput={focusedInput}
-            onFocusChange={focused => setFocusedInput(focused)}
-          /> */}
-          <button type="submit">Save Changes</button>
-          <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-        </form>
-      ) : (
-        <>
-          <div className="listing-photo">
-            <img id="p1" src={listing?.photoUrl[0]} alt="" />
-          </div>
-          {/* <p>Start date: {moment(reservation.startDate).format('YYYY-MM-DD')}</p> */}
-          <p>Start date: {format(parseISO(reservation.startDate), 'yyyy-MM-dd')}</p>
-          <p>End date: {moment(reservation.endDate).format('YYYY-MM-DD')}</p>
-          <button onClick={startEditing}>Update</button>
-          <button onClick={handleDelete}>Delete</button>
-        </>
-      )}
+      <div className="listing-photo">
+           <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
+      </div>
+      <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
+      <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
+      <div>Number of Guests: {reservation.numGuests}</div>
+      <button onClick={() => onEdit(reservation.id)}>Edit</button>
+      <button onClick={() => onDelete(reservation.id)}>Delete</button>
+
+
     </div>
   );
+
+  // return (
+  //   <div className="reservation-item">
+  //     {isEditing ? (
+  //       <form onSubmit={handleUpdate}>
+  //         <button type="submit">Save Changes</button>
+  //         <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+  //       </form>
+  //     ) : (
+  //       <>
+  //         <div className="listing-photo">
+  //           <img id="p1" src={listing?.photoUrl[0]} alt="" />
+  //         </div>
+  //         <p>Start date: {format(parseISO(reservation.startDate), 'yyyy-MM-dd')}</p>
+  //         <p>End date: {moment(reservation.endDate).format('YYYY-MM-DD')}</p>
+  //         <button onClick={startEditing}>Update</button>
+  //         <button onClick={handleDelete}>Delete</button>
+  //       </>
+  //     )}
+  //   </div>
+  // );
 }
 
 export default ReservationIndexItem

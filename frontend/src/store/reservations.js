@@ -134,7 +134,7 @@ const reservationsReducer = (state = {}, action) => {
   const newState = { ...state }
   switch (action.type) {
     case RECEIVE_RESERVATIONS:
-      return { ...state, ...action.reservations }
+      return action.reservations 
     case RECEIVE_RESERVATION:
       newState[action.reservation.id] = action.reservation
       return newState
