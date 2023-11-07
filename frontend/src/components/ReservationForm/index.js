@@ -156,7 +156,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     if (range?.from && range?.to) {
       const newDays = differenceInDays(range.to, range.from);
       setDays(newDays);
-      setTotalCost(listing.nightlyPrice * newDays);
+      setTotalCost(listing.nightlyPrice * newDays * 1.18);
       setShowCalendar(false); 
 
 
@@ -165,10 +165,10 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
 
   return (
     <div className="reservation-form-wrapper">
-      <div>{days}</div>
+      <div>${listing.nightlyPrice}</div>
       <div className="reservation-selections">
-        <div className="date-inputs">
-          <div className="start-date">
+        <div className="reservation-date-inputs">
+          <div className="form-start-date">
             <input
               className="date-input" 
               value={fromValue} 
@@ -179,7 +179,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
               placeholder="Start Date"
             />
             </div>
-          <div className="end-date">
+          <div className="form-end-date">
             <input 
               className="date-input" 
               value={toValue} 
@@ -207,25 +207,29 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
         </select>
       </div>
 
-
-
-      <br />
+     
       <div className="book-button" onClick={handleBook}>Reserve</div>
       
-      <div>You won't be charged yet</div>
+      <div className="charge-text">You won't be charged yet</div>
 
       <div className="cost-breakdown">
-        <div className="nights-fee"></div>
-          <div className="nights-text">${listing.nightlyPrice} 𝗑 {days}</div>
-
-        <div className="cleaning-fee"></div>
-        <div className="service-fee"></div>
-
+        <div className="nights-fee">
+          <div className="nights-text">${listing.nightlyPrice} 𝗑 {days} nights</div>
+          <div className="nights-value">${listing.nightlyPrice * days}</div>
+        </div>
+        <div className="cleaning-fee">
+          <div className="cleaning-text">Cleaning fee</div>
+          <div className="cleaning-value">${listing.nightlyPrice * days * 0.08} </div>
+        </div>
+        <div className="service-fee">
+          <div className="service-text">Airbnb service fee</div>
+          <div className="service-value">${listing.nightlyPrice * days * 0.1} </div>
+        </div>
       </div>
+      <div className="reservation-total">Total before taxes: ${totalCost}</div>
 
       {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 
-      <div>Total before taxes: ${totalCost}</div>
 
       
 

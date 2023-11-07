@@ -92,18 +92,17 @@
 
 .main-content-container {
   display: flex;
-  position: relative;
 }
 
 .left-container {
-  flex-grow: 1;
+  flex: 1;
 }
 
 .reservation-form-container {
-  max-width: 600px;
   position: relative;
-  border: 1px solid #ccc;
-
+  /* border: 1px solid #ccc; */
+  max-width: 375px;
+  box-sizing: border-box;
 
 }
 

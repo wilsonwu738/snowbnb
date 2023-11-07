@@ -1,35 +1,52 @@
 .reservation-form-wrapper {
-  border: 2px solid #ccc;
-  width: 100%;
+  border: 1px solid #ccc;
+  /* width: 100%; */
   border-radius: 20px;
   position: sticky;
-  z-index: 999;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   top: 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
+
 
 .reservation-selections {
   display: flex;
   flex-direction: column;
-  margin: 20px;
   border: 2px solid #ddd; 
   border-radius: 7px;
 }
 
-.end-date {
+.form-start-date {
+  width: 50%;
+  display: flex;
+}
+.form-end-date {
   border-left: 1px solid #ccc;
+  width: 50%;
+  display: flex;
+  box-sizing: border-box;
+
 }
 
-.date-inputs {
+
+.reservation-date-inputs {
   margin-bottom: 2px;
   border-bottom: 1px solid #ccc;
   display: flex;
-}
+  gap:2px;
+  width: 100%;
+} 
+
+
 
 .date-input {
-  flex: 1;
   padding: 8px;
   border: none;
+  width: 92%;
 }
 
 /* .date-inputs > :nth-child(2) {
@@ -41,16 +58,54 @@
 }
 
 .guests-dropdown {
-  padding: 8px; /* Adjust as needed */
+  padding: 8px; 
   border: none;
-  appearance: none;
+
 }
 
 .guests-dropdown:focus {
   outline: 2px solid black;
+  border-radius: 8px;
+  
 }
 
 .book-button {
-  background-color: rgb(241, 91, 96);
+  background-color: rgb(227, 29, 80);
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.charge-text {
+  display: flex;
+  justify-content: center;
+}
+
+.cost-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em
+}
+
+.nights-fee {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cleaning-fee {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-fee {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reservation-total {
+  display: flex;
+  justify-content: space-between;
 }
 
