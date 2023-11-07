@@ -28,7 +28,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   const [fromValue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
   const calendarRef = useRef();
-  const days = differenceInDays(selectedRange?.to, selectedRange?.from)
+  const [days, setDays] = useState(0);
 
 
   useEffect(() => {
@@ -60,6 +60,12 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
     } else {
       setToValue('');
     }
+
+    if (selectedRange?.from && selectedRange?.to) {
+      setDays(differenceInDays(selectedRange?.to, selectedRange?.from))
+    }
+
+ 
   }, [selectedRange]);
   
 
@@ -103,7 +109,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
 
   const handleFromChange = (e) => {
     setFromValue(e.target.value);
-    const date = parse(e.target.value, 'y-MM-dd', new Date());
+    const date = parse(e.target.value, 'yyyy-MM-dd', new Date());
 
     if (!isValid(date)) {
       setFromValue('');
@@ -122,7 +128,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   const handleToChange = (e) => {
     console.log('HI')
     setToValue(e.target.value);
-    const date = parse(e.target.value, 'y-MM-dd', new Date());
+    const date = parse(e.target.value, 'yyyy-MM-dd', new Date());
 
     if (!isValid(date)) {
       setFromValue('');
@@ -139,19 +145,23 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
 
   const handleRangeSelect = (range) => {
     setSelectedRange(range);
+    setDays(differenceInDays(range?.to, range?.from))
     if (range?.from) {
-      setFromValue(format(range.from, 'y-MM-dd'));
+      setFromValue(format(range.from, 'yyyy-MM-dd'));
     } else {
       setFromValue('');
     }
     if (range?.to) {
-      setToValue(format(range.to, 'y-MM-dd'));
+      setToValue(format(range.to, 'yyyy-MM-dd'));
     } else {
       setToValue('');
     }
     if (range?.from && range?.to) {
       setShowCalendar(false); 
       setTotalCost(listing.nightlyPrice * days);
+      console.log('price:', listing.nightlyPrice)
+      console.log('days:', days)
+
     }
   };
 
@@ -160,7 +170,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
       <div className="reservation-selections">
         <div className="date-inputs">
           <div className="start-date">
-          <label for="check-in">CHECK-IN</label>
             <input
               className="date-input" 
               value={fromValue} 
@@ -171,15 +180,17 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
               placeholder="Start Date"
             />
             </div>
-          <input 
-            className="date-input" 
-            value={toValue} 
-            onChange={handleToChange}
-            onFocus={() => {
-              setShowCalendar(true);
-            }}
-            placeholder="End Date"
-            />
+          <div className="end-date">
+            <input 
+              className="date-input" 
+              value={toValue} 
+              onChange={handleToChange}
+              onFocus={() => {
+                setShowCalendar(true);
+              }}
+              placeholder="End Date"
+              />
+          </div>
           <div ref={calendarRef} style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
             {showCalendar && <DayPickerWrapper
               selectedRange={selectedRange}

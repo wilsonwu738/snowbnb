@@ -5,6 +5,7 @@
   position: sticky;
   z-index: 999;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  top: 0px;
 }
 
 .reservation-selections {
@@ -13,6 +14,10 @@
   margin: 20px;
   border: 2px solid #ddd; 
   border-radius: 7px;
+}
+
+.end-date {
+  border-left: 1px solid #ccc;
 }
 
 .date-inputs {
@@ -27,30 +32,13 @@
   border: none;
 }
 
-.date-inputs > :nth-child(2) {
+/* .date-inputs > :nth-child(2) {
  background-color: red;
-}
-
-
-.date-input2 {
-  flex: 1;
-  padding: 8px;
-  border:none;
-  border-left: 2px solid black;
-  background-color: aqua;
-  border: none; /* Remove all borders */
-  border-right: 1px solid black; /* Add border to the right side only */
-  border-radius: 0; /* Remove border rounding */
-
-}
-
-
+} */
 
 .date-input:focus {
   outline: 2px solid black;
 }
-
-
 
 .guests-dropdown {
   padding: 8px; /* Adjust as needed */
