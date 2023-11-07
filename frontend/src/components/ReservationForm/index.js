@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import moment from "moment";
+// import moment from "moment";
 import "./ReservationForm.css";
 import { fetchListingReservations, fetchUserReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";
@@ -68,14 +68,14 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   }, [selectedRange]);
   
 
-  const isDateBlocked = (day) => {
-    const reservationsArray = Object.values(listingReservations);
-    return reservationsArray.some(
-      (reservation) =>
-        day.isSameOrAfter(moment(reservation.startDate), "day") &&
-        day.isSameOrBefore(moment(reservation.endDate), "day")
-    );
-  };
+  // const isDateBlocked = (day) => {
+  //   const reservationsArray = Object.values(listingReservations);
+  //   return reservationsArray.some(
+  //     (reservation) =>
+  //       day.isSameOrAfter(moment(reservation.startDate), "day") &&
+  //       day.isSameOrBefore(moment(reservation.endDate), "day")
+  //   );
+  // };
 
   const handleBook = async (e) => {
     e.preventDefault();

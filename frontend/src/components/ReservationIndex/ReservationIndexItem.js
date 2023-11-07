@@ -3,8 +3,9 @@ import moment from "moment";
 import { updateReservation, deleteReservation } from "../../store/reservations";
 import React, { useState, useEffect } from 'react';
 import { fetchListing, getListing } from "../../store/listings";
+import { fetchUserReservations } from "../../store/reservations";
 import "./ReservationIndexItem.css"
-
+import { format, differenceInDays, parseISO } from "date-fns";
 
 //can i use reservation connecting to listings?
 const ReservationIndexItem = ({ reservation }) => {
@@ -13,11 +14,12 @@ const ReservationIndexItem = ({ reservation }) => {
   // })
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchListing(reservation.listingId))
-  }, [dispatch, reservation.listingId])
-  const listing = useSelector(getListing(reservation.listingId))
 
+  useEffect(() => {
+    dispatch(fetchUserReservations());
+  }, [])
+
+  const listing = useSelector(getListing(reservation.listingId))
   const [isEditing, setIsEditing] = useState(false);
   const [editingStartDate, setEditingStartDate] = useState(null);
   const [editingEndDate, setEditingEndDate] = useState(null);
@@ -48,9 +50,10 @@ const ReservationIndexItem = ({ reservation }) => {
   };
 
   const handleDelete = () => {
-    console.log(reservation.id)
     dispatch(deleteReservation(reservation.id))
   }
+
+
 
   return (
     <div className="reservation-item">
@@ -73,7 +76,8 @@ const ReservationIndexItem = ({ reservation }) => {
           <div className="listing-photo">
             <img id="p1" src={listing?.photoUrl[0]} alt="" />
           </div>
-          <p>Start date: {moment(reservation.startDate).format('YYYY-MM-DD')}</p>
+          {/* <p>Start date: {moment(reservation.startDate).format('YYYY-MM-DD')}</p> */}
+          <p>Start date: {format(parseISO(reservation.startDate), 'yyyy-MM-dd')}</p>
           <p>End date: {moment(reservation.endDate).format('YYYY-MM-DD')}</p>
           <button onClick={startEditing}>Update</button>
           <button onClick={handleDelete}>Delete</button>
