@@ -33,67 +33,70 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
 
   
 
-  if (isEditing) {
-    return (
-      <div className="reservation-item">
-        <div className="listing-photo">
-           <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
-        </div>
-        <div className="trip-details">
-          <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-          <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-          <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
-            {Array.from({ length: reservation.listingMaxGuests }, (_, i) => (
-              <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
-              ))}
-          </select>
-        </div>
-        <div className="trip-buttons">
-          <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
-          <button onClick={onCancel}>Cancel</button>
-        </div>
-      </div>
-    );
-  }
+  // if (isEditing) {
+  //   return (
+  //     <div className="reservation-item">
+  //       <div className="listing-photo">
+  //          <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
+  //       </div>
+  //       <div className="trip-details">
+  //         <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+  //         <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+  //         <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
+  //           {Array.from({ length: reservation.listingMaxGuests }, (_, i) => (
+  //             <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
+  //             ))}
+  //         </select>
+  //       </div>
+  //       <div className="trip-buttons">
+  //         <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
+  //         <button onClick={onCancel}>Cancel</button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="reservation-item">
       <div className="listing-photo">
            <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
       </div>
       <div className="trip-details">
-        <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
-        <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
-        <div>Number of Guests: {reservation.numGuests}</div>
+        <div>{reservation.listing}</div>
+        {isEditing ? ( 
+        <>
+          <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+          <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+          <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
+            {Array.from({ length: reservation.listingMaxGuests }, (_, i) => (
+              <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
+              ))}
+          </select> 
+        </>) : (
+        <>
+          <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
+          <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
+          <div>{differenceInDays(parseISO(reservation.endDate),parseISO(reservation.startDate))} nights</div>
+          <div>Number of Guests: {reservation.numGuests}</div>
+          <div>${reservation.totalCost}</div>
+        </>
+        )}
       </div>
+
+      {isEditing ? ( 
+      <div className="trip-buttons">
+        <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
+        <button onClick={onCancel}>Cancel</button>
+      </div>
+      ) : (
       <div className="trip-buttons">
         <button onClick={() => onEdit(reservation.id)}>Edit</button>
         <button onClick={() => onDelete(reservation.id)}>Delete</button>
       </div>
-
-
+      )}    
     </div>
   );
 
-  // return (
-  //   <div className="reservation-item">
-  //     {isEditing ? (
-  //       <form onSubmit={handleUpdate}>
-  //         <button type="submit">Save Changes</button>
-  //         <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-  //       </form>
-  //     ) : (
-  //       <>
-  //         <div className="listing-photo">
-  //           <img id="p1" src={listing?.photoUrl[0]} alt="" />
-  //         </div>
-  //         <p>Start date: {format(parseISO(reservation.startDate), 'yyyy-MM-dd')}</p>
-  //         <p>End date: {moment(reservation.endDate).format('YYYY-MM-DD')}</p>
-  //         <button onClick={startEditing}>Update</button>
-  //         <button onClick={handleDelete}>Delete</button>
-  //       </>
-  //     )}
-  //   </div>
-  // );
+
 }
 
 export default ReservationIndexItem

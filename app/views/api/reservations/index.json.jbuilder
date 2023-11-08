@@ -10,6 +10,7 @@
       :total_cost
     json.listingPhotoUrl reservation.listing.photos.map { |file| url_for(file) }
     json.listingMaxGuests reservation.listing.max_guests
+    json.listing reservation.listing.title
   end
 
 end
