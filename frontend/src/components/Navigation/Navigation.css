@@ -1,13 +1,16 @@
-.nav-bar {
+.navbar {
   display: flex;
   justify-content: space-between;
   margin: 5px;
   border-bottom: 1px solid gainsboro;
   /* background-image: url("snowmnt.jpeg"); */
+  background-color: white;
+}
+
+.navbar.sticky {
   position: sticky;
   top: 0;
-  background-color: white;
-  /* z-index: 1000; */
+  z-index: 100; 
 }
 
 .logo {

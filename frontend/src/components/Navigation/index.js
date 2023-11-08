@@ -10,12 +10,12 @@ import SignupFormModal from '../SignupFormModal';
 import SearchBar from '../SearchBar';
 
 
-function Navigation(){
+function Navigation({ isSticky }){
   const sessionUser = useSelector(state => state.session.user);
-
+  const navClass = isSticky ? 'navbar sticky' : 'navbar';
 
   return (
-    <div className='nav-bar'>
+    <div className={navClass}>
       <div>
         <NavLink exact to="/">
           <img className='logo' src={logo}></img>

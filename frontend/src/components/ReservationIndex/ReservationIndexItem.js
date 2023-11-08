@@ -39,16 +39,19 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
         <div className="listing-photo">
            <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
         </div>
-        <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-        <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-        <select value={numGuests} onChange={e => setNumGuests(e.target.value)}>
-          {/* Options would be dynamic based on the max number of guests */}
-          <option value="1">1 guest</option>
-          <option value="2">2 guests</option>
-          {/* ... */}
-        </select>
-        <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
-        <button onClick={onCancel}>Cancel</button>
+        <div className="trip-details">
+          <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+          <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+          <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
+            {Array.from({ length: reservation.listingMaxGuests }, (_, i) => (
+              <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
+              ))}
+          </select>
+        </div>
+        <div className="trip-buttons">
+          <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
+          <button onClick={onCancel}>Cancel</button>
+        </div>
       </div>
     );
   }
@@ -57,11 +60,15 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
       <div className="listing-photo">
            <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
       </div>
-      <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
-      <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
-      <div>Number of Guests: {reservation.numGuests}</div>
-      <button onClick={() => onEdit(reservation.id)}>Edit</button>
-      <button onClick={() => onDelete(reservation.id)}>Delete</button>
+      <div className="trip-details">
+        <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
+        <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
+        <div>Number of Guests: {reservation.numGuests}</div>
+      </div>
+      <div className="trip-buttons">
+        <button onClick={() => onEdit(reservation.id)}>Edit</button>
+        <button onClick={() => onDelete(reservation.id)}>Delete</button>
+      </div>
 
 
     </div>

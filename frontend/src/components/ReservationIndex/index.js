@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserReservations, getReservations, deleteReservation } from "../../store/reservations";
 import ReservationIndexItem from "./ReservationIndexItem";
-
+import './ReservationIndex.css'
 
 const ReservationIndex = () => {
   const dispatch = useDispatch()
