@@ -103,17 +103,19 @@ export const createReservation = (reservation) => async dispatch => {
 
 export const updateReservation = (reservation) => async dispatch => {
   const { id, ...otherAttributes } = reservation;
-  console.log("inside fetch", reservation)
-  const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
+  console.log(reservation)
+  const res = await csrfFetch(`/api/reservations/${id}`, {
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json'
     },
+    // body: JSON.stringify({ reservation: otherAttributes })
     body: JSON.stringify({ reservation: otherAttributes })
   });
   
   if (res.ok) {
     const data = await res.json();
+    console.log(data)
     dispatch(receiveReservation(data))
   }
 

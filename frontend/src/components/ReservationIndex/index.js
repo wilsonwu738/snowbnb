@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserReservations, getReservations, deleteReservation } from "../../store/reservations";
+import { fetchUserReservations, getReservations, updateReservation, deleteReservation } from "../../store/reservations";
 import ReservationIndexItem from "./ReservationIndexItem";
 import './ReservationIndex.css'
 
@@ -13,7 +13,6 @@ const ReservationIndex = () => {
     dispatch(fetchUserReservations())
   }, [dispatch])
 
-  const reservationIndexItems = reservations.map(reservation => <ReservationIndexItem key={reservation.id} reservation={reservation} />)
   
   const handleEditClick = (reservationId) => {
     setEditingReservationId(reservationId);
@@ -23,13 +22,21 @@ const ReservationIndex = () => {
     setEditingReservationId(null);
   };
 
-  const handleSave = (reservationId, startDate, endDate, numGuests) => {
+  const handleSave = (reservationId, startDate, endDate, numGuests, totalCost) => {
     // Perform the update logic here, such as dispatching an action to update the reservation
     // After the update, cancel the editing mode
+    const reservation = {
+      id: reservationId,
+      startDate: startDate,
+      endDate: endDate,
+      numGuests, numGuests,
+      totalCost: totalCost
+    }
+    dispatch(updateReservation(reservation))
     setEditingReservationId(null);
 
     // Example: dispatch(updateReservationAction({ id: reservationId, startDate, endDate, numGuests }));
-    console.log('Updated Reservation:', reservationId, startDate, endDate, numGuests);
+    console.log('Updated Reservation:', reservationId, startDate, endDate, numGuests, totalCost);
   };
 
   const handleDelete = (reservationId) => {

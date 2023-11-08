@@ -3,3 +3,4 @@ json.user @reservation.guest.username
 json.listing @reservation.listing.title
 json.listingPhotoUrl @reservation.listing.photos.map { |file| url_for(file) }
 json.listingMaxGuests @reservation.listing.max_guests
+json.listingPrice @reservation.listing.nightly_price

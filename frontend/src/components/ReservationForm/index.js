@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-// import moment from "moment";
 import "./ReservationForm.css";
 import { fetchListingReservations, fetchUserReservations, createReservation } from "../../store/reservations";
 import { getListing } from "../../store/listings";

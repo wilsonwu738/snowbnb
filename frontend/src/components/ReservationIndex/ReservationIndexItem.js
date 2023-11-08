@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import moment from "moment";
 import { updateReservation, deleteReservation } from "../../store/reservations";
 import React, { useState, useEffect } from 'react';
 import { fetchListing, getListing } from "../../store/listings";
@@ -16,7 +15,17 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
   const [startDate, setStartDate] = useState(format(parseISO(reservation.startDate), 'yyyy-MM-dd'));
   const [endDate, setEndDate] = useState(format(parseISO(reservation.endDate), 'yyyy-MM-dd'));
   const [numGuests, setNumGuests] = useState(reservation.numGuests);
+  const [totalCost, setTotalCost] = useState(reservation.totalCost);
   
+  useEffect(() => {
+    if (startDate && endDate) {
+      const start = parseISO(startDate);
+      const end = parseISO(endDate);
+      const numOfDays = differenceInDays(end, start);
+      const cost = numOfDays * reservation.listingPrice * 1.18; // Assuming nightlyPrice is passed as a prop or derived from state
+      setTotalCost(cost);
+    }
+  }, [startDate, endDate, reservation.listingPrice]);
 
   // const handleUpdate = async (e) => {
   //   e.preventDefault();
@@ -30,31 +39,7 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
   //   ));
   //   setIsEditing(false);
   // };
-
-  
-
-  // if (isEditing) {
-  //   return (
-  //     <div className="reservation-item">
-  //       <div className="listing-photo">
-  //          <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
-  //       </div>
-  //       <div className="trip-details">
-  //         <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-  //         <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-  //         <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
-  //           {Array.from({ length: reservation.listingMaxGuests }, (_, i) => (
-  //             <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
-  //             ))}
-  //         </select>
-  //       </div>
-  //       <div className="trip-buttons">
-  //         <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
-  //         <button onClick={onCancel}>Cancel</button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+    
   return (
     <div className="reservation-item">
       <div className="listing-photo">
@@ -71,20 +56,23 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
               <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
               ))}
           </select> 
+          <div>total cost: ${totalCost}</div>
+
+
         </>) : (
         <>
           <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
           <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
           <div>{differenceInDays(parseISO(reservation.endDate),parseISO(reservation.startDate))} nights</div>
           <div>Number of Guests: {reservation.numGuests}</div>
-          <div>${reservation.totalCost}</div>
+          <div>total cost: ${reservation.totalCost}</div>
         </>
         )}
       </div>
 
       {isEditing ? ( 
       <div className="trip-buttons">
-        <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests)}>Save</button>
+        <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests, totalCost)}>Save</button>
         <button onClick={onCancel}>Cancel</button>
       </div>
       ) : (
