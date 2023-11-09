@@ -1,12 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import './DayPickerWrapper.css'
+import './DayPickerWrapper.css';
+import { startOfDay } from 'date-fns';
 
 function DayPickerWrapper({ selectedRange, setSelectedRange, showCalendar, setShowCalendar, onSelect, reservationRanges }) {
   
+  const today = startOfDay(new Date());
+
   const modifiers = {
-    disabled: reservationRanges
+    disabled: [...reservationRanges, {before: today}]
   };
 
   const modifiersStyles = {

@@ -177,7 +177,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservati
               placeholder="End Date"
               />
           </div>
-          <div ref={calendarRef} style={{ position: 'absolute', top: '100%', left: 0, zIndex: 999, backgroundColor: "yellow" }}>
+          <div ref={calendarRef} style={{ position: 'absolute', top: '30%', right: 0, zIndex: 900, backgroundColor: "white", border: "solid 1px", borderRadius: "8px" }}>
             {showCalendar && <DayPickerWrapper
               selectedRange={selectedRange}
               setSelectedRange={setSelectedRange}

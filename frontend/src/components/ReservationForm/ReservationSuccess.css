@@ -1,0 +1,29 @@
+.reservation-success {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.reservation-success-message {
+  background-color: rgb(227, 29, 80);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success-booking-trips {
+  background-color: rgb(227, 29, 80);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success-booking-stay {
+  background-color: rgb(227, 29, 80);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
