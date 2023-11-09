@@ -13,14 +13,13 @@ import DayPickerWrapper from '../DayPickerWrapper';
 import { toggleLogin, toggleReservationSuccess } from "../../store/ui";
 
 
-const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedDates }) => {
+const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservationRanges }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const listing = useSelector(getListing(listingId));
   const [numGuests, setNumGuests] = useState(1);
   const [totalCost, setTotalCost] = useState(0);
   const [errors, setErrors] = useState();
-  const listingReservations = useSelector((state) => state.entities.reservations)
   const showReservationSuccess = useSelector(state => state.ui.showReservationSuccess)
   const showLogin = useSelector(state => state.ui.showLogin)
   const [showCalendar, setShowCalendar] = useState(false);
@@ -30,9 +29,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   const [days, setDays] = useState(0);
 
 
-  useEffect(() => {
-    dispatch(fetchListingReservations(listingId))
-  }, [dispatch, listingId]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -67,14 +63,6 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
   }, [selectedRange]);
   
 
-  // const isDateBlocked = (day) => {
-  //   const reservationsArray = Object.values(listingReservations);
-  //   return reservationsArray.some(
-  //     (reservation) =>
-  //       day.isSameOrAfter(moment(reservation.startDate), "day") &&
-  //       day.isSameOrBefore(moment(reservation.endDate), "day")
-  //   );
-  // };
 
   const handleBook = async (e) => {
     e.preventDefault();
@@ -193,7 +181,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservedD
             {showCalendar && <DayPickerWrapper
               selectedRange={selectedRange}
               setSelectedRange={setSelectedRange}
-              reservedDates={reservedDates}
+              reservationRanges={reservationRanges}
               onSelect={handleRangeSelect}
               />}
           </div>

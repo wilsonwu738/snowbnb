@@ -70,6 +70,7 @@ export const fetchReservation = reservationId => async dispatch => {
 
 // delete the else for error?
 export const createReservation = (reservation) => async dispatch => {
+  console.log(reservation)
   try {
     const res = await csrfFetch(`/api/reservations`, {
       method: "POST",

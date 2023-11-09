@@ -7,12 +7,14 @@ import ReservationForm from "../ReservationForm";
 import ReviewsIndex from "../ReviewsIndex";
 import { fetchReviews, getReviews } from "../../store/reviews";
 import DayPickerWrapper from "../DayPickerWrapper";
+import { fetchListingReservations, getReservations } from "../../store/reservations";
 
 const ListingShow = () => {
   const { listingId } = useParams();
   const dispatch = useDispatch();
-  const listing = useSelector(getListing(listingId))
-  const reviews = useSelector(getReviews)   
+  const listing = useSelector(getListing(listingId));
+  const reviews = useSelector(getReviews);
+  const reservations = useSelector(getReservations)
   
   const [selectedRange, setSelectedRange] = useState();
   const reservedDates = ['2023-11-15', '2023-11-16', '2023-11-20'];
@@ -30,9 +32,26 @@ const ListingShow = () => {
   
   }, [dispatch, listingId])
 
+  useEffect(() => {
+  
+    dispatch(fetchListingReservations(listingId))
+  
+  }, [dispatch, listingId])
+
+
+
   if (!listing) {
     return null
   }
+
+  const reservationRanges = reservations.map(reservation => ({
+    from: new Date(reservation.startDate),
+    to: new Date(reservation.endDate),
+  }));
+
+  
+
+ 
   
   return (
     <div className="show-page-container">
@@ -72,12 +91,13 @@ const ListingShow = () => {
             reservedDates={reservedDates}
             selectedRange={selectedRange}
             setSelectedRange={setSelectedRange}
+            reservationRanges={reservationRanges}
             /> 
           </div>
         </div>
 
           <div className="reservation-form-container">
-            <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservedDates={reservedDates}/>
+            <ReservationForm listingId={listingId} selectedRange={selectedRange} setSelectedRange={setSelectedRange} reservationRanges={reservationRanges}/>
            
           </div>
         

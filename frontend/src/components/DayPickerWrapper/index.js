@@ -3,11 +3,17 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import './DayPickerWrapper.css'
 
-function DayPickerWrapper({ selectedRange, setSelectedRange, reservedDates, showCalendar, setShowCalendar, onSelect, alwaysShow }) {
+function DayPickerWrapper({ selectedRange, setSelectedRange, showCalendar, setShowCalendar, onSelect, reservationRanges }) {
   
-
   const modifiers = {
-    disabled: reservedDates.map(dateStr => new Date(dateStr))
+    disabled: reservationRanges
+  };
+
+  const modifiersStyles = {
+    disabled: {
+      textDecoration: 'line-through',
+      color: 'grey',
+    },
   };
 
 
@@ -19,7 +25,9 @@ function DayPickerWrapper({ selectedRange, setSelectedRange, reservedDates, show
           selected={selectedRange}
           onSelect={onSelect || setSelectedRange}
           modifiers={modifiers}
+          modifiersStyles={modifiersStyles}
           numberOfMonths={2}
+         
         />
     </div>
   );
