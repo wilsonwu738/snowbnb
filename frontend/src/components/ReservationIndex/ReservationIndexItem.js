@@ -5,6 +5,7 @@ import { fetchListing, getListing } from "../../store/listings";
 import { fetchUserReservations } from "../../store/reservations";
 import "./ReservationIndexItem.css"
 import { format, differenceInDays, parseISO } from "date-fns";
+import { formatDateInUTC } from "../../utils/dateUtil";
 
 
 const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit, onDelete }) => {
@@ -12,8 +13,8 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
   const dispatch = useDispatch();
 
   // const listing = useSelector(getListing(reservation.listingId))
-  const [startDate, setStartDate] = useState(format(parseISO(reservation.startDate), 'yyyy-MM-dd'));
-  const [endDate, setEndDate] = useState(format(parseISO(reservation.endDate), 'yyyy-MM-dd'));
+  const [startDate, setStartDate] = useState(formatDateInUTC(reservation.startDate));
+  const [endDate, setEndDate] = useState(formatDateInUTC(reservation.endDate));
   const [numGuests, setNumGuests] = useState(reservation.numGuests);
   const [totalCost, setTotalCost] = useState(reservation.totalCost);
   
@@ -61,8 +62,8 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
 
         </>) : (
         <>
-          <div>Start Date: {format(parseISO(reservation.startDate), 'PP')}</div>
-          <div>End Date: {format(parseISO(reservation.endDate), 'PP')}</div>
+          <div>Start Date: {formatDateInUTC(reservation.startDate, 'PP')}</div>
+          <div>End Date: {formatDateInUTC(reservation.endDate, 'PP')}</div>
           <div>{differenceInDays(parseISO(reservation.endDate),parseISO(reservation.startDate))} nights</div>
           <div>Number of Guests: {reservation.numGuests}</div>
           <div>total cost: ${reservation.totalCost}</div>
