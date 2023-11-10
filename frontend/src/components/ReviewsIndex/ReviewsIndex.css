@@ -1,0 +1,9 @@
+.review-create-button {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #0074D9; 
+}
+
+.review-create-button:hover {
+  color: #0056b3; 
+}

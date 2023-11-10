@@ -1,7 +1,7 @@
 import './FiltersBar.css'
 const FiltersBar = () => {
   return (
-    <div className="filters-wrapper">
+    <div className="filters-wrapper" onClick={() => alert('Still under development. Coming Soon!')}>
       <div className="filter-1">
         <img className='filter-1-img' src="https://a0.muscache.com/pictures/248f85bf-e35e-4dc3-a9a1-e1dbff9a3db4.jpg" alt="" />
         <div className='filter-1-text'>Top of the World</div>

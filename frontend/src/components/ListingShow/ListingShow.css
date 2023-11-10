@@ -110,6 +110,7 @@
 .reviews-container {
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 30px;
 }
-
 
