@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserReservations, getReservations, updateReservation, deleteReservation } from "../../store/reservations";
 import ReservationIndexItem from "./ReservationIndexItem";
 import './ReservationIndex.css'
+import { useHistory } from "react-router-dom";
 
 const ReservationIndex = () => {
-  const dispatch = useDispatch()
-  const reservations = useSelector(getReservations)
+  const dispatch = useDispatch();
+  const reservations = useSelector(getReservations);
   const [editingReservationId, setEditingReservationId] = useState(null);
+  const history = useHistory();
   
   useEffect(() => {
     dispatch(fetchUserReservations())
   }, [dispatch])
 
+  const upcomingReservations = reservations.filter(reservation => new Date(reservation.startDate) > new Date());
+  const pastReservations = reservations.filter(reservation => new Date(reservation.endDate) < new Date());
   
   const handleEditClick = (reservationId) => {
     setEditingReservationId(reservationId);
@@ -35,8 +39,6 @@ const ReservationIndex = () => {
     dispatch(updateReservation(reservation))
     setEditingReservationId(null);
 
-    // Example: dispatch(updateReservationAction({ id: reservationId, startDate, endDate, numGuests }));
-    console.log('Updated Reservation:', reservationId, startDate, endDate, numGuests, totalCost);
   };
 
   const handleDelete = (reservationId) => {
@@ -46,19 +48,48 @@ const ReservationIndex = () => {
 
   return (
     <div className="reservation-index-container">
-      {reservations.map((reservation) => (
-        <ReservationIndexItem
-          key={reservation.id}
-          reservation={reservation}
-          isEditing={editingReservationId === reservation.id}
-          onSave={handleSave}
-          onCancel={handleCancelClick}
-          onEdit={handleEditClick}
-          onDelete={handleDelete}
-        />
-      ))}
+      {upcomingReservations.length > 0 && (
+        <>
+          <h2>Upcoming Trips</h2>
+          {upcomingReservations.map((reservation) => (
+            <ReservationIndexItem
+              key={reservation.id}
+              reservation={reservation}
+              isEditing={editingReservationId === reservation.id}
+              onSave={handleSave}
+              onCancel={handleCancelClick}
+              onEdit={handleEditClick}
+              onDelete={handleDelete}
+            />
+          ))}
+        </>
+      )}
+
+      {pastReservations.length > 0 && (
+        <>
+          <h2>Past Trips</h2>
+          {pastReservations.map((reservation) => (
+            <ReservationIndexItem
+              key={reservation.id}
+              reservation={reservation}
+              isEditing={editingReservationId === reservation.id}
+              onSave={handleSave}
+              onCancel={handleCancelClick}
+              onEdit={handleEditClick}
+              onDelete={handleDelete}
+            />
+          ))}
+        </>
+      )}
+
+      {upcomingReservations.length === 0 && pastReservations.length === 0 && (
+        <div>
+          <p>No trips booked yet</p>
+          <button onClick={() => history.push('/')}>Explore Our Houses</button>
+        </div>
+      )}
     </div>
-  )
+  );
 
 
 
