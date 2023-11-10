@@ -10,7 +10,7 @@ import SignupFormModal from '../SignupFormModal';
 import SearchBar from '../SearchBar';
 
 
-function Navigation({ isSticky }){
+function Navigation({ isSticky, showSearch }){
   const sessionUser = useSelector(state => state.session.user);
   const navClass = isSticky ? 'navbar sticky' : 'navbar';
 
@@ -22,9 +22,10 @@ function Navigation({ isSticky }){
         </NavLink>
       </div>
 
+      {showSearch && 
       <div className='search-bar'>
         <SearchBar onSearch/>
-      </div>
+      </div>}
 
       <div className='lin-git'>
         <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i className="fa-brands fa-linkedin"></i></a>

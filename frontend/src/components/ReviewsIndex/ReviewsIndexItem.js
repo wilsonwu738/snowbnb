@@ -1,8 +1,8 @@
-import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReview } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
 import './ReviewsIndexItem.css'
+import { formatDateInUTC } from "../../utils/dateUtil";
 
 const ReviewsIndexItem = ({ review }) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -10,7 +10,7 @@ const ReviewsIndexItem = ({ review }) => {
   const history = useHistory();
 
 
-  const date = moment(review.reviewDate).format('MMMM YYYY');
+  const date = formatDateInUTC(review.reviewDate, 'MMMM yyyy');
 
   const handleUpdate = () => {
     history.push(`/listings/${review.listingId}/reviews/${review.id}/edit`)

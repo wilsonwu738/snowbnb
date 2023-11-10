@@ -84,7 +84,7 @@
 
 .show-description {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width:700px;
+
   border-bottom: 1px solid lightgray;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -103,6 +103,8 @@
   /* border: 1px solid #ccc; */
   max-width: 375px;
   box-sizing: border-box;
+  padding-left: 20px;
+
 
 }
 

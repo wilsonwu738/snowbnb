@@ -18,7 +18,7 @@ function App() {
   
   return (
     <>
-      <Navigation isSticky={isHomePage}/>
+      <Navigation isSticky={isHomePage} showSearch={isHomePage}/>
       <Switch>
         <Route path="/listings/:listingId/reviews/:reviewId/edit"><ReviewForm /></Route>
         <Route path="/listings/:listingId/newreview"><ReviewForm /></Route>

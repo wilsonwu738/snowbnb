@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { fetchReviews, getReviews } from "../../store/reviews";
 import ReviewsIndexItem from "./ReviewsIndexItem";
-import { Link } from "react-router-dom";
 import ReviewsSummary from "../ReviewSummary";
 import "./ReviewsIndexItem.css";
 import { useHistory } from "react-router-dom";

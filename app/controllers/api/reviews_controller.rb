@@ -25,9 +25,9 @@ class Api::ReviewsController < ApplicationController
       review_params[:check_in]) / 6.0).round(2)
 
     # making sure the user had reservation in the past before
-    unless current_user.review_allowed?(@review.listing_id)
-      return render json: { errors: ["You can only provide review after your reservation on this listing"]}, status: :forbidden
-    end
+    # unless current_user.review_allowed?(@review.listing_id)
+    #   return render json: { errors: ["You can only provide review after your reservation on this listing"]}, status: :forbidden
+    # end
 
     if @review.save
       render :show

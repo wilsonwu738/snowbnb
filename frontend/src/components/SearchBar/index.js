@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchListings } from '../../store/listings';
 
+
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
+ 
 
   const handleSubmit = e => {
     e.preventDefault();
+
     dispatch(fetchListings(query))  
     setQuery('')  
   };
