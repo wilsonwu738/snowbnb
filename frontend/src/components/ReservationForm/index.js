@@ -28,6 +28,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservati
   const calendarRef = useRef();
   const [days, setDays] = useState(0);
 
+  
 
 
   useEffect(() => {
@@ -213,7 +214,10 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservati
           <div className="service-value">${listing.nightlyPrice * days * 0.1} </div>
         </div>
       </div>
-      <div className="reservation-total">Total before taxes: ${totalCost}</div>
+      <div className="reservation-total">
+        <div className="total-text">Total before taxes</div>
+        <div className="total-value">${totalCost}</div>
+      </div>
 
       {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
 

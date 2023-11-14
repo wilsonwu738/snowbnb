@@ -14,6 +14,8 @@ import superhostPic from '../../icons/superhost.png'
 import wifiPic from '../../icons/wifi.png'
 import kitchenPic from '../../icons/kitchen.png'
 import workspacePic from '../../icons/workspace.png'
+import { differenceInDays } from 'date-fns';
+
 
 
 const ListingShow = () => {
@@ -24,11 +26,13 @@ const ListingShow = () => {
   const reservations = useSelector(getReservations)
   
   const [selectedRange, setSelectedRange] = useState();
-  const reservedDates = ['2023-11-15', '2023-11-16', '2023-11-20'];
+
+  const shortLocation = (listing?.location.split(',')[0] ?? 'Unknown snow mountain');
+  
   
   
   useEffect(() => {
-  
+    
     dispatch(fetchListing(listingId))
   
   }, [dispatch, listingId])
@@ -45,6 +49,26 @@ const ListingShow = () => {
   
   }, [dispatch, listingId])
 
+  //for furture default calendar highlight implementation
+  // useEffect(() => {
+  //   if (reservations.length > 0) {
+  //     let maxEndDate = null;
+  //     reservations.forEach((reservation) => {
+  //       const endDate = new Date(reservation.endDate);
+  //       if (!maxEndDate || endDate > maxEndDate) {
+  //         maxEndDate = endDate;
+  //       }
+  //     });
+  //     const earliestDate = maxEndDate
+  //       ? new Date(maxEndDate.getTime() + 24 * 60 * 60 * 1000) 
+  //       : null;
+  //     const endDate = earliestDate
+  //       ? new Date(earliestDate.getTime() + 5 * 24 * 60 * 60 * 1000) 
+  //       : null;
+
+  //     setSelectedRange(earliestDate ? [earliestDate, endDate] : null);
+  //   }
+  // }, [reservations]);
 
 
   if (!listing) {
@@ -127,9 +151,12 @@ const ListingShow = () => {
 
 
           </div>
+
           <div className="standalone-calendar">
+            <div className="date-description">
+              {differenceInDays(selectedRange?.to, selectedRange?.from) || 0} nights in {shortLocation}
+            </div>
             <DayPickerWrapper
-            reservedDates={reservedDates}
             selectedRange={selectedRange}
             setSelectedRange={setSelectedRange}
             reservationRanges={reservationRanges}

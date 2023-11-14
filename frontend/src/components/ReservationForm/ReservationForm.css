@@ -86,7 +86,9 @@
 .cost-breakdown {
   display: flex;
   flex-direction: column;
-  gap: 0.5em
+  gap: 0.5em;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 1em;
 }
 
 .nights-fee {

@@ -92,6 +92,8 @@
 
 .main-content-container {
   display: flex;
+  border-bottom: 1px solid lightgray;
+  
 }
 
 .left-container {

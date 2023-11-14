@@ -17,6 +17,10 @@ function DayPickerWrapper({ selectedRange, setSelectedRange, showCalendar, setSh
       textDecoration: 'line-through',
       color: 'grey',
     },
+    selected: {
+      backgroundColor: 'lightgrey',
+      color: 'black',
+    },
   };
 
 

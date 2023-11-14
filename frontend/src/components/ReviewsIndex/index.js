@@ -28,9 +28,9 @@ const ReviewsIndex = ({ listingId, reviews }) => {
   }
   
 
-  // if (!reviews?.length) {
-    // return <p>No reivews for this listing yet</p>;
-  // }
+  if (!reviews?.length) {
+    return <div className="no-reviews">No reivews (yet)</div>;
+  }
 
   return (
     <>
