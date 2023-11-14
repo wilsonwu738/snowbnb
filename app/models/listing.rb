@@ -39,5 +39,12 @@ class Listing < ApplicationRecord
     class_name: :Review,
     dependent: :destroy
   
+  def calculate_average_rating
+    return 0 if reviews.empty?
+
+    total_rating = reviews.sum { |review| review.rating }
+    average_rating = total_rating.to_f / reviews.count
+    update(average_rating: average_rating)
+  end    
 
 end

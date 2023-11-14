@@ -30,6 +30,7 @@ class Api::ReviewsController < ApplicationController
     # end
 
     if @review.save
+      @review.listing.calculate_average_rating
       render :show
     else
       # 422 is the code
@@ -42,9 +43,9 @@ class Api::ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
   
     if @review.update(review_params)
+      @review.listing.calculate_average_rating
       render :show
     else
-      puts @review.errors.full_messages
       render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
     end
 
@@ -54,6 +55,7 @@ class Api::ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
 
     if @review.destroy
+      @review.listing.calculate_average_rating
       render json: { message: " Success" }, status: :ok
     else
       render json: { errors: ["Failed to delete review, please try again"] }, status: :unprocessable_entity

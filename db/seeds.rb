@@ -56,6 +56,7 @@ ApplicationRecord.transaction do
                num_beds: 3, 
                num_baths: 2, 
                owner_id: 2, 
+               average_rating: 3.83,
                created_at: DateTime.now, 
                updated_at: DateTime.now)
 

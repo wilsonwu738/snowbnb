@@ -12,9 +12,13 @@ const ListingIndexItem = ({listing}) => {
       
         <img className='listing-photo' src={listing.photoUrl[0]} alt="" />
         <div className="listing-index-info">
-
-          <div className="listing-index-location">
-            {listing.location}
+          <div className="location_rating">
+            <div className="listing-index-location">
+              {listing.location}
+            </div>
+            <div className="listing-index-rating">
+              ⭑{listing.averageRating}
+            </div>
           </div>
           <div className="listing-index-bedrooms">
             {listing.numBedrooms} Bedrooms
