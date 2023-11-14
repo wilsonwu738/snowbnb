@@ -1,8 +1,12 @@
 .reservation-item {
   display: flex;
+  max-width: 50vw;
+  max-width: 50vh;
 }
 
-.listing-photo img {
+
+
+.reservation-listing-photo img {
   width: 100%;
   height: 100%;
   border-radius: 10px;

@@ -16,9 +16,9 @@ const ListingIndexItem = ({listing}) => {
             <div className="listing-index-location">
               {listing.location}
             </div>
-            <div className="listing-index-rating">
-              ⭑{listing.averageRating}
-            </div>
+            {listing.averageRating && <div className="listing-index-rating">
+              ⭑{listing.averageRating.toFixed(1)}
+            </div>}
           </div>
           <div className="listing-index-bedrooms">
             {listing.numBedrooms} Bedrooms

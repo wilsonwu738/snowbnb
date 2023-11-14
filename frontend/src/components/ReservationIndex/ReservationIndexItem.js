@@ -43,7 +43,7 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
     
   return (
     <div className="reservation-item">
-      <div className="listing-photo">
+      <div className="reservation-listing-photo">
            <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
       </div>
       <div className="trip-details">

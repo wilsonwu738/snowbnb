@@ -8,21 +8,21 @@
 .index-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 3em;
   margin: 2.5vw 5vh;
 }
 
 .listing-container {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  flex: 1;
+  max-width: 300px;
+  /* flex: 1; */
   /* gap: 2rem */
 }
 
 .listing-photo {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  aspect-ratio: 1/1;
   border-radius: 10px;
 
 }
@@ -58,6 +58,6 @@
 
 .location_rating {
   display: flex;
-
+  justify-content: space-between;
 
 }
