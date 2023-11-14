@@ -26,6 +26,7 @@
   border-radius: 20px;
   width: 30%;
   max-width: 50%;
+  min-height: 300px;
   max-height: 80%;
   /* overflow: auto;  */
   z-index: 1001;

@@ -8,6 +8,13 @@ import ReviewsIndex from "../ReviewsIndex";
 import { fetchReviews, getReviews } from "../../store/reviews";
 import DayPickerWrapper from "../DayPickerWrapper";
 import { fetchListingReservations, getReservations } from "../../store/reservations";
+import checkinPic from '../../icons/checkin.png'
+import cancellationPic from '../../icons/cancellation.png'
+import superhostPic from '../../icons/superhost.png'
+import wifiPic from '../../icons/wifi.png'
+import kitchenPic from '../../icons/kitchen.png'
+import workspacePic from '../../icons/workspace.png'
+
 
 const ListingShow = () => {
   const { listingId } = useParams();
@@ -85,6 +92,40 @@ const ListingShow = () => {
             <div className="show-details">{listing.maxGuests} guests · {listing.numBedrooms} bedrooms · {listing.numBaths} baths</div>
             <br />
             <div className="show-description">{listing.description}</div>
+          </div>
+          <div className="show-highlights">
+            <div className="show-checkin">
+              <img src={checkinPic} alt="" />
+              Self check-in
+            </div>
+            <div className="show-superhost">
+              <img src={superhostPic} alt="" />
+              {listing.firstName} is a Superhost
+            </div>
+            <div className="show-cancellation">
+              <img src={cancellationPic} alt="" />
+              Free cancellation for 48 hours
+            </div>
+          </div>
+
+          <div className="show-amenities">
+            <h1 className="amenities-header">What this place offers</h1>
+            <div className="amenities-type">
+            <div className="amenities-wifi">
+              <img src={wifiPic} alt="" />
+              Wifi
+            </div>
+            <div className="amenities-kitchen">
+              <img src={kitchenPic} alt="" />
+              Kitchen
+            </div>
+            <div className="amenities-workspace">
+              <img src={workspacePic} alt="" />
+              Dedicated workspace
+            </div>
+            </div>
+
+
           </div>
           <div className="standalone-calendar">
             <DayPickerWrapper

@@ -5,7 +5,7 @@ import { faMessage, faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { faPumpSoap, faKey, faLocationDot, faTag } from '@fortawesome/free-solid-svg-icons';
 
 
-const ReviewSummary = ({ reviews }) => {
+const ReviewSummary = ({ reviews, listing }) => {
 
   const categories = [
     'communication',
@@ -67,7 +67,7 @@ const ReviewSummary = ({ reviews }) => {
       averageRatings[category] = Math.round((totalRatings[category] / numReviews) * 10) / 10;
     });
   }
-
+ 
   
 
   //cmd+ctrl+sce for •

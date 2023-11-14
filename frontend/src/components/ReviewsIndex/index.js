@@ -5,11 +5,13 @@ import "./ReviewsIndexItem.css";
 import { useHistory } from "react-router-dom";
 import { toggleLogin } from "../../store/ui";
 import './ReviewsIndex.css'
+import { getListing } from "../../store/listings";
 
 
 const ReviewsIndex = ({ listingId, reviews }) => {
 
   const sessionUser = useSelector(state => state.session.user);
+  const listing = useSelector(getListing(listingId));
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -32,7 +34,7 @@ const ReviewsIndex = ({ listingId, reviews }) => {
 
   return (
     <>
-      <ReviewsSummary reviews={reviews} />
+      <ReviewsSummary reviews={reviews} listing={listing}/>
       <ul className="reviews-list">
         {reviews?.map(review => (
           <ReviewsIndexItem key={review.id} review={review} />

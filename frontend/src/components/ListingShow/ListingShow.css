@@ -116,3 +116,12 @@
   padding-bottom: 30px;
 }
 
+.show-highlights {
+  border-bottom: 1px solid lightgray;
+}
+
+.show-amenities {
+  border-bottom: 1px solid lightgray;
+
+}
+
