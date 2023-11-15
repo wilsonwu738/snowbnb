@@ -153,7 +153,10 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservati
 
   return (
     <div className="reservation-form-wrapper">
-      <div>${listing.nightlyPrice} night</div>
+      <div className="resform-price">
+        <div className="resform-price-value">${listing.nightlyPrice}</div>
+        <div className="resform-price-text">night</div>
+      </div>
       <div className="reservation-selections">
         <div className="reservation-date-inputs">
           <div className="form-start-date">

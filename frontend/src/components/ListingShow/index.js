@@ -120,15 +120,32 @@ const ListingShow = () => {
           <div className="show-highlights">
             <div className="show-checkin">
               <img src={checkinPic} alt="" />
-              Self check-in
+              <div className="show-checkin-text">
+                <div className="show-checkin-text-summary">
+                  Self Check-in
+                </div>
+                <div className="show-checkin-text-details">
+                  Check yourself in with the lockbox
+                </div>
+              </div>
             </div>
             <div className="show-superhost">
               <img src={superhostPic} alt="" />
-              {listing.firstName} is a Superhost
+              <div className="show-superhost-text">
+                <div className="show-superhost-text-summary">
+                  {listing.firstName} is a Superhost
+                </div>
+                <div className="show-superhost-text-details">
+                  Superhosts are experienced, highly rated Hosts.
+                </div>
+              </div>
+            
             </div>
             <div className="show-cancellation">
               <img src={cancellationPic} alt="" />
-              Free cancellation for 48 hours
+              <div className="show-cancellation-text">
+                Free cancellation for 48 hours
+              </div>
             </div>
           </div>
 
@@ -137,15 +154,19 @@ const ListingShow = () => {
             <div className="amenities-type">
             <div className="amenities-wifi">
               <img src={wifiPic} alt="" />
-              Wifi
+              <div className="wifi-text">Wifi</div>
             </div>
             <div className="amenities-kitchen">
               <img src={kitchenPic} alt="" />
-              Kitchen
+              <div className="kitchen-text">
+                Kitchen
+              </div>
             </div>
             <div className="amenities-workspace">
               <img src={workspacePic} alt="" />
-              Dedicated workspace
+              <div className="space-text">
+                Dedicated workspace
+              </div>
             </div>
             </div>
 
@@ -153,7 +174,7 @@ const ListingShow = () => {
           </div>
 
           <div className="standalone-calendar">
-            <div className="date-description">
+            <div className="show-date-description">
               {differenceInDays(selectedRange?.to, selectedRange?.from) || 0} nights in {shortLocation}
             </div>
             <DayPickerWrapper

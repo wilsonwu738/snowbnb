@@ -18,6 +18,7 @@
 .review-summary-content {
   display: flex;
   gap: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
 
@@ -48,6 +49,8 @@
 
 .rating-text {
   margin-bottom: 10px;
+  font-size: 0.8em;
+  font-weight: 500;
 }
 
 .rating-number {
@@ -99,7 +102,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   flex-wrap: wrap;
-  font-size: 1.1em;
+  font-size: 1.0em;
   flex: 1 0 auto
 
   
