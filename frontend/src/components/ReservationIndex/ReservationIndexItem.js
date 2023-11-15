@@ -8,8 +8,7 @@ import { format, differenceInDays, parseISO } from "date-fns";
 import { formatDateInUTC } from "../../utils/dateUtil";
 
 
-const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit, onDelete }) => {
-
+const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit, onDelete, upcoming }) => {
   const dispatch = useDispatch();
 
   // const listing = useSelector(getListing(reservation.listingId))
@@ -71,17 +70,17 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
         )}
       </div>
 
-      {isEditing ? ( 
+      {upcoming && isEditing ? ( 
       <div className="trip-buttons">
         <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests, totalCost)}>Save</button>
         <button onClick={onCancel}>Cancel</button>
       </div>
-      ) : (
+      ) : upcoming ? (
       <div className="trip-buttons">
         <button onClick={() => onEdit(reservation.id)}>Edit</button>
         <button onClick={() => onDelete(reservation.id)}>Delete</button>
       </div>
-      )}    
+      ): null}    
     </div>
   );
 

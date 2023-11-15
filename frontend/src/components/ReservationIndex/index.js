@@ -60,6 +60,7 @@ const ReservationIndex = () => {
               onCancel={handleCancelClick}
               onEdit={handleEditClick}
               onDelete={handleDelete}
+              upcoming={true}
             />
           ))}
         </>
@@ -77,6 +78,7 @@ const ReservationIndex = () => {
               onCancel={handleCancelClick}
               onEdit={handleEditClick}
               onDelete={handleDelete}
+              upcoming={false}
             />
           ))}
         </>
