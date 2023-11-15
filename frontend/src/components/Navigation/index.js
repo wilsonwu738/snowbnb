@@ -12,33 +12,27 @@ import SearchBar from '../SearchBar';
 
 function Navigation({ isSticky, showSearch }){
   const sessionUser = useSelector(state => state.session.user);
-  const navClass = isSticky ? 'navbar sticky' : 'navbar';
+  const navClass = isSticky ? 'navbar-home' : 'navbar-other';
 
   return (
-    <div className={navClass}>
-      <div>
-        <NavLink exact to="/">
-          <img className='logo' src={logo}></img>
-        </NavLink>
+      <div className={navClass}>
+        <div>
+          <NavLink exact to="/">
+            <img className='logo' src={logo}></img>
+          </NavLink>
+        </div>
+
+        {showSearch && 
+        <div className='search-bar'>
+          <SearchBar onSearch/>
+        </div>}
+
+        <div className='lin-git'>
+          <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i className="fa-brands fa-linkedin"></i></a>
+          <a className="git" href="https://github.com/wilsonwu738"><i className="fa-brands fa-github"></i></a>
+          <ProfileButton user={sessionUser}/>
+        </div>  
       </div>
-
-      {showSearch && 
-      <div className='search-bar'>
-        <SearchBar onSearch/>
-      </div>}
-
-      <div className='lin-git'>
-        <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i className="fa-brands fa-linkedin"></i></a>
-        <a className="git" href="https://github.com/wilsonwu738"><i className="fa-brands fa-github"></i></a>
-        <ProfileButton user={sessionUser}/>
-      </div>
-
-
-      
-      
-    </div>
-
-
       
     
   );
