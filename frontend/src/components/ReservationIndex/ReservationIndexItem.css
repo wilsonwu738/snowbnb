@@ -15,4 +15,5 @@
 .trip-details {
   display: flex;
   flex-direction: column;
+  min-width: 200px;
 }

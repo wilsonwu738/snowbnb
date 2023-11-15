@@ -3,8 +3,8 @@
   justify-content: space-between;
   margin: 5px;
   border-bottom: 1px solid gainsboro;
-  /* background-image: url("snowmnt.jpeg"); */
   background-color: white;
+  
 }
 
 .navbar.sticky {
