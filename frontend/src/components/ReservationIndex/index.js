@@ -50,7 +50,7 @@ const ReservationIndex = () => {
     <div className="reservation-index-container">
       {upcomingReservations.length > 0 && (
         <>
-          <h2>Upcoming Trips</h2>
+          <h2 className="trips-upcoming">Upcoming Trips</h2>
           {upcomingReservations.map((reservation) => (
             <ReservationIndexItem
               key={reservation.id}
@@ -68,7 +68,7 @@ const ReservationIndex = () => {
 
       {pastReservations.length > 0 && (
         <>
-          <h2>Past Trips</h2>
+          <h2 className="trips-past">Past Trips</h2>
           {pastReservations.map((reservation) => (
             <ReservationIndexItem
               key={reservation.id}

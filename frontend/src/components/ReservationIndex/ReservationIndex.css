@@ -1,6 +1,20 @@
 .reservation-index-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 1em;
+  padding-left: 10%;
+  padding-right: 10%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.trips-upcoming {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.trips-past {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
