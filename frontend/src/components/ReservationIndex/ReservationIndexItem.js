@@ -42,13 +42,12 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
     
   return (
     <div className="reservation-item">
-      <div className="reservation-listing-photo">
-           <img id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
-      </div>
-      <div className="trip-details">
-        <div>{reservation.listing}</div>
+      <img className="reservation-listing-photo" id="p1" src={reservation.listingPhotoUrl[0]} alt="" />
+  
+      <div className="trip-text">
+        <div className="trip-listing-name">{reservation.listing}</div>
         {isEditing ? ( 
-        <>
+        <div className="trip-details">
           <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
           <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
           <select className="guests-dropdown" value={numGuests} onChange={(e) => setNumGuests(e.target.value)}>
@@ -59,26 +58,26 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
           <div>total cost: ${totalCost}</div>
 
 
-        </>) : (
-        <>
+        </div>) : (
+        <div className="trip-details">
           <div>Start Date: {formatDateInUTC(reservation.startDate, 'PP')}</div>
           <div>End Date: {formatDateInUTC(reservation.endDate, 'PP')}</div>
-          <div>{differenceInDays(parseISO(reservation.endDate),parseISO(reservation.startDate))} nights</div>
-          <div>Number of Guests: {reservation.numGuests}</div>
-          <div>total cost: ${reservation.totalCost}</div>
-        </>
+          <div>{differenceInDays(parseISO(reservation.endDate),parseISO(reservation.startDate))} Nights</div>
+          <div>{reservation.numGuests} Guest(s)</div>
+          <div>Total Cost: ${reservation.totalCost}</div>
+        </div>
         )}
       </div>
 
       {upcoming && isEditing ? ( 
-      <div className="trip-buttons">
-        <button onClick={() => onSave(reservation.id, startDate, endDate, numGuests, totalCost)}>Save</button>
-        <button onClick={onCancel}>Cancel</button>
+      <div className="trip-buttons-onedit">
+        <button className="trip-save" onClick={() => onSave(reservation.id, startDate, endDate, numGuests, totalCost)}>Save</button>
+        <button className="trip-cancel" onClick={onCancel}>Cancel</button>
       </div>
       ) : upcoming ? (
       <div className="trip-buttons">
-        <button onClick={() => onEdit(reservation.id)}>Edit</button>
-        <button onClick={() => onDelete(reservation.id)}>Delete</button>
+        <button className="trip-edit" onClick={() => onEdit(reservation.id)}>Edit</button>
+        <button className="trip-cancel" onClick={() => onDelete(reservation.id)}>Cancel</button>
       </div>
       ): null}    
     </div>

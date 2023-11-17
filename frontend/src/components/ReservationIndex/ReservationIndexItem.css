@@ -1,30 +1,61 @@
 .reservation-item {
   display: flex;
-  max-width: 50vw;
-  max-width: 50vh;
+  /* justify-content: space-between; */
+  width: 100%;
+  gap: 2em;
+  border: 2px solid gainsboro;
+  border-radius: 8px;
+  padding: 2%;
+  
 }
 
 .reservation-listing-photo {
-  width: 300px;
+  width: 200px;
   aspect-ratio: 1/1;
-  flex: 1 1 300px
+  /* flex: 1 0 auto; */
+  border-radius: 10px;
+
 }
 
-.reservation-listing-photo img {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
+.trip-listing-name {
+  font-size: 1.2em;
+}
+
+
+.trip-text {
+  display: flex;
+  flex-direction: column;
+  /* min-width: 200px; */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  gap: 2em;
 }
 
 .trip-details {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+  gap: 0.5em;
 }
 
-.trip-buttons {
+.trip-buttons, .trip-buttons-onedit {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
 
+.trip-edit, .trip-save {
+  background-color: rgb(227, 29, 80);
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+}
+.trip-cancel {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
 }
