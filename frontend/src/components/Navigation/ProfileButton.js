@@ -4,10 +4,11 @@ import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './ProfileButton.css'
+import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
@@ -36,12 +37,14 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push('/')
   };
 
   let dropdownItems;
   if (user) {
     dropdownItems = 
       <div className="profile-dropdown">
+        <button className="profile-dropdown-item" onClick= {() => {history.push('/trips')}}>Trips</button>
         <button className="profile-dropdown-item" onClick={logout}>Log out</button>
       </div>
   } else {
