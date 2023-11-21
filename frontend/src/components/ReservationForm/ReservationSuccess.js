@@ -7,7 +7,7 @@ import './ReservationSuccess.css'
 
 
 
-function ReservationSuccess({onClose}) {
+function ReservationSuccess({ onClose, listing }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -16,18 +16,27 @@ function ReservationSuccess({onClose}) {
     history.push("/trips");
   }
 
+  const handleHome = () => {
+    dispatch(toggleReservationSuccess());
+    history.push("/");
+  }
+
 
   return(
     <Modal onClose={onClose}>
       <div className="reservation-success">
-        <div className="reservation-success-message"> Reservation made successfully!!!</div>
-        <button className="success-booking-trips" onClick={handleTrip}>
-          Teleport to your trips page
-        </button>
+        <div className="reservation-success-message">Your reservation is confirmed</div>
+        <div className="reservation-success-location">You are going to {listing.location} </div>
+        <img className="reservation-success-photo" src={listing.photoUrl[0]} alt="" />
+        <div className="success-booking-buttons">
+          <button className="success-booking-trips" onClick={handleTrip}>
+            Teleport to your trips page
+          </button>
 
-        <button className="success-booking-stay" onClick={onClose}>
-          Stay to explore more
-        </button>
+          <button className="success-booking-stay" onClick={handleHome}>
+            Explore other houses
+          </button>
+        </div>
       </div>
 
     </Modal>

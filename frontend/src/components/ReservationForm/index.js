@@ -229,7 +229,7 @@ const ReservationForm = ({ listingId, selectedRange, setSelectedRange, reservati
 
       
       {showLogin && <LoginFormModal onClose={() => dispatch(toggleLogin())} />}
-      {showReservationSuccess && <ReservationSuccess onClose={() => dispatch(toggleReservationSuccess())} /> }
+      {showReservationSuccess && <ReservationSuccess listing={listing} onClose={() => dispatch(toggleReservationSuccess())} /> }
     </div>
    
   );
