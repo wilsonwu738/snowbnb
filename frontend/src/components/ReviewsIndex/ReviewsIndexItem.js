@@ -29,7 +29,7 @@ const ReviewsIndexItem = ({ review }) => {
 
       {sessionUser && sessionUser.id === review.userId && (
         <div className='review-buttons'>
-          <button className='review-update' onClick={handleUpdate}>Update</button>
+          <button className='review-edit' onClick={handleUpdate}>Edit</button>
           <button className='review-delete' onClick={handleDelete}>ⅹ</button>
         </div>
       )}

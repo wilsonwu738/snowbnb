@@ -11,6 +11,7 @@
   flex: 1 0 48%;
   font-size: 1em;
   position: relative;
+  max-width: 48%;
 }
 
 .reviewer-name {
@@ -41,18 +42,18 @@
 
 }
 
-.review-update {
-  background-color: darkgray;
+.review-edit {
   color: white;
   border-radius: 3px;
-  padding: 2px;
+  padding: 3px;
   font-size: 0.9em;
+  background-color: #0171E6
 }
 
 .review-delete {
-  background-color: lightcoral;
+  background-color: #FF5A5F;
   color: white;
-  border-radius: 75%;  /* Makes the button round */
+  border-radius: 75%;  
   width: 20px;
   height: 20px;
   text-align: center;

@@ -93,8 +93,8 @@ const ReviewForm = () => {
       {/* {errorMessges && <ErrorShow messages={errorMessges} />} */}
       <form onSubmit={handleSubmit}>
         {categories.map(({ display, key }) => (
-          <div key={key}>
-            <p>{display}</p>
+          <div className='review-form-rating' key={key}>
+            <p className='display-category'>{display}</p>
             <StarRatings
               rating={reviewData[key]}
               starHoverColor="gold"
@@ -104,7 +104,7 @@ const ReviewForm = () => {
               name={key}
             
             />
-            <div></div>
+
           </div>
           
         ))}

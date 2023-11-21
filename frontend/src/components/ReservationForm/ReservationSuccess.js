@@ -34,7 +34,7 @@ function ReservationSuccess({ onClose, listing }) {
           </button>
 
           <button className="success-booking-stay" onClick={handleHome}>
-            Explore other houses
+            Explore other home
           </button>
         </div>
       </div>
