@@ -14,6 +14,7 @@ class Api::SessionsController < ApplicationController
   def create
     @user = User.find_by_credentials(params[:credential], params[:password])
     @listing_ids = @user.reservations.pluck(:listing_id).uniq
+  
 
     if @user
       login!(@user)

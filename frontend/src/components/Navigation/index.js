@@ -27,7 +27,7 @@ function Navigation({ isSticky, showSearch }){
           <SearchBar onSearch/>
         </div>}
 
-        <div className='lin-git'>
+        <div className='lin-git-profile'>
           <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i className="fa-brands fa-linkedin"></i></a>
           <a className="git" href="https://github.com/wilsonwu738"><i className="fa-brands fa-github"></i></a>
           <ProfileButton user={sessionUser}/>

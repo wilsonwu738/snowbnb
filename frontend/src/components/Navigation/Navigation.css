@@ -37,11 +37,7 @@
   justify-content: flex-start;
 }
 
-.lin-git {
-  /* margin-left: 200px; */
-  height: 80px;
 
-}
 
 .fa-brands {
   font-size: 1.5em;
@@ -50,55 +46,16 @@
 }
 
 
-
-
-.profile-dropdown {
-  /* border: 1px solid black; */
-  position: absolute;
-  top: 90px;
-  right: 60px;
-  /* margin-right: 50%; */
-  border: 1px solid;
-  border-radius: 10px;
-  width: 75px;
-  background-color: white;
-  padding: 5px;
-}
-
-/* .login-modal {
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-}
-
-.signup-modal {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  padding-bottom: 5px;
-} */
-
-
-
-.profile-button {
-  border: 1px solid black;
-  /* position: relative; */
-  margin-top: 40px;
-  border-radius: 10px;
-  width: 60px;
-  height: 40px;
-
- 
-} 
-
 .search-bar {
   margin-top: 25px;
   margin-left: 50px;
 }
 
+.lin-git-profile {
+  display: flex;
+  align-items: center;
 
-.icon {
-  margin-left: 5px;
 }
+
 
 

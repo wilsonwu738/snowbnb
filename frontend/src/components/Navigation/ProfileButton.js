@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import './Navigation.css'
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -66,8 +66,8 @@ function ProfileButton({ user }) {
           <span><i className="fa-solid fa-bars"></i></span>
           <span className="icon"><i className="fa-solid fa-user"></i></span>
         </div>
-      </button>
       {showMenu && dropdownItems}
+      </button>
       {showLogin && <LoginFormModal onClose={() => setShowLogin(false)} />}
       {showSignup && <SignupFormModal onClose={() => setShowSignup(false)} />}
 
