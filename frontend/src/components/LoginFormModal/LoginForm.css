@@ -20,14 +20,12 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-bottom: 50px;
+  gap: 1em;
 
 }
 
 .input_wrapper {
-  margin: 20px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;

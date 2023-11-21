@@ -69,7 +69,6 @@ function SignupFormPage({ onClose }) {
                 required
               />
             
-            <br />
               <input
                 type="text"
                 value={username}
@@ -88,8 +87,6 @@ function SignupFormPage({ onClose }) {
                 placeholder="Password"
                 required
                 />
-     
-            <br />
   
               <input
                 type="password"
@@ -101,12 +98,11 @@ function SignupFormPage({ onClose }) {
   
         </div>
         </div>
-        <br />
         <div className="signup-buttons">
 
           <button className='signup-button' type="submit">Sign Up</button>
       
-          <button className='demo-button' onClick={demoLogin}>Demo User</button>
+          <button className='signup-demo-button' onClick={demoLogin}>Demo User</button>
         </div>
       </form>
     </div>

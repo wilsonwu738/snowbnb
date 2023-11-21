@@ -12,9 +12,7 @@ function SignupFormModal({ onClose }) {
   return (
     <>
         <Modal onClose={onClose}>
-          <div className='signup-modal-content'>
             <SignupForm onClose={onClose}/>
-          </div>
         </Modal>
     </>
   );
