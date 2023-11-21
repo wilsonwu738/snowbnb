@@ -66,7 +66,7 @@ function LoginForm({ onClose }) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
+              placeholder="Password"
               required
             />
           </label>
@@ -74,8 +74,8 @@ function LoginForm({ onClose }) {
 
 
         <div className="loginform-buttons">
-          <button className="login-button" type="submit">Log In</button>
-          <button className="demo-button" onClick={demoLogin}>Demo User</button>
+          <button className="login-button" type="submit">Log in</button>
+          <button className="login-demo-button" onClick={demoLogin}>Demo User</button>
         </div>
 
       </form>

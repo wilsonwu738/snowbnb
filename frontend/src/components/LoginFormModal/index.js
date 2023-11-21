@@ -9,9 +9,7 @@ function LoginFormModal({ onClose }) {
   return (
     <>
         <Modal onClose={onClose}>
-          <div className='login-modal-content'>
             <LoginForm onClose={onClose}/>  
-          </div>
         </Modal>
     </>
   );

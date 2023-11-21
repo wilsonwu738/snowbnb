@@ -42,13 +42,13 @@ function ProfileButton({ user }) {
   if (user) {
     dropdownItems = 
       <div className="profile-dropdown">
-        <button className="profile-dropdown-item" onClick={logout}>Log Out</button>
+        <button className="profile-dropdown-item" onClick={logout}>Log out</button>
       </div>
   } else {
     dropdownItems = 
       <div className="profile-dropdown">
-        <button className="profile-dropdown-item" onClick= {() => {setShowMenu(false); setShowLogin(true)}}>Log In</button>
-        <button className="profile-dropdown-item" onClick= {() => {setShowMenu(false); setShowSignup(true)}}>Sign Up</button>
+        <button className="profile-dropdown-item" onClick= {() => {setShowMenu(false); setShowLogin(true)}}>Log in</button>
+        <button className="profile-dropdown-item" onClick= {() => {setShowMenu(false); setShowSignup(true)}}>Sign up</button>
 
       </div>
        
