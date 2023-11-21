@@ -39,10 +39,9 @@
 
 }
 
-
 .search-bar {
-  margin-top: 25px;
-  margin-left: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .lin-git-profile {
