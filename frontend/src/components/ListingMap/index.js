@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
+import { useHistory } from "react-router-dom";
+import './ListingMap.css'
 
-const ListingMap = ({listings, mapEventHandlers ,markerEventHandlers}) => {
+
+const ListingMap = ({listings, mapOptions={}, mapEventHandlers, markerEventHandlers}) => {
   const [map, setMap] = useState(null);
   const mapRef = useRef(null);
   const markers = useRef({});
+  const history = useHistory();
+
 
 
   // Create the map
@@ -36,7 +41,7 @@ const ListingMap = ({listings, mapEventHandlers ,markerEventHandlers}) => {
       return () => listeners.forEach(window.google.maps.event.removeListener);
     }
   }, [map, mapEventHandlers]);
-  
+
 
   useEffect(() => {
     if (map) {
@@ -87,11 +92,11 @@ const ListingMap = ({listings, mapEventHandlers ,markerEventHandlers}) => {
         delete markers.current[listingId];
       })
     }
-  }, [benches, history, map, markerEventHandlers]);
+  }, [listings, history, map, markerEventHandlers]);
 
 
   return (
-    <div ref={mapRef}> Map
+    <div ref={mapRef} className='map'> Map
 
     </div>
   )
@@ -99,7 +104,7 @@ const ListingMap = ({listings, mapEventHandlers ,markerEventHandlers}) => {
 
 const ListingMapWrapper = (props) => {
   return (
-    <Wrapper apiKey={ProcessingInstruction.env.REACT_APP_MAPS_API_KEY}>
+    <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
       <ListingMap {...props} />
     </Wrapper>
   )

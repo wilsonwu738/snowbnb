@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchListings, getListings } from "../../store/listings";
 import ListingIndexItem from "./ListingIndexItem";
+import { useHistory } from "react-router-dom";
 import './ListingIndex.css'
 import FiltersBar from "../FiltersBar";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import ListingMap from "../ListingMap"
 
 
 
@@ -14,8 +16,18 @@ const ListingIndex = () => {
   const dispatch = useDispatch()
   const listings = useSelector(getListings)
   const location = useLocation();
+  const history = useHistory(); 
+  const [bounds, setBounds] = useState(null);
 
-  
+
+
+  const mapEventHandlers = useMemo(() => ({
+    click: event => {
+      const search = new URLSearchParams(event.latLng.toJSON()).toString();
+      history.push({ pathname: '/benches/new', search });
+    },
+    idle: map => setBounds(map.getBounds().toUrlValue())
+  }), [history]);
 
   
   useEffect(() => {
@@ -40,6 +52,15 @@ const ListingIndex = () => {
             <p>No listings available. <Link to="/">Check out other houses</Link></p>
           </div>
       }
+
+      <ListingMap
+        listings={listings}
+        mapEventHandlers={mapEventHandlers}
+        markerEventHandlers={{
+          click: (listing) => history.push(`/listings/${listing.id}`)
+        }}
+       
+      />
      
     </ div>
   )
