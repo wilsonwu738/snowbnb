@@ -16,6 +16,8 @@ const ListingIndex = () => {
   const location = useLocation();
 
   
+
+  
   useEffect(() => {
     dispatch(fetchListings())
   }, [dispatch,location])
