@@ -17,7 +17,10 @@ const ListingIndex = () => {
   const listings = useSelector(getListings)
   const location = useLocation();
   const history = useHistory(); 
+
   const [bounds, setBounds] = useState(null);
+  const [highlightedListing, setHighlightedListing] = useState(null);
+
 
 
 
@@ -57,8 +60,11 @@ const ListingIndex = () => {
         listings={listings}
         mapEventHandlers={mapEventHandlers}
         markerEventHandlers={{
-          click: (listing) => history.push(`/listings/${listing.id}`)
+          click: (listing) => history.push(`/listings/${listing.id}`),
+          mouseover: (listing) => setHighlightedListing(listing.id),
+          mouseout: () => setHighlightedListing(null)
         }}
+        highlightedListing={highlightedListing} 
        
       />
      

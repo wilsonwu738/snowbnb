@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import './ListingMap.css'
 
 
-const ListingMap = ({listings, mapOptions={}, mapEventHandlers, markerEventHandlers}) => {
+const ListingMap = ({listings, highlightedListing, mapOptions={}, mapEventHandlers={}, markerEventHandlers={} }) => {
   const [map, setMap] = useState(null);
   const mapRef = useRef(null);
   const markers = useRef({});
@@ -93,6 +93,22 @@ const ListingMap = ({listings, mapOptions={}, mapEventHandlers, markerEventHandl
       })
     }
   }, [listings, history, map, markerEventHandlers]);
+
+   // Change the style for bench marker on hover
+  useEffect(() => {
+    Object.entries(markers.current).forEach(([listingId, marker]) => {
+      const label = marker.getLabel();
+      const icon = marker.getIcon();
+
+      if (parseInt(listingId) === highlightedListing) {
+        marker.setLabel({ ...label, color: 'white' });
+        marker.setIcon({ ...icon, fillColor: 'black' });
+      } else {
+        marker.setLabel({ ...label, color: 'black' });
+        marker.setIcon({ ...icon, fillColor: 'white' });
+      }
+    });
+  }, [markers, highlightedListing]);
 
 
   return (
