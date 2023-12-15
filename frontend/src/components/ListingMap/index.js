@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
 
-const ListingMap = ({listings}) => {
+const ListingMap = ({listings, mapEventHandlers ,markerEventHandlers}) => {
   const [map, setMap] = useState(null);
   const mapRef = useRef(null);
   const markers = useRef({});
@@ -21,6 +21,22 @@ const ListingMap = ({listings}) => {
       }));
     }
   }, [mapRef, map, mapOptions]);
+
+  // Add event handlers to map
+  useEffect(() => {
+    if (map) {
+      const listeners = Object.entries(mapEventHandlers).map(([event, handler]) => 
+        window.google.maps.event.addListener(
+          map, 
+          event, 
+          (...args) => handler(...args, map)
+        )
+      );
+
+      return () => listeners.forEach(window.google.maps.event.removeListener);
+    }
+  }, [map, mapEventHandlers]);
+  
 
   useEffect(() => {
     if (map) {
