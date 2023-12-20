@@ -18,8 +18,10 @@ const ListingIndex = () => {
   const location = useLocation();
   const history = useHistory(); 
 
-  const [bounds, setBounds] = useState(null);
+  // const [bounds, setBounds] = useState(null);
   const [highlightedListing, setHighlightedListing] = useState(null);
+
+  const [showMap, setShowMap] = useState(false);
 
 
 
@@ -46,28 +48,32 @@ const ListingIndex = () => {
       <div className="filters-bar">
         <FiltersBar />
       </div>
+      <div className="content-container">
 
-      {Object.keys(listings).length > 0 ?
-        <div className="index-container">
-          {listingIndexItems}
-        </div>
-       : <div className="bad-search">
-            <p>No listings available. <Link to="/">Check out other houses</Link></p>
+        {Object.keys(listings).length > 0 ?
+          <div className={`index-container ${!showMap ? 'show' : ''}`}>
+            {listingIndexItems}
           </div>
-      }
+         : <div className="bad-search">
+              <p>No listings available. <Link to="/">Check out other houses</Link></p>
+            </div>
+        }
+        <div className={`index-map-container ${showMap ? 'show' : ''}`}>
 
-      <ListingMap
-        listings={listings}
-        mapEventHandlers={mapEventHandlers}
-        markerEventHandlers={{
-          click: (listing) => history.push(`/listings/${listing.id}`),
-          mouseover: (listing) => setHighlightedListing(listing.id),
-          mouseout: () => setHighlightedListing(null)
-        }}
-        highlightedListing={highlightedListing} 
-       
-      />
-     
+          <ListingMap
+            listings={listings}
+            mapEventHandlers={mapEventHandlers}
+            markerEventHandlers={{
+              click: (listing) => history.push(`/listings/${listing.id}`),
+              mouseover: (listing) => setHighlightedListing(listing.id),
+              mouseout: () => setHighlightedListing(null)
+            }}
+            highlightedListing={highlightedListing} 
+            />
+          </div>
+      </div>
+
+      <button className="showmap-button" onClick={() => setShowMap(!showMap)}>{showMap ? 'Show Listings' : 'Show Map'}</button>
     </ div>
   )
 

@@ -47,4 +47,10 @@ class Listing < ApplicationRecord
     update(average_rating: average_rating)
   end    
 
+  # use this later for more interation with the map, make listings respond to the map selection
+  def self.in_bounds(bounds)
+    lower_lat, lower_lng, upper_lat, upper_lng = bounds
+    where(lat: lower_lat..upper_lat, long: lower_lng..upper_lng)
+  end
+
 end
