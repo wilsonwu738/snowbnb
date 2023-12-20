@@ -9,6 +9,8 @@
 .content-container {
   position: relative;
   flex-grow: 1;
+  /* overflow: hidden;  */
+
 }
 
 .index-map-container, .index-container {
@@ -22,9 +24,17 @@
   visibility: hidden;
 }
 
-.show {
+
+
+.show-index {
   opacity: 1;
   visibility: visible;
+}
+
+.show-map {
+  opacity: 1;
+  visibility: visible;
+  overflow: hidden;
 }
 
 .index-container {
@@ -85,19 +95,20 @@
 }
 
 .showmap-button {
-  background-color: #fff;
-  color: #333;
+  background-color: black;
+  color: white;
   padding: 10px 20px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
   position: fixed;
   bottom: 30px;
   left: 50%;
+  /* transform: translateX(-50%); */
 }
 
 .showmap-button:hover {
-  background-color: #ff8185; /* Slightly lighter on hover */
+  transform: scale(1.1);
 }

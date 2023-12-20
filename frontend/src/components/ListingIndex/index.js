@@ -48,17 +48,17 @@ const ListingIndex = () => {
       <div className="filters-bar">
         <FiltersBar />
       </div>
-      <div className="content-container">
+      <div className={`content-container ${showMap ? 'show-map' : ''}`}>
 
         {Object.keys(listings).length > 0 ?
-          <div className={`index-container ${!showMap ? 'show' : ''}`}>
+          <div className={`index-container ${!showMap ? 'show-index' : ''}`}>
             {listingIndexItems}
           </div>
          : <div className="bad-search">
               <p>No listings available. <Link to="/">Check out other houses</Link></p>
             </div>
         }
-        <div className={`index-map-container ${showMap ? 'show' : ''}`}>
+        <div className={`index-map-container ${showMap ? 'show-map' : ''}`}>
 
           <ListingMap
             listings={listings}
