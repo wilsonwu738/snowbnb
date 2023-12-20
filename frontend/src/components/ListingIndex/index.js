@@ -25,11 +25,11 @@ const ListingIndex = () => {
 
 
   const mapEventHandlers = useMemo(() => ({
-    click: event => {
-      const search = new URLSearchParams(event.latLng.toJSON()).toString();
-      history.push({ pathname: '/benches/new', search });
-    },
-    idle: map => setBounds(map.getBounds().toUrlValue())
+    // click: event => {
+    //   const search = new URLSearchParams(event.latLng.toJSON()).toString();
+    //   history.push({ pathname: '/benches/new', search });
+    // },
+    // idle: map => setBounds(map.getBounds().toUrlValue())
   }), [history]);
 
   

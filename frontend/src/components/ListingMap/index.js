@@ -17,10 +17,10 @@ const ListingMap = ({listings, highlightedListing, mapOptions={}, mapEventHandle
     if (!map) {
       setMap(new window.google.maps.Map(mapRef.current, {
         center: {
-          lat: 37.773972,
-          lng: -122.431297
-        }, // San Francisco coordinates
-        zoom: 13,
+          lat: 44.5588,
+          lng: -72.5578
+        }, // Vermont coordinates
+        zoom: 9,
         clickableIcons: false,
         ...mapOptions,
       }));
