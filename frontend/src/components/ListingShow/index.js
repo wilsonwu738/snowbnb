@@ -15,6 +15,8 @@ import wifiPic from '../../icons/wifi.png'
 import kitchenPic from '../../icons/kitchen.png'
 import workspacePic from '../../icons/workspace.png'
 import { differenceInDays } from 'date-fns';
+import ListingMap from "../ListingMap"
+
 
 
 
@@ -198,10 +200,17 @@ const ListingShow = () => {
 
   
 
-      <div className="bottom-container">
+      <div className="show-map-container">
           <div className="map-text">Google Map coming soon!</div>
-          <div className="map-img">
+          {/* <div className="map-img">
             <img src="https://snowbnb-seeds.s3.amazonaws.com/skimap.jpg" alt="" />
+          </div> */}
+          <div className="show-map-container">
+            <ListingMap
+            listings={[listing]}
+            mapOptions={{ center: { lat: listing.lat, lng: listing.long }}}
+            />
+          
           </div>
       </div>
       
