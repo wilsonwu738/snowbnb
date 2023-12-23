@@ -8,6 +8,11 @@ import FiltersBar from "../FiltersBar";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ListingMap from "../ListingMap"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faMap } from '@fortawesome/free-regular-svg-icons';
+import { faMap, faList } from '@fortawesome/free-solid-svg-icons';
+
+
 
 
 
@@ -73,7 +78,13 @@ const ListingIndex = () => {
           </div>
       </div>
 
-      <button className="showmap-button" onClick={() => setShowMap(!showMap)}>{showMap ? 'Show Listings' : 'Show Map'}</button>
+      <button className="showmap-button" onClick={() => setShowMap(!showMap)}>
+        {showMap ? 'Show Listings' : 'Show Map'}
+        <div className="showmap-icon">
+          {showMap ? <FontAwesomeIcon icon={faList} /> : <FontAwesomeIcon icon={faMap} />}
+        </div>
+      </button>
+      
     </ div>
   )
 
