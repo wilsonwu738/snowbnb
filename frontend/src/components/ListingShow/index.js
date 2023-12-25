@@ -201,7 +201,7 @@ const ListingShow = () => {
   
 
       <div className="show-map-container">
-          <div className="map-text">Google Map coming soon!</div>
+          <div className="map-text">Where you'll be</div>
           {/* <div className="map-img">
             <img src="https://snowbnb-seeds.s3.amazonaws.com/skimap.jpg" alt="" />
           </div> */}
