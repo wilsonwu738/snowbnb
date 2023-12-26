@@ -205,7 +205,7 @@ const ListingShow = () => {
           {/* <div className="map-img">
             <img src="https://snowbnb-seeds.s3.amazonaws.com/skimap.jpg" alt="" />
           </div> */}
-          <div className="show-map-container">
+          <div className="show-map">
             <ListingMap
             listings={[listing]}
             mapOptions={{ center: { lat: listing.lat, lng: listing.long }}}
@@ -213,6 +213,11 @@ const ListingShow = () => {
           
           </div>
       </div>
+
+      <div className='lin-git-profile'>
+          <a className="lin" href="https://www.linkedin.com/in/wilsonwu738"><i className="fa-brands fa-linkedin"></i></a>
+          <a className="git" href="https://github.com/wilsonwu738"><i className="fa-brands fa-github"></i></a>
+        </div>  
       
     </div>
     

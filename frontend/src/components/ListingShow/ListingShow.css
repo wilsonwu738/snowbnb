@@ -215,12 +215,13 @@
 }
 
 .show-map-container {
-  height: 500px;
-  width: 100%;
+  /* height: 500px;
+  width: 100%; */
   border-bottom: 1px solid lightgray;
   display: flex;
   flex-direction: column;
   gap: 1em;
+  padding-bottom: 2em;
 
 }
 
@@ -229,5 +230,10 @@
   font-size: 1.3em;
   font-weight: 500;
 
+}
+
+.show-map {
+  height: 500px;
+  width: 100%;
 }
 
