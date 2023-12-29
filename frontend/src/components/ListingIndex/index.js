@@ -11,6 +11,7 @@ import ListingMap from "../ListingMap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { faMap, faList } from '@fortawesome/free-solid-svg-icons';
+import BottomBar from "../BottomBar";
 
 
 
@@ -77,7 +78,7 @@ const ListingIndex = () => {
             />
           </div>
       </div>
-
+      <BottomBar />
       <button className="showmap-button" onClick={() => setShowMap(!showMap)}>
         {showMap ? 'Show Listings' : 'Show Map'}
         <div className="showmap-icon">
