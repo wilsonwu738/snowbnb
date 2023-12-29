@@ -36,6 +36,7 @@ const ReservationIndex = () => {
   const handleSave = async (reservationId, startDate, endDate, numGuests, totalCost) => {
     // Perform the update logic here, such as dispatching an action to update the reservation
     // After the update, cancel the editing mode
+    
     const reservation = {
       id: reservationId,
       startDate: startDate,
@@ -45,9 +46,10 @@ const ReservationIndex = () => {
     }
 
     const res = await dispatch(updateReservation(reservation))
+    setErrors(null);
 
     if (!res.ok) {
-      setErrors(res.errors);
+      setErrors(res.errors[0].join('\n'));
     } else {
       setEditingReservationId(null);
     }

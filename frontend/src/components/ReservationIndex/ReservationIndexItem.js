@@ -57,7 +57,7 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
               <option key={i} value={i + 1}>{i + 1} Guest(s)</option>
               ))}
           </select> 
-          <div>total cost: ${totalCost}</div>
+          <div>Total Cost: ${Math.abs(totalCost)}</div>
 
 
         </div>) : (
@@ -66,7 +66,7 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
           <div>End Date: {formatDateInUTC(reservation.endDate, 'PP')}</div>
           <div>{differenceInDays(parseISO(reservation.endDate),parseISO(reservation.startDate))} Nights</div>
           <div>{reservation.numGuests} Guest(s)</div>
-          <div>Total Cost: ${reservation.totalCost}</div>
+          <div>Total Cost: ${Math.abs(reservation.totalCost)}</div>
         </div>
         )}
       </div>
