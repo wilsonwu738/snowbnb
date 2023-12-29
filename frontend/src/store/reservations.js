@@ -70,7 +70,7 @@ export const fetchReservation = reservationId => async dispatch => {
 
 // delete the else for error?
 export const createReservation = (reservation) => async dispatch => {
-  console.log(reservation)
+
   try {
     const res = await csrfFetch(`/api/reservations`, {
       method: "POST",
@@ -103,24 +103,28 @@ export const createReservation = (reservation) => async dispatch => {
 //i normally prefer the reservation to stay as it is, but if i structure it in frontend, it does not work with permit :id in rails
 
 export const updateReservation = (reservation) => async dispatch => {
-  const { id, ...otherAttributes } = reservation;
-  console.log(reservation)
-  const res = await csrfFetch(`/api/reservations/${id}`, {
-    method: "PATCH",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    // body: JSON.stringify({ reservation: otherAttributes })
-    body: JSON.stringify({ reservation: otherAttributes })
-  });
-  
-  if (res.ok) {
-    const data = await res.json();
-    console.log(data)
-    dispatch(receiveReservation(data))
+  try {
+    const { id, ...otherAttributes } = reservation;
+    const res = await csrfFetch(`/api/reservations/${id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // body: JSON.stringify({ reservation: otherAttributes })
+      body: JSON.stringify({ reservation: otherAttributes })
+    });
+    
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(receiveReservation(data))
+      return { ok: true, data };
+    }
+  } catch (error) {
+    const errData = await error.json();
+    console.log("catch block error", Object.values(errData))
+    return { ok: false, errors: Object.values(errData) };
   }
 
-  return res
 }
 
 export const deleteReservation = (reservationId) => async dispatch => {

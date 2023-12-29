@@ -16,7 +16,9 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
   const [endDate, setEndDate] = useState(formatDateInUTC(reservation.endDate));
   const [numGuests, setNumGuests] = useState(reservation.numGuests);
   const [totalCost, setTotalCost] = useState(reservation.totalCost);
+  const [errors, setErrors] = useState();
   
+
   useEffect(() => {
     if (startDate && endDate) {
       const start = parseISO(startDate);

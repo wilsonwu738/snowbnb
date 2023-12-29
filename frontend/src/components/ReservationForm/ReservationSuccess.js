@@ -25,7 +25,7 @@ function ReservationSuccess({ onClose, listing }) {
   return(
     <Modal onClose={onClose}>
       <div className="reservation-success">
-        <div className="reservation-success-message">Your reservation is confirmed</div>
+        <div className="reservation-success-message">Your reservation is confirmed!</div>
         <div className="reservation-success-location">You are going to {listing.location} </div>
         <img className="reservation-success-photo" src={listing.photoUrl[0]} alt="" />
         <div className="success-booking-buttons">
