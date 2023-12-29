@@ -5,6 +5,7 @@ import ListingIndex from "./components/ListingIndex";
 import ListingShow from "./components/ListingShow";
 import ReservationIndex from "./components/ReservationIndex";
 import ReviewForm from "./components/ReviewForm";
+import BottomBar from "./components/BottomBar";
 
 //routes are defined here, specific component in each route will be render when the route matches. useParams can be used for the :id
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/trips"><ReservationIndex /></Route>
         <Route path="/"><ListingIndex /></Route>
       </Switch>
+      <BottomBar/>
     </>
   );
 }
