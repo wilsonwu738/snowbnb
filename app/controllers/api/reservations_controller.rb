@@ -43,6 +43,7 @@ class Api::ReservationsController < ApplicationController
       render :show
       # render json: { status: 'success', message: 'Reservation updated.' }, status: 200
     else
+      puts @reservation.errors.full_messages
       render json: { errors: @reservation.errors.full_messages }, status: 400
     end
 

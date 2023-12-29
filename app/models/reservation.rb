@@ -16,7 +16,8 @@
 class Reservation < ApplicationRecord
   require 'date'
   validates :user_id, :listing_id, :start_date, :end_date, :num_guests, presence: true
-  validate :dates_valid?, :no_overlapping_reservations
+  validate :dates_valid?
+  validate :no_overlapping_reservations
 
   belongs_to :guest,
     foreign_key: :user_id,

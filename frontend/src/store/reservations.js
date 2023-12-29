@@ -93,7 +93,6 @@ export const createReservation = (reservation) => async dispatch => {
     // }
   } catch (error) {
     const errData = await error.json();
-    console.log("catch block error", Object.values(errData))
     
     return { ok: false, errors: Object.values(errData) };
   }
@@ -121,7 +120,6 @@ export const updateReservation = (reservation) => async dispatch => {
     }
   } catch (error) {
     const errData = await error.json();
-    console.log("catch block error", Object.values(errData))
     return { ok: false, errors: Object.values(errData) };
   }
 

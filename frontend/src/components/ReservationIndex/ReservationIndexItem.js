@@ -8,7 +8,7 @@ import { format, differenceInDays, parseISO } from "date-fns";
 import { formatDateInUTC } from "../../utils/dateUtil";
 
 
-const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit, onDelete, upcoming }) => {
+const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit, onDelete, upcoming}) => {
   const dispatch = useDispatch();
 
   // const listing = useSelector(getListing(reservation.listingId))
@@ -16,9 +16,9 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
   const [endDate, setEndDate] = useState(formatDateInUTC(reservation.endDate));
   const [numGuests, setNumGuests] = useState(reservation.numGuests);
   const [totalCost, setTotalCost] = useState(reservation.totalCost);
-  const [errors, setErrors] = useState();
-  
 
+  
+  
   useEffect(() => {
     if (startDate && endDate) {
       const start = parseISO(startDate);
@@ -76,6 +76,7 @@ const ReservationIndexItem = ({ reservation, isEditing, onSave, onCancel, onEdit
         <button className="trip-save" onClick={() => onSave(reservation.id, startDate, endDate, numGuests, totalCost)}>Save</button>
         <button className="trip-cancel" onClick={onCancel}>Cancel</button>
       </div>
+      
       ) : upcoming ? (
       <div className="trip-buttons">
         <button className="trip-edit" onClick={() => onEdit(reservation.id)}>Edit</button>

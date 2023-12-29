@@ -10,10 +10,17 @@ const ReservationIndex = () => {
   const reservations = useSelector(getReservations);
   const [editingReservationId, setEditingReservationId] = useState(null);
   const history = useHistory();
+  const [errors, setErrors] = useState();
   
   useEffect(() => {
     dispatch(fetchUserReservations())
   }, [dispatch])
+
+  useEffect(() => {
+    if (errors && errors.length > 0) {
+      alert(errors);
+    }
+  }, [errors]);
 
   const upcomingReservations = reservations.filter(reservation => new Date(reservation.startDate) > new Date());
   const pastReservations = reservations.filter(reservation => new Date(reservation.endDate) < new Date());
@@ -26,7 +33,7 @@ const ReservationIndex = () => {
     setEditingReservationId(null);
   };
 
-  const handleSave = (reservationId, startDate, endDate, numGuests, totalCost) => {
+  const handleSave = async (reservationId, startDate, endDate, numGuests, totalCost) => {
     // Perform the update logic here, such as dispatching an action to update the reservation
     // After the update, cancel the editing mode
     const reservation = {
@@ -36,10 +43,17 @@ const ReservationIndex = () => {
       numGuests, numGuests,
       totalCost: totalCost
     }
-    dispatch(updateReservation(reservation))
-    setEditingReservationId(null);
 
+    const res = await dispatch(updateReservation(reservation))
+
+    if (!res.ok) {
+      setErrors(res.errors);
+    } else {
+      setEditingReservationId(null);
+    }
   };
+
+  
 
   const handleDelete = (reservationId) => {
     dispatch(deleteReservation(reservationId))
