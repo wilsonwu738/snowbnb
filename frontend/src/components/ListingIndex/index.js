@@ -78,7 +78,6 @@ const ListingIndex = () => {
             />
           </div>
       </div>
-      <BottomBar />
       <button className="showmap-button" onClick={() => setShowMap(!showMap)}>
         {showMap ? 'Show Listings' : 'Show Map'}
         <div className="showmap-icon">

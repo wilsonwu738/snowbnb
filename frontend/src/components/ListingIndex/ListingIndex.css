@@ -22,6 +22,7 @@
   transition: opacity 0.3s ease;
   opacity: 0;
   visibility: hidden;
+
 }
 
 
@@ -29,6 +30,7 @@
 .show-index {
   opacity: 1;
   visibility: visible;
+
 }
 
 .show-map {

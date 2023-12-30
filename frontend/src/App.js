@@ -27,7 +27,6 @@ function App() {
         <Route path="/trips"><ReservationIndex /></Route>
         <Route path="/"><ListingIndex /></Route>
       </Switch>
-      <BottomBar/>
     </>
   );
 }
