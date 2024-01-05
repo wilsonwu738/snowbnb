@@ -1,7 +1,7 @@
 import './ErrorShow.css'
 
 const ErrorShow = ({ messages }) => {
-  console.log(messages)
+ 
   return (
     <div className="error-container">
     {messages.map((message, index) => (
